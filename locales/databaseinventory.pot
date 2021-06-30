@@ -1,0 +1,168 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-22 10:52+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: inc/databaseparam_computergroup.class.php:120
+msgid "Add computer group"
+msgstr ""
+
+#: inc/databaseparam_credential.class.php:120
+msgid "Add credential"
+msgstr ""
+
+#: inc/inventoryaction.class.php:83
+#, php-format
+msgid "Agent %1$s not found"
+msgstr ""
+
+#: inc/inventoryaction.class.php:67
+msgid "Agent not found for computer"
+msgstr ""
+
+#: inc/inventoryaction.class.php:172
+msgid "Ask agent to proceed a database inventory"
+msgstr ""
+
+#: inc/computergroup.class.php:38 inc/databaseparam_computergroup.class.php:62
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/contactlog.class.php:53
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/databaseparam_credential.class.php:62 inc/credential.class.php:53
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/credentialtype.class.php:76
+msgid "Credential type"
+msgid_plural "Credential types"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/credentialtype.class.php:169
+msgid "DB2"
+msgstr ""
+
+#: inc/profile.class.php:37 inc/menu.class.php:35 front/menu.php:34
+#: front/menu.php:43 setup.php:84
+msgid "Database Inventory"
+msgstr ""
+
+#: inc/databaseparam.class.php:38
+msgid "Database params"
+msgid_plural "Databases params"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/computergroupdynamic.class.php:37
+msgid "Dynamic group"
+msgid_plural "Dynamic groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/databaseparam.class.php:84 inc/databaseparam.class.php:210
+msgid "Execution delay for partial inventory"
+msgstr ""
+
+#: inc/computergroup.class.php:112
+msgid "List of dynamic items"
+msgstr ""
+
+#: inc/computergroup.class.php:127
+msgid "List of static items"
+msgstr ""
+
+#: inc/credentialtype.class.php:170
+msgid "Microsoft SQL"
+msgstr ""
+
+#: inc/credentialtype.class.php:172
+msgid "MongoDB"
+msgstr ""
+
+#: inc/credentialtype.class.php:167
+msgid "MySQL"
+msgstr ""
+
+#: inc/computergroup.class.php:86
+msgid "Number of dynamic items"
+msgstr ""
+
+#: inc/databaseparam_computergroup.class.php:170
+msgid "Number of dynamics items"
+msgstr ""
+
+#: inc/computergroup.class.php:99
+msgid "Number of static items"
+msgstr ""
+
+#: inc/databaseparam_computergroup.class.php:171
+msgid "Number of statics items"
+msgstr ""
+
+#: inc/credentialtype.class.php:168
+msgid "Oracle"
+msgstr ""
+
+#: inc/databaseparam.class.php:76 inc/databaseparam.class.php:207
+msgid "Partial inventory"
+msgstr ""
+
+#: front/computergroup.form.php:67
+msgid "Please select a computer"
+msgstr ""
+
+#: inc/credentialtype.class.php:171
+msgid "PostgreSQL"
+msgstr ""
+
+#: inc/inventoryaction.class.php:171
+msgid "Request database inventory"
+msgstr ""
+
+#: inc/inventoryaction.class.php:126
+#, php-format
+msgid "Requested at %s"
+msgstr ""
+
+#: inc/inventoryaction.class.php:43
+msgid "Run"
+msgstr ""
+
+#: hook.php:94
+msgid "Run partial databases inventory"
+msgstr ""
+
+#: inc/computergroupstatic.class.php:47
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/credentialtype.class.php:82
+msgid "You cannot remove this type"
+msgstr ""

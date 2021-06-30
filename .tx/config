@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.com
+
+[o:teclib:p:glpi-plugin-databaseinventory:r:databaseinventory-pot]
+file_filter = locales/<lang>.po
+source_file = locales/databaseinventory.pot
+source_lang = en_GB
+type        = PO

@@ -116,6 +116,64 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                     'iddbparamcredential' => $dbpcredential['id'],
                 ];
             }
+<<<<<<< HEAD
+=======
+            echo "<table class='tab_cadre_fixehov'>";
+            $header_begin  = "<tr>";
+            $header_top    = '';
+            $header_bottom = '';
+            $header_end    = '';
+
+            if ($canedit) {
+                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
+                $header_top    .= "</th>";
+                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
+                $header_bottom .=  "</th>";
+            }
+
+            $header_end .= "<th>" . __('Name') . "</th>";
+            $header_end .= "<th>" . __('Login') . "</th>";
+            $header_end .= "<th>" . __('Port') . "</th>";
+            $header_end .= "<th>" . __('Socket') . "</th>";
+            $header_end .= "<th>" . __('Type') . "</th>";
+            $header_end .= "</tr>";
+            echo $header_begin . $header_top . $header_end;
+
+            foreach ($datas as $data) {
+                $credential = new PluginDatabaseinventoryCredential();
+                $credential->getFromDB($data["plugin_databaseinventory_credentials_id"]);
+                $linkname = $credential->fields["name"];
+                $itemtype = PluginDatabaseinventoryCredential::getType();
+                if ($_SESSION["glpiis_ids_visible"] || empty($credential->fields["name"])) {
+                    $linkname = sprintf(__('%1$s (%2$s)'), $linkname, $credential->fields["id"]);
+                }
+                $link = $itemtype::getFormURLWithID($credential->fields["id"]);
+                $name = "<a href=\"" . $link . "\">" . $linkname . "</a>";
+                echo "<tr class='tab_bg_1'>";
+
+                if ($canedit) {
+                    echo "<td width='10'>";
+                    Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
+                    echo "</td>";
+                }
+                echo "<td>" . $name . "</td>";
+                echo "<td>" . $credential->fields["login"] . "</td>";
+                echo "<td>" . $credential->fields["port"] . "</td>";
+                echo "<td>" . $credential->fields["socket"] . "</td>";
+                echo "<td>" . Dropdown::getDropdownName(PluginDatabaseinventoryCredentialType::getTable(), $credential->fields['plugin_databaseinventory_credentialtypes_id']);
+                echo "</td>";
+                echo "</tr>";
+            }
+            echo $header_begin . $header_bottom . $header_end;
+
+            echo "</table>";
+            if ($canedit && $number) {
+                $massiveactionparams['ontop'] = false;
+                Html::showMassiveActions($massiveactionparams);
+                Html::closeForm();
+            }
+            echo "</div>";
+>>>>>>> f65ff8b (feat(doc): update screenshot)
         }
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/databaseparam_credential.html.twig',

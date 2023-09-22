@@ -194,7 +194,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                 echo "<td>" . $credential->fields["login"] . "</td>";
                 echo "<td>" . $credential->fields["port"] . "</td>";
                 echo "<td>" . $credential->fields["socket"] . "</td>";
-                echo "<td>" . Dropdown::getDropdownName(PluginDatabaseinventoryCredentialType::getTable(), $credential->fields['plugin_databaseinventory_credentials_types_id']);
+                echo "<td>" . Dropdown::getDropdownName(PluginDatabaseinventoryCredentialType::getTable(), $credential->fields['plugin_databaseinventory_credentialtypes_id']);
                 echo "</td>";
                 echo "</tr>";
             }

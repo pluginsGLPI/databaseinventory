@@ -53,6 +53,10 @@ function plugin_init_databaseinventory()
         return false;
     }
 
+    if (!Plugin::isPluginActive('databaseinventory')) {
+        return false;
+    }
+
     $PLUGIN_HOOKS['handle_inventory_task']['databaseinventory'] = ['PluginDatabaseinventoryTask', 'handleInventoryTask'];
     $PLUGIN_HOOKS['inventory_get_params']['databaseinventory']  = ['PluginDatabaseinventoryTask', 'inventoryGetParams'];
     $PLUGIN_HOOKS['handle_agent_response']['databaseinventory'] = ['PluginDatabaseinventoryInventoryAction', 'HandleAgentResponse'];

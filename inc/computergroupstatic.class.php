@@ -94,12 +94,29 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
             return false;
         }
 
+<<<<<<< HEAD
         $staticsgroups = new PluginDatabaseinventoryComputerGroupStatic();
         $staticgrouplist = $staticsgroups->find(
             [
                 'plugin_databaseinventory_computergroups_id' => $ID
             ]
         );
+=======
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/computergroupstatic.html.twig',
+            [
+            ]
+        );
+        return true;
+
+        $datas = [];
+        $used  = [];
+        $params = [
+            'SELECT' => '*',
+            'FROM'   => self::getTable(),
+            'WHERE'  => ['plugin_databaseinventory_computergroups_id' => $ID],
+        ];
+>>>>>>> edcd9ee (create twig for databaseparam + set databaseparam on home page)
 
         $computers = new Computer();
         $listofcomputers = [];

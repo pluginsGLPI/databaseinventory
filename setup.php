@@ -48,10 +48,13 @@ function plugin_init_databaseinventory()
     $PLUGIN_HOOKS['csrf_compliant']['databaseinventory'] = true;
 
     $PLUGIN_HOOKS['config_page']['databaseinventory'] = 'front/databaseparam.php';
+<<<<<<< HEAD
 
     if (!Plugin::isPluginActive('databaseinventory')) {
         return false;
     }
+=======
+>>>>>>> edcd9ee (create twig for databaseparam + set databaseparam on home page)
 
     if (!Plugin::isPluginActive('databaseinventory')) {
         return false;

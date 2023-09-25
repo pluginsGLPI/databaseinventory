@@ -41,6 +41,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
             PluginDatabaseinventoryComputerGroup::class,
             PluginDatabaseinventoryDatabaseParam::class,
             PluginDatabaseinventoryCredential::class
+<<<<<<< HEAD
         ];
 
         $links = [];
@@ -57,6 +58,48 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
             'options' => [],
             'links'   => $links,
         ];
+=======
+        ];
+
+        $links = [];
+        foreach ($links_class as $link) {
+            $link_text =
+            "<span class='d-none d-xxl-block'>" . $link::getTypeName(Session::getPluralNumber()) . "</span>";
+            $links["<i class='" . $link::getIcon() . "'></i>$link_text"] = $link::getSearchURL(false);
+        }
+
+        $menu = [
+            'title' => self::getMenuName(2),
+            'page'  => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
+            'icon'  => 'fas fa-database',
+            'options' => [],
+            'links'   => $links,
+        ];
+
+        if (PluginDatabaseinventoryDatabaseParam::canView()) {
+            $menu['options']['databaseparam'] = [
+                'title'  => PluginDatabaseinventoryDatabaseParam::getTypeName(2),
+                'page'   => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
+                'icon'   => PluginDatabaseinventoryDatabaseParam::getIcon(),
+                'links'  => $links,
+            ];
+
+            if (true) {
+                $menu['options']['databaseparam']['links'] = [
+                    'search' => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
+                    'add'    => PluginDatabaseinventoryDatabaseParam::getFormURL(false),
+                ];
+            }
+        }
+
+        if (PluginDatabaseinventoryComputerGroup::canView()) {
+            $menu['options']['computergroup'] = [
+                'title'  => PluginDatabaseinventoryComputerGroup::getTypeName(2),
+                'page'   => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
+                'icon'   => PluginDatabaseinventoryComputerGroup::getIcon(),
+                'links'  => $links,
+            ];
+>>>>>>> edcd9ee (create twig for databaseparam + set databaseparam on home page)
 
         $menu['options']['databaseparam'] = [
             'title'  => PluginDatabaseinventoryDatabaseParam::getTypeName(2),
@@ -78,6 +121,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
             'links'  => $links,
         ];
 
+<<<<<<< HEAD
         if (true) {
             $menu['options']['computergroup']['links'] = [
                 'search' => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
@@ -90,6 +134,15 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
             'icon'   => PluginDatabaseinventoryCredential::getIcon(),
             'links'  => $links,
         ];
+=======
+        if (PluginDatabaseinventoryCredential::canView()) {
+            $menu['options']['credential'] = [
+                'title'  => PluginDatabaseinventoryCredential::getTypeName(2),
+                'page'   => PluginDatabaseinventoryCredential::getSearchURL(false),
+                'icon'   => PluginDatabaseinventoryCredential::getIcon(),
+                'links'  => $links,
+            ];
+>>>>>>> edcd9ee (create twig for databaseparam + set databaseparam on home page)
 
         if (true) {
             $menu['options']['credential']['links'] = [

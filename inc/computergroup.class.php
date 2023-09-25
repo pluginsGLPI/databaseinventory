@@ -1,4 +1,5 @@
 <?php
+use Glpi\Application\View\TemplateRenderer;
 
 /**
  * -------------------------------------------------------------------------
@@ -142,28 +143,13 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
     public function showForm($ID, array $options = [])
     {
-        $rand = mt_rand();
         $this->initForm($ID, $options);
-        $this->showFormHeader($options);
-
-        $rand = mt_rand();
-        echo "<tr><td><label for='textfield_name$rand'>" . __('Name') . "</label></td>";
-        echo "<td>";
-        echo Html::input(
-            'name',
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/computergroup.html.twig',
             [
-                'value' => $this->fields["name"],
-                'id'    => "textfield_name$rand",
+                'item' => $this
             ]
         );
-        echo "<td><label for='comment$rand'>" . __('Comment') . "</label></td>";
-        echo "<td>";
-        echo "<textarea cols='45' rows='4' id='comment' name='comment' >" .
-        $this->fields["comment"];
-        echo "</textarea>";
-        echo "</td></tr>";
-
-        $this->showFormButtons($options);
         return true;
     }
 

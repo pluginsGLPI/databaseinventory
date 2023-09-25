@@ -1,4 +1,5 @@
 <?php
+use Glpi\Application\View\TemplateRenderer;
 
 /**
  * -------------------------------------------------------------------------
@@ -103,69 +104,13 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
 
     public function showForm($ID, array $options = [])
     {
-        $rand = mt_rand();
         $this->initForm($ID, $options);
-        $this->showFormHeader($options);
-
-        echo "<tr class='tab_bg_1'>";
-        $rand = mt_rand();
-        echo "<tr><td><label for='textfield_name$rand'>" . __('Name') . "</label></td>";
-        echo "<td>";
-        echo Html::input(
-            'name',
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/credential.html.twig',
             [
-                'value' => $this->fields["name"],
-                'id'    => "textfield_name$rand",
+                'item' => $this
             ]
         );
-        echo "<td><label for='is_active$rand'>" . __('Port') . "</label></td>";
-        echo "<td>";
-        Dropdown::showNumber(
-            'port',
-            [
-                'value' => empty($this->fields['port']) ? 0 : $this->fields['port'],
-                'min'   => 0,
-                'max'   => 99999,
-                'step'  => 1,
-                'rand'  => $rand
-            ]
-        );
-        echo "</td></tr>";
-
-        echo "<tr><td><label for='textfield_login$rand'>" . __('Login') . "</label></td>";
-        echo "<td>";
-        echo Html::input(
-            'login',
-            [
-                'value' => $this->fields["login"],
-                'id'    => "textfield_login$rand",
-            ]
-        );
-        echo "<td><label for='textfield_password$rand'>" . __('Password') . "</label></td>";
-        echo "<td>";
-
-        echo "<input type='password' id='password' name='password' value='' autocomplete='password'>";
-        if ($ID > 0) {
-            echo "&nbsp;<input type='checkbox' name='_blank_passwd'>&nbsp;" . __('Clear');
-        }
-        echo "</td></tr>";
-
-        echo "<tr><td><label for='textfield_socket$rand'>" . __('Socket') . "</label></td>";
-        echo "<td>";
-        echo Html::input(
-            'socket',
-            [
-                'value' => $this->fields["socket"],
-                'id'    => "textfield_login$rand",
-            ]
-        );
-
-        echo "<td><label for='select_type$rand'>" . PluginDatabaseinventoryCredentialType::getFieldLabel() . "</label></td>";
-        echo "<td>";
-        PluginDatabaseinventoryCredentialType::dropdown(['value' => $this->fields["plugin_databaseinventory_credentialtypes_id"], 'rand' => $rand, 'comments' => false]);
-        echo "</td></tr>";
-
-        $this->showFormButtons($options);
         return true;
     }
 

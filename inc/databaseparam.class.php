@@ -1,4 +1,5 @@
 <?php
+use Glpi\Application\View\TemplateRenderer;
 
 /**
  * -------------------------------------------------------------------------
@@ -185,44 +186,13 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
 
     public function showForm($ID, array $options = [])
     {
-        $rand = mt_rand();
         $this->initForm($ID, $options);
-        $this->showFormHeader($options);
-
-        echo "<tr class='tab_bg_1'>";
-        echo "<tr><td><label for='textfield_name$rand'>" . __('Name') . "</label></td>";
-        echo "<td>";
-        echo Html::input(
-            'name',
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/databaseparam.html.twig',
             [
-                'value' => $this->fields["name"],
-                'id'    => "textfield_name$rand",
+                'item' => $this
             ]
         );
-        echo "<td><label for='is_active$rand'>" . __('Is active') . "</label></td>";
-        echo "<td>";
-        Dropdown::showYesNo('is_active', $this->fields['is_active']);
-        echo "</td></tr>";
-
-        echo "<tr><td><label for='textfield_name$rand'>" . __('Partial inventory', 'databaseinventory') . "</label></td>";
-        echo "<td>";
-        Dropdown::showYesNo('partial_inventory', $this->fields['partial_inventory']);
-        echo "<td><label for='is_active$rand'>" . __('Execution frequency for partial inventory', 'databaseinventory') . "</label></td>";
-        echo "<td>";
-        Dropdown::showNumber(
-            'execution_delay',
-            [
-                'value' => empty($this->fields['execution_delay']) ? 0 : $this->fields['execution_delay'],
-                'min'   => 0,
-                'max'   => 24,
-                'unit'  => 'hour',
-                'step'  => 1,
-                'rand'  => $rand
-            ]
-        );
-        echo "</td></tr>";
-
-        $this->showFormButtons($options);
         return true;
     }
 

@@ -1,4 +1,5 @@
 <?php
+use Glpi\Application\View\TemplateRenderer;
 
 /**
  * -------------------------------------------------------------------------
@@ -92,6 +93,13 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
         if (!$computergroup->can($ID, UPDATE)) {
             return false;
         }
+
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/computergroupstatic.html.twig',
+            [
+            ]
+        );
+        return true;
 
         $datas = [];
         $used  = [];

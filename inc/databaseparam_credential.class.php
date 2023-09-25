@@ -99,6 +99,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                 'plugin_databaseinventory_databaseparams_id' => $ID
             ]
         );
+<<<<<<< HEAD
 
         $dbcredentials = new PluginDatabaseinventoryCredential();
         $listofcredentials = [];
@@ -189,6 +190,52 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
             ]
         );
 
+=======
+
+        $dbcredentials = new PluginDatabaseinventoryCredential();
+        $listofcredentials = [];
+        foreach ($dbpcredentialslist as $dbpcredential) {
+            if ($dbcredentials->getFromDB($dbpcredential['plugin_databaseinventory_credentials_id'])) {
+                $listofcredentials[] = $dbcredentials->fields +
+                [
+                    'type' => Dropdown::getDropdownName(
+                        PluginDatabaseinventoryCredentialType::getTable(),
+                        $dbcredentials->fields['plugin_databaseinventory_credentialtypes_id']
+                    ),
+                    'link' => $dbcredentials->getLinkURL(),
+                ];
+            }
+        }
+
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/databaseparam_credential.html.twig',
+            [
+                'credentiallist' => $listofcredentials,
+            ]
+        );
+
+        return true;
+
+        echo "<div class='spaced'>";
+        if ($databaseparams->canAddItem('itemtype')) {
+            echo "<th colspan='2'>" . __('Add credential', 'databaseinventory') . "</th></tr>";
+            Dropdown::show(
+                "PluginDatabaseinventoryCredential",
+                [
+                    "name" => "plugin_databaseinventory_credentials_id",
+                    "used" => $used,
+                ]
+            );
+
+            echo Html::hidden('plugin_databaseinventory_databaseparams_id', ['value' => $ID]);
+            echo Html::submit(_x('button', 'Add'), ['name' => 'add_credential']);
+            echo "</td></tr>";
+            echo "</table>";
+            Html::closeForm();
+        }
+        $canread = $databaseparams->can($ID, READ);
+        $canedit = $databaseparams->can($ID, UPDATE);
+>>>>>>> 1766694 (update credential, databaseparam ans a part of databaseparamcredential in twig)
         return true;
     }
 

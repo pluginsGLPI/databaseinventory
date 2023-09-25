@@ -58,52 +58,44 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
             'links'   => $links,
         ];
 
-        if (PluginDatabaseinventoryDatabaseParam::canView()) {
-            $menu['options']['databaseparam'] = [
-                'title'  => PluginDatabaseinventoryDatabaseParam::getTypeName(2),
-                'page'   => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
-                'icon'   => PluginDatabaseinventoryDatabaseParam::getIcon(),
-                'links'  => $links,
-            ];
+        $menu['options']['databaseparam'] = [
+            'title'  => PluginDatabaseinventoryDatabaseParam::getTypeName(2),
+            'page'   => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
+            'icon'   => PluginDatabaseinventoryDatabaseParam::getIcon(),
+            'links'  => $links,
+        ];
 
-            if (true) {
-                $menu['options']['databaseparam']['links'] = [
-                    'search' => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
-                    'add'    => PluginDatabaseinventoryDatabaseParam::getFormURL(false),
-                ];
-            }
+        if (true) {
+            $menu['options']['databaseparam']['links'] = [
+                'search' => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
+                'add'    => PluginDatabaseinventoryDatabaseParam::getFormURL(false),
+            ] + $links;
         }
+        $menu['options']['computergroup'] = [
+            'title'  => PluginDatabaseinventoryComputerGroup::getTypeName(2),
+            'page'   => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
+            'icon'   => PluginDatabaseinventoryComputerGroup::getIcon(),
+            'links'  => $links,
+        ];
 
-        if (PluginDatabaseinventoryComputerGroup::canView()) {
-            $menu['options']['computergroup'] = [
-                'title'  => PluginDatabaseinventoryComputerGroup::getTypeName(2),
-                'page'   => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
-                'icon'   => PluginDatabaseinventoryComputerGroup::getIcon(),
-                'links'  => $links,
-            ];
-
-            if (true) {
-                $menu['options']['computergroup']['links'] = [
-                    'search' => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
-                    'add'    => PluginDatabaseinventoryComputerGroup::getFormURL(false),
-                ];
-            }
+        if (true) {
+            $menu['options']['computergroup']['links'] = [
+                'search' => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
+                'add'    => PluginDatabaseinventoryComputerGroup::getFormURL(false),
+            ] + $links;
         }
+        $menu['options']['credential'] = [
+            'title'  => PluginDatabaseinventoryCredential::getTypeName(2),
+            'page'   => PluginDatabaseinventoryCredential::getSearchURL(false),
+            'icon'   => PluginDatabaseinventoryCredential::getIcon(),
+            'links'  => $links,
+        ];
 
-        if (PluginDatabaseinventoryCredential::canView()) {
-            $menu['options']['credential'] = [
-                'title'  => PluginDatabaseinventoryCredential::getTypeName(2),
-                'page'   => PluginDatabaseinventoryCredential::getSearchURL(false),
-                'icon'   => PluginDatabaseinventoryCredential::getIcon(),
-                'links'  => $links,
-            ];
-
-            if (true) {
-                $menu['options']['credential']['links'] = [
-                    'search' => PluginDatabaseinventoryCredential::getSearchURL(false),
-                    'add'    => PluginDatabaseinventoryCredential::getFormURL(false),
-                ];
-            }
+        if (true) {
+            $menu['options']['credential']['links'] = [
+                'search' => PluginDatabaseinventoryCredential::getSearchURL(false),
+                'add'    => PluginDatabaseinventoryCredential::getFormURL(false),
+            ] + $links;
         }
 
         return $menu;

@@ -37,10 +37,25 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
 
     public static function getMenuContent()
     {
+        $links_class = [
+            PluginDatabaseinventoryComputerGroup::class,
+            PluginDatabaseinventoryDatabaseParam::class,
+            PluginDatabaseinventoryCredential::class
+        ];
+
+        $links = [];
+        foreach ($links_class as $link) {
+            $link_text =
+            "<span class='d-none d-xxl-block'>" . $link::getTypeName(Session::getPluralNumber()) . "</span>";
+            $links["<i class='" . $link::getIcon() . "'></i>$link_text"] = $link::getSearchURL(false);
+        }
+
         $menu = [
             'title' => self::getMenuName(2),
-            'page'  => self::getSearchURL(false),
+            'page'  => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
             'icon'  => 'fas fa-database',
+            'options' => [],
+            'links'   => $links,
         ];
 
         if (PluginDatabaseinventoryDatabaseParam::canView()) {
@@ -48,6 +63,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
                 'title'  => PluginDatabaseinventoryDatabaseParam::getTypeName(2),
                 'page'   => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
                 'icon'   => PluginDatabaseinventoryDatabaseParam::getIcon(),
+                'links'  => $links,
             ];
 
             if (true) {
@@ -63,6 +79,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
                 'title'  => PluginDatabaseinventoryComputerGroup::getTypeName(2),
                 'page'   => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
                 'icon'   => PluginDatabaseinventoryComputerGroup::getIcon(),
+                'links'  => $links,
             ];
 
             if (true) {
@@ -78,6 +95,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
                 'title'  => PluginDatabaseinventoryCredential::getTypeName(2),
                 'page'   => PluginDatabaseinventoryCredential::getSearchURL(false),
                 'icon'   => PluginDatabaseinventoryCredential::getIcon(),
+                'links'  => $links,
             ];
 
             if (true) {

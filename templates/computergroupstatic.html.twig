@@ -1,0 +1,88 @@
+{% import "components/form/fields_macros.html.twig" as fields %}
+{% import 'components/form/modals_macros.html.twig' as modals %}
+{% set rand = random() %}
+
+{% block more_fields %}
+    <form action="" method="post" class="../front/computergroup.form.php">
+        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+        {{ fields.dropdownField(
+            "Computer",
+            'computers_id',
+            '',
+            __('Add'),
+            {
+                'used': used,
+            }
+        ) }}
+
+        {{ fields.hiddenField(
+            'plugin_databaseinventory_computergroups_id',
+            item.getID(),
+        )}}
+
+        {% set buttoncheck %}
+            <button class="btn btn-outline-green me-2" type="submit" name="add_staticcomputer" value="1">
+                <span>{{ _x('button', 'Add') }}</span>
+            </button>
+        {% endset %}
+        {{ fields.htmlField(
+            '',
+            buttoncheck,
+            ''
+        ) }}
+    </form>
+    {% if canread %}
+        {% if computerslist is not empty %}
+            <form name="massaction_{{ rand }}" id="massaction_{{ rand }}" method="post"
+            action="{{ path('/front/massiveaction.php') }}" data-submit-once>
+            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+            <input type="hidden" name="action" value="purge">
+            <input type="hidden" name="action_name" value="purge">
+            <input type="hidden" name="processor" value="MassiveAction">
+                {% set table_id = 'package_subitem_' ~ rand %}
+                <table class="search-results table table-hover table-card" id="{{ table_id }}">
+                    <thead>
+                        <tr>
+                            {% if canedit %}
+                                <th style="width: 32px;">
+                                    <input class="form-check-input" type="checkbox" id="checkall_{{ rand }}"
+                                        value="" title="{{ __('Check all as') }}"
+                                        data-bs-toggle="tooltip"
+                                        onclick="checkAsCheckboxes('checkall_{{ rand }}', '{{ table_id }}');" />
+                                </th>
+                            {% endif %}
+                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Automatic inventory') }}</th>
+                            <th>{{ __('Entity') }}</th>
+                            <th>{{ __('Serial number') }}</th>
+                            <th>{{ __('Inventory number') }}</th>
+                        </tr>
+                    </thead>
+                    {% for computer in computerslist %}
+                        <tr>
+                            {% if canedit %}
+                                <td>
+                                    {% set checked = session('glpimassiveactionselected')[groupstaticclass][computer['idcompgroupstatic']] ?? false %}
+                                    <input type="checkbox" class="form-check-input"
+                                        name="items[{{ groupstaticclass }}][{{ computer['idcompgroupstatic'] }}]"
+                                        data-glpicore-ma-tags="common"
+                                        value="{{ computer['idcompgroupstatic'] }}"
+                                        {% if checked %}checked="checked"{% endif %}>
+                                </td>
+                            {% endif %}
+                            <td><a href = {{computer['link']}}> {{ computer['name'] }}</a></td>
+                            <td>{{ computer['is_dynamic'] }}</td>
+                            <td>{{ computer['entityname'] }}</td>
+                            <td>{{ computer['serial'] }}</td>
+                            <td>{{ computer['otherserial'] }}</td>
+                        </tr>
+                    {% endfor %}
+                    <button class="btn btn-sm btn-ghost-secondary my-1 ms-1" type="submit" value="massiveaction">
+                        <i class="ti ti-corner-left-down mt-1"></i>
+                        <span>{{ __("Remove") }}</span>
+                    </button>
+                </table>
+            </form>
+        {% endif %}
+    {% endif %}
+{% endblock %}

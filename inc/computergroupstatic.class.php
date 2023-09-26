@@ -94,62 +94,40 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
             return false;
         }
 
+        $staticsgroups = new PluginDatabaseinventoryComputerGroupStatic();
+        $staticgrouplist = $staticsgroups->find(
+            [
+                'plugin_databaseinventory_computergroups_id' => $ID
+            ]
+        );
+
+        $computers = new Computer();
+        $listofcomputers = [];
+        $used = [];
+        foreach ($staticgrouplist as $staticgroup) {
+            $used[] = $staticgroup['computers_id'];
+            if ($computers->getFromDB($staticgroup['computers_id'])) {
+                $listofcomputers[] = $computers->fields +
+                [
+                    'entityname' => Entity::getById($computers->fields['entities_id'])->fields['completename'],
+                    'link' => $computers->getLinkURL(),
+                    'idcompgroupstatic' => $staticgroup['id'],
+                ];
+            }
+        }
+
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/computergroupstatic.html.twig',
             [
+                'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
+                'computerslist' => $listofcomputers,
+                'groupstaticclass' => PluginDatabaseinventoryComputerGroupStatic::class,
+                'canread' => $computergroup->can($ID, READ),
+                'canedit' => $computergroup->can($ID, UPDATE),
+                'used' => $used,
             ]
         );
         return true;
-
-        $datas = [];
-        $used  = [];
-        $params = [
-            'SELECT' => '*',
-            'FROM'   => self::getTable(),
-            'WHERE'  => ['plugin_databaseinventory_computergroups_id' => $ID],
-        ];
-
-        $iterator = $DB->request($params);
-        foreach ($iterator as $data) {
-            $datas[] = $data;
-            $used [] = $data['computers_id'];
-        }
-        $number = count($datas);
-
-        echo "<div class='spaced'>";
-        if ($computergroup->canAddItem('itemtype')) {
-            $rand = mt_rand();
-            echo "<div class='firstbloc'>";
-            echo "<form method='post' name='staticcomputer_form$rand'
-                        id='staticcomputer$rand'
-                        action='" . Toolbox::getItemTypeFormURL("PluginDatabaseinventoryComputerGroup") . "'>";
-
-            echo "<table class='tab_cadre_fixe'>";
-            echo "<tr class='tab_bg_2'>";
-            echo "<th colspan='2'>" . __('Add an item') . "</th></tr>";
-
-            echo "<tr class='tab_bg_1'><td class='left'>";
-            Dropdown::show(
-                "Computer",
-                [
-                    "name" => "computers_id",
-                    "used" => $used,
-                    "condition" => ["is_dynamic" => true]
-                ]
-            );
-            echo "</td><td class='center' class='tab_bg_1'>";
-
-            echo Html::hidden('plugin_databaseinventory_computergroups_id', ['value' => $ID]);
-            echo Html::submit(_x('button', 'Add'), ['name' => 'add_staticcomputer']);
-            echo "</td></tr>";
-            echo "</table>";
-            Html::closeForm();
-            echo "</div>";
-        }
-        echo "</div>";
-
-        $canread = $computergroup->can($ID, READ);
-        $canedit = $computergroup->can($ID, UPDATE);
         echo "<div class='spaced'>";
         if ($canread) {
             echo "<div class='spaced'>";

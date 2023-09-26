@@ -194,7 +194,9 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
         $dbcredentials = new PluginDatabaseinventoryCredential();
         $listofcredentials = [];
+        $used = [];
         foreach ($dbpcredentialslist as $dbpcredential) {
+            $used[] = $dbpcredential['plugin_databaseinventory_credentials_id'];
             if ($dbcredentials->getFromDB($dbpcredential['plugin_databaseinventory_credentials_id'])) {
                 $listofcredentials[] = $dbcredentials->fields +
                 [
@@ -206,15 +208,20 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                 ];
             }
         }
-
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/databaseparam_credential.html.twig',
             [
+                'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
                 'credentiallist' => $listofcredentials,
+                'credentialclass' => PluginDatabaseinventoryCredential::class,
+                'canread' => $databaseparams->can($ID, READ),
+                'canedit' => $databaseparams->can($ID, UPDATE),
+                'used' => $used,
             ]
         );
 
         return true;
+<<<<<<< HEAD
 
         echo "<div class='spaced'>";
         if ($databaseparams->canAddItem('itemtype')) {
@@ -237,6 +244,8 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
         $canedit = $databaseparams->can($ID, UPDATE);
 >>>>>>> 1766694 (update credential, databaseparam ans a part of databaseparamcredential in twig)
         return true;
+=======
+>>>>>>> 9d21e24 (twig for database_param_credentials)
     }
 
     public static function install(Migration $migration)

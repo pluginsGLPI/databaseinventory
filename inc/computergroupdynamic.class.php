@@ -74,10 +74,12 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         switch ($field) {
             case 'search':
                 $count = 0;
-                if (strpos($values['id'], Search::NULLVALUE) === false) {
-                    $computergroup_dynamic = new PluginDatabaseinventoryComputerGroupDynamic();
-                    $computergroup_dynamic->getFromDB($values['id']);
-                    $count = $computergroup_dynamic->countDynamicItems();
+                if (isset($values['id'])) {
+                    if (strpos($values['id'], Search::NULLVALUE) === false) {
+                        $computergroup_dynamic = new PluginDatabaseinventoryComputerGroupDynamic();
+                        $computergroup_dynamic->getFromDB($values['id']);
+                        $count = $computergroup_dynamic->countDynamicItems();
+                    }
                 }
                 return  ($count) ? $count : ' 0 ';
 
@@ -150,11 +152,13 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
     private function countDynamicItems()
     {
         $count = 0;
-        $search_params = Search::manageParams('Computer', unserialize($this->fields['search']));
-        $data = Search::prepareDatasForSearch('Computer', $search_params);
-        Search::constructSQL($data);
-        Search::constructData($data);
-        $count = $data['data']['totalcount'];
+        if (isset($this->fields['search'])) {
+            $search_params = Search::manageParams('Computer', unserialize($this->fields['search']));
+            $data = Search::prepareDatasForSearch('Computer', $search_params);
+            Search::constructSQL($data);
+            Search::constructData($data);
+            $count = $data['data']['totalcount'];
+        }
         return $count;
     }
 

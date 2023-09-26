@@ -110,7 +110,10 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
                     'link' => $dbcgroups->getLinkURL(),
                     'nbdynamicitems' => $dbcgroups->countDynamicItem(),
                     'nbstaticitems' => $dbcgroups->countStaticItem(),
+<<<<<<< HEAD
                     'iddbparamcgroup' => $dbpcgroup['id'],
+=======
+>>>>>>> d25a61f (add twig for databaseparam_computergroup)
                 ];
             }
         }
@@ -120,10 +123,15 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
                 'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
                 'compgrouplist' => $listofcgroups,
                 'compgroupclass' => PluginDatabaseinventoryComputerGroup::class,
+<<<<<<< HEAD
                 'dbparamgroupclass' => PluginDatabaseinventoryDatabaseParam_ComputerGroup::class,
                 'canread' => $databaseparams->can($ID, READ),
                 'canedit' => $databaseparams->can($ID, UPDATE),
                 'canadd' => $databaseparams->canAddItem('itemtype'),
+=======
+                'canread' => $databaseparams->can($ID, READ),
+                'canedit' => $databaseparams->can($ID, UPDATE),
+>>>>>>> d25a61f (add twig for databaseparam_computergroup)
                 'used' => $used,
             ]
         );

@@ -104,7 +104,9 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
         $dbcredentials = new PluginDatabaseinventoryCredential();
         $listofcredentials = [];
+        $used = [];
         foreach ($dbpcredentialslist as $dbpcredential) {
+            $used[] = $dbpcredential['plugin_databaseinventory_credentials_id'];
             if ($dbcredentials->getFromDB($dbpcredential['plugin_databaseinventory_credentials_id'])) {
                 $listofcredentials[] = $dbcredentials->fields +
                 [
@@ -116,35 +118,18 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                 ];
             }
         }
-
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/databaseparam_credential.html.twig',
             [
+                'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
                 'credentiallist' => $listofcredentials,
+                'credentialclass' => PluginDatabaseinventoryCredential::class,
+                'canread' => $databaseparams->can($ID, READ),
+                'canedit' => $databaseparams->can($ID, UPDATE),
+                'used' => $used,
             ]
         );
 
-        return true;
-
-        echo "<div class='spaced'>";
-        if ($databaseparams->canAddItem('itemtype')) {
-            echo "<th colspan='2'>" . __('Add credential', 'databaseinventory') . "</th></tr>";
-            Dropdown::show(
-                "PluginDatabaseinventoryCredential",
-                [
-                    "name" => "plugin_databaseinventory_credentials_id",
-                    "used" => $used,
-                ]
-            );
-
-            echo Html::hidden('plugin_databaseinventory_databaseparams_id', ['value' => $ID]);
-            echo Html::submit(_x('button', 'Add'), ['name' => 'add_credential']);
-            echo "</td></tr>";
-            echo "</table>";
-            Html::closeForm();
-        }
-        $canread = $databaseparams->can($ID, READ);
-        $canedit = $databaseparams->can($ID, UPDATE);
         return true;
     }
 

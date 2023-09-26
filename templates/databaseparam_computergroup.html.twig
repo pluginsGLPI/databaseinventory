@@ -1,0 +1,66 @@
+{% import "components/form/fields_macros.html.twig" as fields %}
+
+{% block more_fields %}
+    <form action="" method="post" class="../front/databaseparam.form.php">
+        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+        {{ fields.dropdownField(
+            compgroupclass,
+            'plugin_databaseinventory_computergroups_id',
+            '',
+            __('Add'),
+            {
+                'used': used,
+            }
+        ) }}
+
+        {{ fields.hiddenField(
+            'plugin_databaseinventory_databaseparams_id',
+            item.getID(),
+        )}}
+
+        {% set buttoncheck %}
+            <button class="btn btn-outline-green me-2" type="submit" name="add_computergroup" value="1">
+                <span>{{ _x('button', 'Add') }}</span>
+            </button>
+        {% endset %}
+        {{ fields.htmlField(
+            '',
+            buttoncheck,
+            ''
+        ) }}
+    </form>
+    {% if canread %}
+        {% if compgrouplist is not empty %}
+            {% set tableheader %}
+                <tr>
+                    {% if canedit %}
+                        <th style="width: 10px;">
+                            Checkbox
+                        </th>
+                    {% endif %}
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Comment') }}</th>
+                    <th>{{ __('Number of dynamic items') }}</th>
+                    <th>{{ __('Number of static items') }}</th>
+                </tr>
+            {% endset %}
+            <table class='tab_cadre_fixehov'>
+                {{ tableheader }}
+                {% for compgroup in compgrouplist %}
+                    <tr>
+                        {% if canedit %}
+                            <td style="width: 10px;">
+                                Checkbox
+                            </td>
+                        {% endif %}
+                        <td><a href = {{compgroup['link']}}> {{ compgroup['name'] }}</a></td>
+                        <td>{{ compgroup['comment'] }}</td>
+                        <td>{{ compgroup['nbdynamicitems'] }}</td>
+                        <td>{{ compgroup['nbstaticitems'] }}</td>
+                    </tr>
+                {% endfor %}
+                {{ tableheader }}
+            </table>
+        {% endif %}
+    {% endif %}
+{% endblock %}

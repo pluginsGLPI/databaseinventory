@@ -87,8 +87,6 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
     private static function showForItem(PluginDatabaseinventoryDatabaseParam $databaseparams)
     {
-        global $DB;
-
         $ID = $databaseparams->getField('id');
         if (!$databaseparams->can($ID, UPDATE)) {
             return false;

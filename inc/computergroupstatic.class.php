@@ -115,7 +115,6 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
                 ];
             }
         }
-
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/computergroupstatic.html.twig',
             [
@@ -124,90 +123,10 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
                 'groupstaticclass' => PluginDatabaseinventoryComputerGroupStatic::class,
                 'canread' => $computergroup->can($ID, READ),
                 'canedit' => $computergroup->can($ID, UPDATE),
+                'canadd' => $computergroup->canAddItem('itemtype'),
                 'used' => $used,
             ]
         );
-        return true;
-        echo "<div class='spaced'>";
-        if ($canread) {
-            echo "<div class='spaced'>";
-            if ($canedit) {
-                Html::openMassiveActionsForm('mass' . __CLASS__ . $rand);
-                $massiveactionparams = ['num_displayed'
-                           => min($_SESSION['glpilist_limit'], $number),
-                    'specific_actions'
-                           => ['purge' => _x('button', 'Remove')],
-                    'container'
-                           => 'mass' . __CLASS__ . $rand
-                ];
-                Html::showMassiveActions($massiveactionparams);
-            }
-            echo "<table class='tab_cadre_fixehov'>";
-            $header_begin  = "<tr>";
-            $header_top    = '';
-            $header_bottom = '';
-            $header_end    = '';
-
-            if ($canedit) {
-                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_top    .= "</th>";
-                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_bottom .=  "</th>";
-            }
-
-            $header_end .= "<th>" . __('Name') . "</th>";
-            $header_end .= "<th>" . __('Automatic inventory') . "</th>";
-            $header_end .= "<th>" . Entity::getTypeName(1) . "</th>";
-            $header_end .= "<th>" . __('Serial number') . "</th>";
-            $header_end .= "<th>" . __('Inventory number') . "</th>";
-            $header_end .= "</tr>";
-            echo $header_begin . $header_top . $header_end;
-
-            foreach ($datas as $data) {
-                $computer = new Computer();
-                $computer->getFromDB($data["computers_id"]);
-                $linkname = $computer->fields["name"];
-                $itemtype = Computer::getType();
-                if ($_SESSION["glpiis_ids_visible"] || empty($computer->fields["name"])) {
-                    $linkname = sprintf(__('%1$s (%2$s)'), $linkname, $computer->fields["id"]);
-                }
-                $link = $itemtype::getFormURLWithID($computer->fields["id"]);
-                $name = "<a href=\"" . $link . "\">" . $linkname . "</a>";
-                echo "<tr class='tab_bg_1'>";
-
-                if ($canedit) {
-                    echo "<td width='10'>";
-                    Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
-                    echo "</td>";
-                }
-                echo "<td "
-                    . ((isset($computer->fields['is_deleted']) && $computer->fields['is_deleted']) ? "class='tab_bg_2_2'" : "")
-                    . ">" . $name . "</td>";
-                echo "<td>" . Dropdown::getYesNo($computer->fields['is_dynamic']) . "</td>";
-                echo "<td>" . Dropdown::getDropdownName(
-                    "glpi_entities",
-                    $computer->fields['entities_id']
-                );
-                echo "</td>";
-                echo "<td>"
-                    . (isset($computer->fields["serial"]) ? "" . $computer->fields["serial"] . "" : "-")
-                    . "</td>";
-                echo "<td>"
-                    . (isset($computer->fields["otherserial"]) ? "" . $computer->fields["otherserial"] . "" : "-")
-                    . "</td>";
-                echo "</tr>";
-            }
-            echo $header_begin . $header_bottom . $header_end;
-
-            echo "</table>";
-            if ($canedit && $number) {
-                $massiveactionparams['ontop'] = false;
-                Html::showMassiveActions($massiveactionparams);
-                Html::closeForm();
-            }
-            echo "</div>";
-        }
-        echo "</div>";
         return true;
     }
 

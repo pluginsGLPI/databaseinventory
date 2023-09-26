@@ -123,6 +123,7 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
                 'dbparamgroupclass' => PluginDatabaseinventoryDatabaseParam_ComputerGroup::class,
                 'canread' => $databaseparams->can($ID, READ),
                 'canedit' => $databaseparams->can($ID, UPDATE),
+                'canadd' => $databaseparams->canAddItem('itemtype'),
                 'used' => $used,
             ]
         );

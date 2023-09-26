@@ -126,6 +126,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                 'credentialtypeclass' => PluginDatabaseinventoryDatabaseParam_Credential::class,
                 'canread' => $databaseparams->can($ID, READ),
                 'canedit' => $databaseparams->can($ID, UPDATE),
+                'canadd' => $databaseparams->canAddItem('itemtype'),
                 'used' => $used,
             ]
         );

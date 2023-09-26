@@ -95,19 +95,48 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1dee4db (add twig for computergroupsstatic)
         $staticsgroups = new PluginDatabaseinventoryComputerGroupStatic();
         $staticgrouplist = $staticsgroups->find(
             [
                 'plugin_databaseinventory_computergroups_id' => $ID
             ]
         );
+<<<<<<< HEAD
 =======
+=======
+
+        $computers = new Computer();
+        $listofcomputers = [];
+        $used = [];
+        foreach ($staticgrouplist as $staticgroup) {
+            $used[] = $staticgroup['computers_id'];
+            if ($computers->getFromDB($staticgroup['computers_id'])) {
+                $listofcomputers[] = $computers->fields +
+                [
+                    'entityname' => Entity::getById($computers->fields['entities_id'])->fields['completename'],
+                    'link' => $computers->getLinkURL(),
+                    'idcompgroupstatic' => $staticgroup['id'],
+                ];
+            }
+        }
+
+>>>>>>> 1dee4db (add twig for computergroupsstatic)
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/computergroupstatic.html.twig',
             [
+                'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
+                'computerslist' => $listofcomputers,
+                'groupstaticclass' => PluginDatabaseinventoryComputerGroupStatic::class,
+                'canread' => $computergroup->can($ID, READ),
+                'canedit' => $computergroup->can($ID, UPDATE),
+                'used' => $used,
             ]
         );
         return true;
+<<<<<<< HEAD
 
         $datas = [];
         $used  = [];
@@ -129,6 +158,19 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
                     'entityname' => Entity::getById($computers->fields['entities_id'])->fields['completename'],
                     'link' => $computers->getLinkURL(),
                     'idcompgroupstatic' => $staticgroup['id'],
+=======
+        echo "<div class='spaced'>";
+        if ($canread) {
+            echo "<div class='spaced'>";
+            if ($canedit) {
+                Html::openMassiveActionsForm('mass' . __CLASS__ . $rand);
+                $massiveactionparams = ['num_displayed'
+                           => min($_SESSION['glpilist_limit'], $number),
+                    'specific_actions'
+                           => ['purge' => _x('button', 'Remove')],
+                    'container'
+                           => 'mass' . __CLASS__ . $rand
+>>>>>>> 1dee4db (add twig for computergroupsstatic)
                 ];
             }
         }

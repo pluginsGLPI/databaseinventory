@@ -122,8 +122,11 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
                 ];
             }
         }
+<<<<<<< HEAD
 
 >>>>>>> 1dee4db (add twig for computergroupsstatic)
+=======
+>>>>>>> b15d470 (feature(plugin) pass all html page in twig)
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/computergroupstatic.html.twig',
             [
@@ -132,10 +135,12 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
                 'groupstaticclass' => PluginDatabaseinventoryComputerGroupStatic::class,
                 'canread' => $computergroup->can($ID, READ),
                 'canedit' => $computergroup->can($ID, UPDATE),
+                'canadd' => $computergroup->canAddItem('itemtype'),
                 'used' => $used,
             ]
         );
         return true;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         $datas = [];
@@ -187,6 +192,8 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
             ]
         );
         return true;
+=======
+>>>>>>> b15d470 (feature(plugin) pass all html page in twig)
     }
 
     public static function install(Migration $migration)

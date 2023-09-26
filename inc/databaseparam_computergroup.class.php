@@ -135,10 +135,13 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
                 'canread' => $databaseparams->can($ID, READ),
                 'canedit' => $databaseparams->can($ID, UPDATE),
                 'canadd' => $databaseparams->canAddItem('itemtype'),
+<<<<<<< HEAD
 =======
                 'canread' => $databaseparams->can($ID, READ),
                 'canedit' => $databaseparams->can($ID, UPDATE),
 >>>>>>> d25a61f (add twig for databaseparam_computergroup)
+=======
+>>>>>>> b15d470 (feature(plugin) pass all html page in twig)
                 'used' => $used,
             ]
         );

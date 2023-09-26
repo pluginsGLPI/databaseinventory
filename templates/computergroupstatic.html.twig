@@ -1,5 +1,6 @@
 {% import "components/form/fields_macros.html.twig" as fields %}
 <<<<<<< HEAD
+<<<<<<< HEAD
 {% set rand = random() %}
 
 {% block more_fields %}
@@ -39,26 +40,39 @@
     {% endif %}
 =======
 {% import 'components/form/modals_macros.html.twig' as modals %}
+=======
+>>>>>>> b15d470 (feature(plugin) pass all html page in twig)
 {% set rand = random() %}
 
 {% block more_fields %}
-    <form action="" method="post" class="../front/computergroup.form.php">
-        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
-        {{ fields.dropdownField(
-            "Computer",
-            'computers_id',
-            '',
-            __('Add'),
-            {
-                'used': used,
-            }
-        ) }}
+    {% if canadd %}
+        <form method='POST' enctype='multipart/form-data' action=''>
+            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+            <div class="d-flex">
+                {{ fields.dropdownField(
+                    "Computer",
+                    'computers_id',
+                    '',
+                    __('Add'),
+                    {
+                        'used': used,
+                        'condition': {'is_dynamic': 1},
+                    }
+                ) }}
 
-        {{ fields.hiddenField(
-            'plugin_databaseinventory_computergroups_id',
-            item.getID(),
-        )}}
+                {% set btn_add %}
+                    <button class="btn btn-primary" type="submit" name="add_staticcomputer" value="1">
+                        <i class="fas fa-plus"></i>
+                        <span>{{ _x('button', 'Add') }}</span>
+                    </button>
+                {% endset %}
+                {{ fields.htmlField(
+                    '',
+                    btn_add,
+                    ''
+                ) }}
 
+<<<<<<< HEAD
         {% set buttoncheck %}
             <button class="btn btn-outline-green me-2" type="submit" name="add_staticcomputer" value="1">
                 <span>{{ _x('button', 'Add') }}</span>
@@ -71,6 +85,15 @@
         ) }}
     </form>
 >>>>>>> 1dee4db (add twig for computergroupsstatic)
+=======
+                {{ fields.hiddenField(
+                    'plugin_databaseinventory_computergroups_id',
+                    item.getID(),
+                )}}
+            </div>
+        </form>
+    {% endif %}
+>>>>>>> b15d470 (feature(plugin) pass all html page in twig)
     {% if canread %}
         {% if computerslist is not empty %}
             <form name="massaction_{{ rand }}" id="massaction_{{ rand }}" method="post"
@@ -112,15 +135,21 @@
                             {% endif %}
                             <td><a href = {{computer['link']}}> {{ computer['name'] }}</a></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b15d470 (feature(plugin) pass all html page in twig)
                             {% if computer['is_dynamic'] == 1 %}
                                 {% set is_dynamic = __('Yes') %}
                             {% else %}
                                 {% set is_dynamic = __('No') %}
                             {% endif %}
                             <td>{{ is_dynamic }}</td>
+<<<<<<< HEAD
 =======
                             <td>{{ computer['is_dynamic'] }}</td>
 >>>>>>> 1dee4db (add twig for computergroupsstatic)
+=======
+>>>>>>> b15d470 (feature(plugin) pass all html page in twig)
                             <td>{{ computer['entityname'] }}</td>
                             <td>{{ computer['serial'] }}</td>
                             <td>{{ computer['otherserial'] }}</td>

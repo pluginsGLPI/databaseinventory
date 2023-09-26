@@ -49,7 +49,7 @@ function plugin_init_databaseinventory()
 
     $PLUGIN_HOOKS['config_page']['databaseinventory'] = 'front/menu.php';
 
-    if (!Plugin::isPluginActive('advanceddashboard')) {
+    if (!Plugin::isPluginActive('databaseinventory')) {
         return false;
     }
 

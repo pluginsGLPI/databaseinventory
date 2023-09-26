@@ -1,36 +1,41 @@
 {% import "components/form/fields_macros.html.twig" as fields %}
-{% import 'components/form/modals_macros.html.twig' as modals %}
 {% set rand = random() %}
 
 {% block more_fields %}
-    <form action="" method="post" class="../front/databaseparam.form.php">
-        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
-        {{ fields.dropdownField(
-            compgroupclass,
-            'plugin_databaseinventory_computergroups_id',
-            '',
-            __('Add'),
-            {
-                'used': used,
-            }
-        ) }}
+    {% if canadd %}
+        <form method='POST' enctype='multipart/form-data' action=''>
+            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+            <div class="d-flex">
+                {{ fields.dropdownField(
+                    compgroupclass,
+                    'plugin_databaseinventory_computergroups_id',
+                    '',
+                    __('Add'),
+                    {
+                        'used': used,
+                    }
+                ) }}
 
-        {{ fields.hiddenField(
-            'plugin_databaseinventory_databaseparams_id',
-            item.getID(),
-        )}}
+                {% set btn_add %}
+                    <button class="btn btn-primary" type="submit" name="add_computergroup" value="1">
+                        <i class="fas fa-plus"></i>
+                        <span>{{_x('button', 'Add') }}</span>
+                    </button>
+                {% endset %}
 
-        {% set buttoncheck %}
-            <button class="btn btn-outline-green me-2" type="submit" name="add_computergroup" value="1">
-                <span>{{ _x('button', 'Add') }}</span>
-            </button>
-        {% endset %}
-        {{ fields.htmlField(
-            '',
-            buttoncheck,
-            ''
-        ) }}
-    </form>
+                {{ fields.htmlField(
+                    '',
+                    btn_add,
+                    ''
+                ) }}
+
+                {{ fields.hiddenField(
+                    'plugin_databaseinventory_databaseparams_id',
+                    item.getID(),
+                )}}
+            </div>
+        </form>
+    {% endif %}
     {% if canread %}
         {% if compgrouplist is not empty %}
             <form name="massaction_{{ rand }}" id="massaction_{{ rand }}" method="post"

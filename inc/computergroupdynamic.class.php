@@ -191,7 +191,6 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         }
 
         $canedit = $computergroup->canEdit($ID);
-        echo "<div class='spaced'>";
         if ($canedit) {
             $firsttime = true;
             // load dynamic search criteria from DB if exist
@@ -244,7 +243,6 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                );
             ");
             }
-            echo "</div>";
         }
 
         return true;

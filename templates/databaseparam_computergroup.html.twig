@@ -1,4 +1,6 @@
 {% import "components/form/fields_macros.html.twig" as fields %}
+{% import 'components/form/modals_macros.html.twig' as modals %}
+{% set rand = random() %}
 
 {% block more_fields %}
     <form action="" method="post" class="../front/databaseparam.form.php">
@@ -31,36 +33,54 @@
     </form>
     {% if canread %}
         {% if compgrouplist is not empty %}
-            {% set tableheader %}
-                <tr>
-                    {% if canedit %}
-                        <th style="width: 10px;">
-                            Checkbox
-                        </th>
-                    {% endif %}
-                    <th>{{ __('Name') }}</th>
-                    <th>{{ __('Comment') }}</th>
-                    <th>{{ __('Number of dynamic items') }}</th>
-                    <th>{{ __('Number of static items') }}</th>
-                </tr>
-            {% endset %}
-            <table class='tab_cadre_fixehov'>
-                {{ tableheader }}
-                {% for compgroup in compgrouplist %}
-                    <tr>
-                        {% if canedit %}
-                            <td style="width: 10px;">
-                                Checkbox
-                            </td>
-                        {% endif %}
-                        <td><a href = {{compgroup['link']}}> {{ compgroup['name'] }}</a></td>
-                        <td>{{ compgroup['comment'] }}</td>
-                        <td>{{ compgroup['nbdynamicitems'] }}</td>
-                        <td>{{ compgroup['nbstaticitems'] }}</td>
-                    </tr>
-                {% endfor %}
-                {{ tableheader }}
-            </table>
+            <form name="massaction_{{ rand }}" id="massaction_{{ rand }}" method="post"
+            action="{{ path('/front/massiveaction.php') }}" data-submit-once>
+            <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+            <input type="hidden" name="action" value="purge">
+            <input type="hidden" name="action_name" value="purge">
+            <input type="hidden" name="processor" value="MassiveAction">
+                {% set table_id = 'package_subitem_' ~ rand %}
+                <table class="search-results table table-hover table-card" id="{{ table_id }}">
+                    <thead>
+                        <tr>
+                            {% if canedit %}
+                                <th style="width: 32px;">
+                                    <input class="form-check-input" type="checkbox" id="checkall_{{ rand }}"
+                                        value="" title="{{ __('Check all as') }}"
+                                        data-bs-toggle="tooltip"
+                                        onclick="checkAsCheckboxes('checkall_{{ rand }}', '{{ table_id }}');" />
+                                </th>
+                            {% endif %}
+                            <th>{{ __('Name') }}</th>
+                            <th>{{ __('Comment') }}</th>
+                            <th>{{ __('Number of dynamic items') }}</th>
+                            <th>{{ __('Number of static items') }}</th>
+                        </tr>
+                    </thead>
+                    {% for compgroup in compgrouplist %}
+                        <tr>
+                            {% if canedit %}
+                                <td>
+                                    {% set checked = session('glpimassiveactionselected')[dbparamgroupclass][compgroup['iddbparamcgroup']] ?? false %}
+                                    <input type="checkbox" class="form-check-input"
+                                        name="items[{{ dbparamgroupclass }}][{{ compgroup['iddbparamcgroup'] }}]"
+                                        data-glpicore-ma-tags="common"
+                                        value="{{ compgroup['iddbparamcgroup'] }}"
+                                        {% if checked %}checked="checked"{% endif %}>
+                                </td>
+                            {% endif %}
+                            <td><a href = {{compgroup['link']}}> {{ compgroup['name'] }}</a></td>
+                            <td>{{ compgroup['comment'] }}</td>
+                            <td>{{ compgroup['nbdynamicitems'] }}</td>
+                            <td>{{ compgroup['nbstaticitems'] }}</td>
+                        </tr>
+                    {% endfor %}
+                    <button class="btn btn-sm btn-ghost-secondary my-1 ms-1" type="submit" value="massiveaction">
+                        <i class="ti ti-corner-left-down mt-1"></i>
+                        <span>{{ __("Remove") }}</span>
+                    </button>
+                </table>
+            </form>
         {% endif %}
     {% endif %}
 {% endblock %}

@@ -1,0 +1,34 @@
+{% import "components/form/fields_macros.html.twig" as fields %}
+
+{% block more_fields %}
+    {% if canread %}
+        {% if contactlogs is not empty %}
+            {% set tableheader %}
+                <tr>
+                    <th>{{ __('Credentials') }}</th>
+                    {% if itemtype == 'Agent' %}
+                        <th>{{ __('DatabaseParam') }}</th>
+                    {% else %}
+                        <th>{{ __('Agents') }}</th>
+                    {% endif %}
+                    <th>{{ __('Date') }}</th>
+                </tr>
+            {% endset %}
+            <table class='tab_cadre_fixehov'>
+                {{ tableheader }}
+                {% for contactlog in contactlogs %}
+                    <tr>
+                        <td><a href = {{contactlog['linkcred']}}> {{ contactlog['credname'] }}</a></td>
+                        {% if itemtype == 'Agent' %}
+                            <td><a href = {{contactlog['linkdbparam']}}> {{ contactlog['dbparamname'] }}</a></td>
+                        {% else %}
+                            <td><a href = {{contactlog['linkagent']}}> {{ contactlog['agentname'] }}</a></td>
+                        {% endif %}
+                        <td>{{ contactlog['date_creation'] }}</td>
+                    </tr>
+                {% endfor %}
+                {{ tableheader }}
+            </table>
+        {% endif %}
+    {% endif %}
+{% endblock %}

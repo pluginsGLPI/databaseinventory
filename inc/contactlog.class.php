@@ -1,4 +1,5 @@
 <?php
+use Glpi\Application\View\TemplateRenderer;
 
 /**
  * -------------------------------------------------------------------------
@@ -88,153 +89,93 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     private static function showForDatabaseParams(PluginDatabaseinventoryDatabaseParam $databaseparams)
     {
-        global $DB;
-
         $ID = $databaseparams->getField('id');
         if (!$databaseparams->can($ID, UPDATE)) {
             return false;
         }
 
-        $datas = [];
-        $params = [
-            'SELECT' => '*',
-            'FROM'   => self::getTable(),
-            'WHERE'  => ['plugin_databaseinventory_databaseparams_id' => $ID],
-        ];
+        $contactlog = new PluginDatabaseinventoryContactLog();
+        $contactloglist = $contactlog->find(
+            [
+                'plugin_databaseinventory_databaseparams_id' => $ID
+            ]
+        );
 
-        $iterator = $DB->request($params);
-        foreach ($iterator as $data) {
-            $datas[]           = $data;
-        }
-        $rand = mt_rand();
-
-        $canread = $databaseparams->can($ID, READ);
-        $canedit = false;
-        echo "<div class='spaced'>";
-        if ($canread) {
-            echo "<div class='spaced'>";
-            echo "<table class='tab_cadre_fixehov'>";
-            $header_begin  = "<tr>";
-            $header_top    = '';
-            $header_bottom = '';
-            $header_end    = '';
-
-            if ($canedit) {
-                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_top    .= "</th>";
-                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_bottom .=  "</th>";
+        $credential = new PluginDatabaseinventoryCredential();
+        $agent = new Agent();
+        $listofctlog = [];
+        foreach ($contactloglist as $dbpctlog) {
+            if ($credential->getFromDB($dbpctlog['plugin_databaseinventory_credentials_id'])) {
+                $linkcred = $credential->getLinkURL();
+                $credname = $credential->fields['name'];
             }
-
-            $header_end .= "<th>" . PluginDatabaseinventoryCredential::getTypeName(0) . "</th>";
-            $header_end .= "<th>" . Agent::getTypeName(0) . "</th>";
-            $header_end .= "<th>" . __('Date') . "</th>";
-            $header_end .= "</tr>";
-            echo $header_begin . $header_top . $header_end;
-
-            foreach ($datas as $data) {
-                echo "<tr class='tab_bg_1'>";
-
-                $credential = new PluginDatabaseinventoryCredential();
-                $credential->getFromDB($data["plugin_databaseinventory_credentials_id"]);
-                $credential_link = PluginDatabaseinventoryCredential::getFormURLWithID($credential->fields["id"]);
-                $credential_linkname = $credential->fields["name"];
-                $name = "<a href=\"" . $credential_link . "\">" . $credential_linkname . "</a>";
-
-                echo "<td>" . $name . "</td>";
-
-                $agent = new Agent();
-                $agent->getFromDB($data["agents_id"]);
-                $agent_link = Agent::getFormURLWithID($data["agents_id"]);
-                $agent_linkname = $agent->fields["name"];
-                $name = "<a href=\"" . $agent_link . "\">" . $agent_linkname . "</a>";
-                echo "<td>" . $name . "</td>";
-
-                echo "<td>" . $data["date_creation"] . "</td>";
-                echo "</td>";
-                echo "</tr>";
+            if ($agent->getFromDB($dbpctlog['agents_id'])) {
+                $linkagent = $agent->getLinkURL();
+                $agentname = $agent->fields['name'];
             }
-            echo $header_begin . $header_bottom . $header_end;
-
-            echo "</table>";
-            echo "</div>";
+            if (isset($linkcred) || isset($linkagent)) {
+                $listofctlog[] = $dbpctlog + [
+                    'linkcred' => $linkcred ?? '',
+                    'linkagent' => $linkagent ?? '',
+                    'credname' => $credname ?? '',
+                    'agentname' => $agentname ?? '',
+                ];
+            }
         }
-        echo "</div>";
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/contactlog.html.twig',
+            [
+                'itemtype' => PluginDatabaseinventoryDatabaseParam::getType(),
+                'contactlogs' => $listofctlog,
+                'canread' => $databaseparams->can($ID, READ)
+            ]
+        );
         return true;
     }
 
     private static function showForAgent(Agent $agent)
     {
-        global $DB;
-
         $ID = $agent->getField('id');
         if (!$agent->can($ID, UPDATE)) {
             return false;
         }
 
-        $datas = [];
-        $params = [
-            'SELECT' => '*',
-            'FROM'   => self::getTable(),
-            'WHERE'  => ['agents_id' => $ID],
-        ];
+        $contactlog = new PluginDatabaseinventoryContactLog();
+        $contactloglist = $contactlog->find(
+            [
+                'agents_id' => $ID
+            ]
+        );
 
-        $iterator = $DB->request($params);
-        foreach ($iterator as $data) {
-            $datas[]           = $data;
-        }
-        $rand = mt_rand();
-
-        $canread = $agent->can($ID, READ);
-        $canedit = false;
-        echo "<div class='spaced'>";
-        if ($canread) {
-            echo "<div class='spaced'>";
-            echo "<table class='tab_cadre_fixehov'>";
-            $header_begin  = "<tr>";
-            $header_top    = '';
-            $header_bottom = '';
-            $header_end    = '';
-
-            if ($canedit) {
-                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_top    .= "</th>";
-                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_bottom .=  "</th>";
+        $credential = new PluginDatabaseinventoryCredential();
+        $dbparam = new PluginDatabaseinventoryDatabaseParam();
+        $listofctlog = [];
+        foreach ($contactloglist as $dbpctlog) {
+            if ($credential->getFromDB($dbpctlog['plugin_databaseinventory_credentials_id'])) {
+                $linkcred = $credential->getLinkURL();
+                $credname = $credential->fields['name'];
             }
-
-            $header_end .= "<th>" . PluginDatabaseinventoryCredential::getTypeName(0) . "</th>";
-            $header_end .= "<th>" . PluginDatabaseinventoryDatabaseParam::getTypeName(0) . "</th>";
-            $header_end .= "<th>" . __('Date') . "</th>";
-            $header_end .= "</tr>";
-            echo $header_begin . $header_top . $header_end;
-
-            foreach ($datas as $data) {
-                echo "<tr class='tab_bg_1'>";
-
-                $credential = new PluginDatabaseinventoryCredential();
-                $credential->getFromDB($data["plugin_databaseinventory_credentials_id"]);
-                $credential_link = PluginDatabaseinventoryCredential::getFormURLWithID($credential->fields["id"]);
-                $credential_linkname = $credential->fields["name"];
-                $name = "<a href=\"" . $credential_link . "\">" . $credential_linkname . "</a>";
-                echo "<td>" . $name . "</td>";
-
-                $databaseparams = new PluginDatabaseinventoryDatabaseParam();
-                $databaseparams->getFromDB($data["plugin_databaseinventory_databaseparams_id"]);
-                $databaseparams_link = PluginDatabaseinventoryDatabaseParam::getFormURLWithID($data["plugin_databaseinventory_databaseparams_id"]);
-                $databaseparams_linkname = $databaseparams->fields["name"];
-                $name = "<a href=\"" . $databaseparams_link . "\">" . $databaseparams_linkname . "</a>";
-                echo "<td>" . $name . "</td>";
-
-                echo "<td>" . $data["date_creation"] . "</td>";
-                echo "</td>";
-                echo "</tr>";
+            if ($dbparam->getFromDB($dbpctlog['plugin_databaseinventory_databaseparams_id'])) {
+                $linkdbparam = $dbparam->getLinkURL();
+                $dbparamname = $dbparam->fields['name'];
             }
-            echo $header_begin . $header_bottom . $header_end;
-            echo "</table>";
-            echo "</div>";
+            if (isset($linkcred) || isset($linkagent)) {
+                $listofctlog[] = $dbpctlog + [
+                    'linkcred' => $linkcred ?? '',
+                    'linkdbparam' => $linkdbparam ?? '',
+                    'credname' => $credname ?? '',
+                    'dbparamname' => $dbparamname ?? '',
+                ];
+            }
         }
-        echo "</div>";
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/contactlog.html.twig',
+            [
+                'itemtype' => Agent::getType(),
+                'contactlogs' => $listofctlog,
+                'canread' => $agent->can($ID, READ)
+            ]
+        );
         return true;
     }
 

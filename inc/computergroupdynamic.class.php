@@ -74,12 +74,10 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         switch ($field) {
             case 'search':
                 $count = 0;
-                if (isset($values['id'])) {
-                    if (strpos($values['id'], Search::NULLVALUE) === false) {
-                        $computergroup_dynamic = new PluginDatabaseinventoryComputerGroupDynamic();
-                        $computergroup_dynamic->getFromDB($values['id']);
-                        $count = $computergroup_dynamic->countDynamicItems();
-                    }
+                if (strpos($values['id'], Search::NULLVALUE) === false) {
+                    $computergroup_dynamic = new PluginDatabaseinventoryComputerGroupDynamic();
+                    $computergroup_dynamic->getFromDB($values['id']);
+                    $count = $computergroup_dynamic->countDynamicItems();
                 }
                 return  ($count) ? $count : ' 0 ';
 
@@ -152,13 +150,11 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
     private function countDynamicItems()
     {
         $count = 0;
-        if (isset($this->fields['search'])) {
-            $search_params = Search::manageParams('Computer', unserialize($this->fields['search']));
-            $data = Search::prepareDatasForSearch('Computer', $search_params);
-            Search::constructSQL($data);
-            Search::constructData($data);
-            $count = $data['data']['totalcount'];
-        }
+        $search_params = Search::manageParams('Computer', unserialize($this->fields['search']));
+        $data = Search::prepareDatasForSearch('Computer', $search_params);
+        Search::constructSQL($data);
+        Search::constructData($data);
+        $count = $data['data']['totalcount'];
         return $count;
     }
 
@@ -191,7 +187,6 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         }
 
         $canedit = $computergroup->canEdit($ID);
-        echo "<div class='spaced'>";
         if ($canedit) {
             $firsttime = true;
             // load dynamic search criteria from DB if exist
@@ -244,7 +239,6 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                );
             ");
             }
-            echo "</div>";
         }
 
         return true;

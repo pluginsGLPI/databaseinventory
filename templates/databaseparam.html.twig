@@ -1,0 +1,20 @@
+{% extends "generic_show_form.html.twig" %}
+{% import "components/form/fields_macros.html.twig" as fields %}
+
+{% block more_fields %}
+
+    {{ fields.dropdownYesNo(
+        'partial_inventory',
+        item.fields['partial_inventory'],
+        __('Execution frequency for partial inventory', 'databaseinventory'),
+    )
+    }}
+
+    {{ fields.dropdownNumberField(
+        'execution_delay',
+        item.fields['execution_delay'],
+        __('Execution delay', 'databaseinventory'),
+        {'min' : 0, 'max' : 24, 'step' : 1, 'unit' : 'hour'}
+    )}}
+
+{% endblock %}

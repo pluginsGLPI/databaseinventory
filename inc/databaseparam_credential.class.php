@@ -205,6 +205,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                         $dbcredentials->fields['plugin_databaseinventory_credentialtypes_id']
                     ),
                     'link' => $dbcredentials->getLinkURL(),
+                    'iddbparamcredential' => $dbpcredential['id'],
                 ];
             }
         }
@@ -214,6 +215,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                 'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
                 'credentiallist' => $listofcredentials,
                 'credentialclass' => PluginDatabaseinventoryCredential::class,
+                'credentialtypeclass' => PluginDatabaseinventoryDatabaseParam_Credential::class,
                 'canread' => $databaseparams->can($ID, READ),
                 'canedit' => $databaseparams->can($ID, UPDATE),
                 'used' => $used,

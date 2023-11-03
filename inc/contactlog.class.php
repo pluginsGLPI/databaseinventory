@@ -53,7 +53,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         return _n('Contact log', 'Contact logs', $nb, 'databaseinventory');
     }
 
-    public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
+    public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
     {
         switch ($item->getType()) {
             case PluginDatabaseinventoryDatabaseParam::getType():
@@ -73,7 +73,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         return '';
     }
 
-    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
+    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = false)
     {
         switch ($tabnum) {
             case 1:

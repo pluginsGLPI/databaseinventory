@@ -62,7 +62,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
         return _n('Credential', 'Credentials', $nb, 'databaseinventory');
     }
 
-    public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
+    public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
     {
         if (get_class($item) == PluginDatabaseinventoryDatabaseParam::getType()) {
             $count = 0;
@@ -74,7 +74,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
         return '';
     }
 
-    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
+    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = false)
     {
         switch ($tabnum) {
             case 1:

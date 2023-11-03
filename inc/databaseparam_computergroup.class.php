@@ -62,7 +62,7 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
         return _n('Computer Group', 'Computers Group', $nb, 'databaseinventory');
     }
 
-    public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
+    public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
     {
         if (get_class($item) == PluginDatabaseinventoryDatabaseParam::getType()) {
             $count = 0;
@@ -74,7 +74,7 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
         return '';
     }
 
-    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
+    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = false)
     {
         switch ($tabnum) {
             case 1:

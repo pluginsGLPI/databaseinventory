@@ -30,6 +30,9 @@
 
 include("../../../inc/includes.php");
 
+/** @var array */
+global $CFG_GLPI;
+
 Html::header(
     __('Database Inventory', 'databaseinventory'),
     $_SERVER['PHP_SELF'],

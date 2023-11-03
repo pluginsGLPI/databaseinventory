@@ -38,7 +38,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
     public static function getMenuContent()
     {
         $menu = [
-            'title' => self::getMenuName(2),
+            'title' => self::getMenuName(),
             'page'  => self::getSearchURL(false),
             'icon'  => 'fas fa-database',
         ];

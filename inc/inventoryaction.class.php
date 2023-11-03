@@ -47,7 +47,8 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
     public static function processMassiveActionsForOneItemtype(MassiveAction $ma, CommonDBTM $item, array $ids)
     {
         if ($ma->getAction() !== self::MA_PARTIAL) {
-            return parent::processMassiveActionsForOneItemtype($ma, $item, $ids);
+            parent::processMassiveActionsForOneItemtype($ma, $item, $ids);
+            return;
         }
 
         switch ($item->getType()) {

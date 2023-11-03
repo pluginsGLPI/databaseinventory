@@ -108,9 +108,10 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
         }
         $number = count($datas);
 
+        $rand = mt_rand();
+
         echo "<div class='spaced'>";
         if ($databaseparams->canAddItem('itemtype')) {
-            $rand = mt_rand();
             echo "<div class='firstbloc'>";
             echo "<form method='post' name='computergroup_form$rand' id='computergroup_form$rand'
                         action='" . Toolbox::getItemTypeFormURL("PluginDatabaseinventoryDatabaseParam") . "'>";

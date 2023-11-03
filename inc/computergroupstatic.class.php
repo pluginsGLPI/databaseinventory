@@ -108,9 +108,10 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
         }
         $number = count($datas);
 
+        $rand = mt_rand();
+
         echo "<div class='spaced'>";
         if ($computergroup->canAddItem('itemtype')) {
-            $rand = mt_rand();
             echo "<div class='firstbloc'>";
             echo "<form method='post' name='staticcomputer_form$rand'
                         id='staticcomputer$rand'

@@ -49,7 +49,7 @@ class PluginDatabaseinventoryProfile extends Profile
         return $rights;
     }
 
-    public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
+    public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
         if ($item->getType() == 'Profile') {
             return self::createTabEntry(self::getTypeName());
@@ -57,7 +57,7 @@ class PluginDatabaseinventoryProfile extends Profile
         return '';
     }
 
-    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = false)
+    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
         if ($item instanceof Profile && $item->getField('id')) {
             return self::showForProfile($item->getID());

@@ -47,7 +47,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
+    public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
         if ($item instanceof PluginDatabaseinventoryComputerGroup) {
             $count = 0;
@@ -135,7 +135,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         return '';
     }
 
-    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = false)
+    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
         switch ($tabnum) {
             case 1:

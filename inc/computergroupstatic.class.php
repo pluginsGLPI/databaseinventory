@@ -62,7 +62,7 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
+    public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
         if ($item instanceof PluginDatabaseinventoryComputerGroup) {
             $count = countElementsInTable(self::getTable(), ['plugin_databaseinventory_computergroups_id' => $item->getID()]);
@@ -71,7 +71,7 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
         return '';
     }
 
-    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = false)
+    public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
         switch ($tabnum) {
             case 1:

@@ -58,14 +58,10 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         switch (get_class($item)) {
             case PluginDatabaseinventoryDatabaseParam::class:
                 $count = countElementsInTable(self::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
-                $ong = [];
-                $ong[1] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
-                return $ong;
+                return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
             case Agent::class:
                 $count = countElementsInTable(self::getTable(), ['agents_id' => $item->getID()]);
-                $ong = [];
-                $ong[2] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
-                return $ong;
+                return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
         return '';
     }

@@ -66,9 +66,7 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
     {
         if ($item instanceof PluginDatabaseinventoryComputerGroup) {
             $count = countElementsInTable(self::getTable(), ['plugin_databaseinventory_computergroups_id' => $item->getID()]);
-            $ong = [];
-            $ong[1] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
-            return $ong;
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
         return '';
     }

@@ -50,7 +50,7 @@ function plugin_init_databaseinventory()
     $PLUGIN_HOOKS['config_page']['databaseinventory'] = 'front/menu.php';
 
     if (!Plugin::isPluginActive('databaseinventory')) {
-        return false;
+        return;
     }
 
     $PLUGIN_HOOKS['handle_inventory_task']['databaseinventory'] = ['PluginDatabaseinventoryTask', 'handleInventoryTask'];

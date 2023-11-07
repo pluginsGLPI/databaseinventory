@@ -59,9 +59,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
             ) {
                 $count = $computergroup_dynamic->countDynamicItems();
             }
-            $ong = [];
-            $ong[1] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
-            return $ong;
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
         return '';
     }

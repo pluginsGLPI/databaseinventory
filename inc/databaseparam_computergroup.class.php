@@ -66,9 +66,7 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
     {
         if ($item instanceof PluginDatabaseinventoryDatabaseParam) {
             $count = countElementsInTable(PluginDatabaseinventoryDatabaseParam_ComputerGroup::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
-            $ong = [];
-            $ong[1] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
-            return $ong;
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
         return '';
     }

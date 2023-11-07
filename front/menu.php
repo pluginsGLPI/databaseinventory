@@ -45,12 +45,10 @@ if (PluginDatabaseinventoryDatabaseParam::canView()) {
     echo "<table class='tab_cadre'>";
     echo "<tr><th colspan='2'>" . __('Database Inventory', 'databaseinventory') . "</th></tr>";
 
-    if (PluginDatabaseinventoryDatabaseParam::canView()) {
-        echo "<tr class='tab_bg_1 center'>";
-        echo "<td><i class='fas fa-cog'></i></td>";
-        echo "<td><a href='" . Toolbox::getItemTypeSearchURL('PluginDatabaseinventoryDatabaseParam') . "'>"
-            . PluginDatabaseinventoryDatabaseParam::getTypeName(2) . "</a></td></tr>";
-    }
+    echo "<tr class='tab_bg_1 center'>";
+    echo "<td><i class='fas fa-cog'></i></td>";
+    echo "<td><a href='" . Toolbox::getItemTypeSearchURL('PluginDatabaseinventoryDatabaseParam') . "'>"
+        . PluginDatabaseinventoryDatabaseParam::getTypeName(2) . "</a></td></tr>";
 
     if (PluginDatabaseinventoryCredential::canView()) {
         echo "<tr class='tab_bg_1 center'>";

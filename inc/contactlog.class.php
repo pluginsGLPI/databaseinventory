@@ -102,7 +102,6 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         $rand = mt_rand();
 
         $canread = $databaseparams->can($ID, READ);
-        $canedit = false;
         echo "<div class='spaced'>";
         if ($canread) {
             echo "<div class='spaced'>";
@@ -111,13 +110,6 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             $header_top    = '';
             $header_bottom = '';
             $header_end    = '';
-
-            if ($canedit) {
-                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_top    .= "</th>";
-                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_bottom .=  "</th>";
-            }
 
             $header_end .= "<th>" . PluginDatabaseinventoryCredential::getTypeName(0) . "</th>";
             $header_end .= "<th>" . Agent::getTypeName(0) . "</th>";
@@ -179,7 +171,6 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         $rand = mt_rand();
 
         $canread = $agent->can($ID, READ);
-        $canedit = false;
         echo "<div class='spaced'>";
         if ($canread) {
             echo "<div class='spaced'>";
@@ -188,13 +179,6 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             $header_top    = '';
             $header_bottom = '';
             $header_end    = '';
-
-            if ($canedit) {
-                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_top    .= "</th>";
-                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_bottom .=  "</th>";
-            }
 
             $header_end .= "<th>" . PluginDatabaseinventoryCredential::getTypeName(0) . "</th>";
             $header_end .= "<th>" . PluginDatabaseinventoryDatabaseParam::getTypeName(0) . "</th>";

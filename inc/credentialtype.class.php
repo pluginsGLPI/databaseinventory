@@ -92,22 +92,16 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
         switch ($credential_type_id) {
             case self::MYSQL:
                 return 'mysql';
-            break;
             case self::ORACLE:
                 return 'oracle';
-            break;
             case self::DB2:
                 return 'db2';
-            break;
             case self::MSSQL:
                 return 'mssql';
-            break;
             case self::POSTGRE_SQL:
                 return 'postgresql';
-            break;
             case self::MONGO_DB:
                 return 'mongodb';
-            break;
         }
     }
 
@@ -116,22 +110,16 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
         switch ($credential_type) {
             case 'mysql':
                 return self::MYSQL;
-            break;
             case 'oracle':
                 return self::ORACLE;
-            break;
             case 'db2':
                 return self::DB2;
-            break;
             case 'mssql':
                 return self::MSSQL;
-            break;
             case 'postgresql':
                 return self::POSTGRE_SQL;
-            break;
             case 'mongodb':
                 return self::MONGO_DB;
-            break;
         }
     }
 

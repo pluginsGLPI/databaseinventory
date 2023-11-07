@@ -49,7 +49,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
     {
-        if (get_class($item) == PluginDatabaseinventoryComputerGroup::getType()) {
+        if ($item instanceof PluginDatabaseinventoryComputerGroup) {
             $count = 0;
             $computergroup_dynamic = new self();
             if (

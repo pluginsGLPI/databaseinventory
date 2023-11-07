@@ -64,8 +64,7 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
     {
-        if (get_class($item) == PluginDatabaseinventoryComputerGroup::getType()) {
-            $count = 0;
+        if ($item instanceof PluginDatabaseinventoryComputerGroup) {
             $count = countElementsInTable(self::getTable(), ['plugin_databaseinventory_computergroups_id' => $item->getID()]);
             $ong = [];
             $ong[1] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);

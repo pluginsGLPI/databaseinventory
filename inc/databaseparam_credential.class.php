@@ -64,8 +64,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = false)
     {
-        if (get_class($item) == PluginDatabaseinventoryDatabaseParam::getType()) {
-            $count = 0;
+        if ($item instanceof PluginDatabaseinventoryDatabaseParam) {
             $count = countElementsInTable(PluginDatabaseinventoryDatabaseParam_Credential::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
             $ong = [];
             $ong[1] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);

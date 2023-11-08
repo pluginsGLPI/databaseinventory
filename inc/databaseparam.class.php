@@ -147,7 +147,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
             'JOIN'   => [
                 $credential_table => [
                     'ON' => [
-                        $credential_table    => 'plugin_databaseinventory_credentials_types_id',
+                        $credential_table    => 'plugin_databaseinventory_credentialtypes_id',
                         $credential_type_table => 'id'
                     ]
                 ],

@@ -55,20 +55,13 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
-        switch ($item->getType()) {
-            case PluginDatabaseinventoryDatabaseParam::getType():
-                $count = 0;
+        switch (get_class($item)) {
+            case PluginDatabaseinventoryDatabaseParam::class:
                 $count = countElementsInTable(self::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
-                $ong = [];
-                $ong[1] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
-                return $ong;
-            break;
-            case Agent::getType():
-                $count = 0;
+                return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
+            case Agent::class:
                 $count = countElementsInTable(self::getTable(), ['agents_id' => $item->getID()]);
-                $ong = [];
-                $ong[2] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
-                return $ong;
+                return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
         return '';
     }
@@ -88,6 +81,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     private static function showForDatabaseParams(PluginDatabaseinventoryDatabaseParam $databaseparams)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $ID = $databaseparams->getField('id');
@@ -109,7 +103,6 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         $rand = mt_rand();
 
         $canread = $databaseparams->can($ID, READ);
-        $canedit = false;
         echo "<div class='spaced'>";
         if ($canread) {
             echo "<div class='spaced'>";
@@ -118,13 +111,6 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             $header_top    = '';
             $header_bottom = '';
             $header_end    = '';
-
-            if ($canedit) {
-                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_top    .= "</th>";
-                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_bottom .=  "</th>";
-            }
 
             $header_end .= "<th>" . PluginDatabaseinventoryCredential::getTypeName(0) . "</th>";
             $header_end .= "<th>" . Agent::getTypeName(0) . "</th>";
@@ -165,6 +151,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     private static function showForAgent(Agent $agent)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $ID = $agent->getField('id');
@@ -186,7 +173,6 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         $rand = mt_rand();
 
         $canread = $agent->can($ID, READ);
-        $canedit = false;
         echo "<div class='spaced'>";
         if ($canread) {
             echo "<div class='spaced'>";
@@ -195,13 +181,6 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             $header_top    = '';
             $header_bottom = '';
             $header_end    = '';
-
-            if ($canedit) {
-                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_top    .= "</th>";
-                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_bottom .=  "</th>";
-            }
 
             $header_end .= "<th>" . PluginDatabaseinventoryCredential::getTypeName(0) . "</th>";
             $header_end .= "<th>" . PluginDatabaseinventoryDatabaseParam::getTypeName(0) . "</th>";
@@ -240,6 +219,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     public static function install(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $default_charset = DBConnection::getDefaultCharset();
@@ -269,6 +249,7 @@ SQL;
 
     public static function uninstall(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {

@@ -38,7 +38,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
     public static function getMenuContent()
     {
         $menu = [
-            'title' => self::getMenuName(2),
+            'title' => self::getMenuName(),
             'page'  => self::getSearchURL(false),
             'icon'  => 'fas fa-database',
         ];
@@ -50,12 +50,10 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
                 'icon'   => PluginDatabaseinventoryDatabaseParam::getIcon(),
             ];
 
-            if (true) {
-                $menu['options']['databaseparam']['links'] = [
-                    'search' => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
-                    'add'    => PluginDatabaseinventoryDatabaseParam::getFormURL(false),
-                ];
-            }
+            $menu['options']['databaseparam']['links'] = [
+                'search' => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
+                'add'    => PluginDatabaseinventoryDatabaseParam::getFormURL(false),
+            ];
         }
 
         if (PluginDatabaseinventoryComputerGroup::canView()) {
@@ -65,12 +63,10 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
                 'icon'   => PluginDatabaseinventoryComputerGroup::getIcon(),
             ];
 
-            if (true) {
-                $menu['options']['computergroup']['links'] = [
-                    'search' => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
-                    'add'    => PluginDatabaseinventoryComputerGroup::getFormURL(false),
-                ];
-            }
+            $menu['options']['computergroup']['links'] = [
+                'search' => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
+                'add'    => PluginDatabaseinventoryComputerGroup::getFormURL(false),
+            ];
         }
 
         if (PluginDatabaseinventoryCredential::canView()) {
@@ -80,12 +76,10 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
                 'icon'   => PluginDatabaseinventoryCredential::getIcon(),
             ];
 
-            if (true) {
-                $menu['options']['credential']['links'] = [
-                    'search' => PluginDatabaseinventoryCredential::getSearchURL(false),
-                    'add'    => PluginDatabaseinventoryCredential::getFormURL(false),
-                ];
-            }
+            $menu['options']['credential']['links'] = [
+                'search' => PluginDatabaseinventoryCredential::getSearchURL(false),
+                'add'    => PluginDatabaseinventoryCredential::getFormURL(false),
+            ];
         }
 
         return $menu;

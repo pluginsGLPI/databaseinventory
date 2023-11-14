@@ -64,12 +64,9 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
-        if (get_class($item) == PluginDatabaseinventoryDatabaseParam::getType()) {
-            $count = 0;
+        if ($item instanceof PluginDatabaseinventoryDatabaseParam) {
             $count = countElementsInTable(PluginDatabaseinventoryDatabaseParam_Credential::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
-            $ong = [];
-            $ong[1] = self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
-            return $ong;
+            return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
         return '';
     }
@@ -86,6 +83,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
     private static function showForItem(PluginDatabaseinventoryDatabaseParam $databaseparams)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $ID = $databaseparams->getField('id');
@@ -108,9 +106,10 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
         }
         $number = count($datas);
 
+        $rand = mt_rand();
+
         echo "<div class='spaced'>";
         if ($databaseparams->canAddItem('itemtype')) {
-            $rand = mt_rand();
             echo "<div class='firstbloc'>";
             echo "<form method='post' name='credential_form$rand' id='credential_form$rand'
                         action='" . Toolbox::getItemTypeFormURL("PluginDatabaseinventoryDatabaseParam") . "'>";
@@ -214,6 +213,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
     public static function install(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $default_charset = DBConnection::getDefaultCharset();
@@ -242,6 +242,7 @@ SQL;
 
     public static function uninstall(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {

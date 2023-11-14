@@ -32,6 +32,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
 {
     public static function inventoryGetParams(array $params)
     {
+        /** @var DBmysql $DB */
         global $DB;
         $agent    = $params['item'];
         $content  = $params['options']['content'];
@@ -128,6 +129,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
 
     public static function handleInventoryTask(array $params)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         // get asset related to the agent

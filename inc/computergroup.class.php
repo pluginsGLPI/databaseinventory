@@ -146,7 +146,6 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         $this->initForm($ID, $options);
         $this->showFormHeader($options);
 
-        $rand = mt_rand();
         echo "<tr><td><label for='textfield_name$rand'>" . __('Name') . "</label></td>";
         echo "<td>";
         echo Html::input(
@@ -169,6 +168,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
     public function countDynamicItem()
     {
+        /** @var DBmysql $DB */
         global $DB;
         $count = 0;
 
@@ -192,8 +192,8 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
     public function countStaticItem()
     {
+        /** @var DBmysql $DB */
         global $DB;
-        $count = 0;
 
         $params = [
             'SELECT' => '*',
@@ -209,6 +209,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
     public static function install(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $default_charset = DBConnection::getDefaultCharset();
@@ -248,6 +249,7 @@ SQL;
 
     public static function uninstall(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {

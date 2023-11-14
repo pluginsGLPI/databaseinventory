@@ -83,6 +83,7 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
 
     private static function showForItem(PluginDatabaseinventoryComputerGroup $computergroup)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $ID = $computergroup->getField('id');
@@ -225,6 +226,7 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
 
     public static function install(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $default_charset = DBConnection::getDefaultCharset();
@@ -250,6 +252,7 @@ SQL;
 
     public static function uninstall(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {

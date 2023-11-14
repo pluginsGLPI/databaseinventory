@@ -80,6 +80,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                 return  ($count) ? $count : ' 0 ';
 
             case '_virtual_dynamic_list':
+                /** @var array $CFG_GLPI */
                 global $CFG_GLPI;
                 $value = " ";
                 $out = " ";
@@ -147,7 +148,6 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
     private function countDynamicItems()
     {
-        $count = 0;
         $search_params = Search::manageParams('Computer', unserialize($this->fields['search']));
         $data = Search::prepareDatasForSearch('Computer', $search_params);
         Search::constructSQL($data);
@@ -158,8 +158,6 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
     public function isDynamicSearchMatchComputer(Computer $computer)
     {
-        $count = 0;
-
         // add new criteria to force computer ID
         $search = unserialize($this->fields['search']);
         $search['criteria'][] = [
@@ -246,6 +244,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
     public static function install(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $default_charset = DBConnection::getDefaultCharset();
@@ -270,6 +269,7 @@ SQL;
 
     public static function uninstall(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {

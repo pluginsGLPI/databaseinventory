@@ -43,6 +43,7 @@ define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '10.0.99');
  */
 function plugin_init_databaseinventory()
 {
+    /** @var array $PLUGIN_HOOKS */
     global $PLUGIN_HOOKS;
 
     $PLUGIN_HOOKS['csrf_compliant']['databaseinventory'] = true;

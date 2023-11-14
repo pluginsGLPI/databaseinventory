@@ -30,7 +30,7 @@
 
 include("../../../inc/includes.php");
 
-/** @var array */
+/** @var array $CFG_GLPI */
 global $CFG_GLPI;
 
 Html::header(

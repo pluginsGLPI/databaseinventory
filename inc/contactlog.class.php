@@ -155,7 +155,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             }
             if (isset($linkcred)) {
                 $listofctlog[] = $dbpctlog + [
-                    'linkcred' => $linkcred ?? '',
+                    'linkcred' => $linkcred,
                     'linkdbparam' => $linkdbparam ?? '',
                     'credname' => $credname ?? '',
                     'dbparamname' => $dbparamname ?? '',

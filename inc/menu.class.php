@@ -90,7 +90,6 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
             'icon'   => PluginDatabaseinventoryCredential::getIcon(),
             'links'  => $links,
         ];
-
         if (true) {
             $menu['options']['credential']['links'] = [
                 'search' => PluginDatabaseinventoryCredential::getSearchURL(false),

@@ -155,6 +155,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
     public function countDynamicItem()
     {
+        /** @var DBmysql $DB */
         global $DB;
         $count = 0;
 
@@ -178,8 +179,8 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
     public function countStaticItem()
     {
+        /** @var DBmysql $DB */
         global $DB;
-        $count = 0;
 
         $params = [
             'SELECT' => '*',
@@ -195,6 +196,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
     public static function install(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $default_charset = DBConnection::getDefaultCharset();
@@ -234,6 +236,7 @@ SQL;
 
     public static function uninstall(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {

@@ -131,6 +131,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
 
     public function getCredentialTypeLinked()
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $databaseparam_credential_table = PluginDatabaseinventoryDatabaseParam_Credential::getTable();
@@ -148,7 +149,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
             'JOIN'   => [
                 $credential_table => [
                     'ON' => [
-                        $credential_table    => 'plugin_databaseinventory_credentials_types_id',
+                        $credential_table    => 'plugin_databaseinventory_credentialtypes_id',
                         $credential_type_table => 'id'
                     ]
                 ],
@@ -198,6 +199,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
 
     public static function install(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
 
         $default_charset = DBConnection::getDefaultCharset();
@@ -237,6 +239,7 @@ SQL;
 
     public static function uninstall(Migration $migration)
     {
+        /** @var DBmysql $DB */
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {

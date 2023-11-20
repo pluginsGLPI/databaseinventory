@@ -43,6 +43,7 @@ define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '10.0.99');
  */
 function plugin_init_databaseinventory()
 {
+    /** @var array $PLUGIN_HOOKS */
     global $PLUGIN_HOOKS;
 
     $PLUGIN_HOOKS['csrf_compliant']['databaseinventory'] = true;
@@ -50,7 +51,7 @@ function plugin_init_databaseinventory()
     $PLUGIN_HOOKS['config_page']['databaseinventory'] = 'front/databaseparam.php';
 
     if (!Plugin::isPluginActive('databaseinventory')) {
-        return false;
+        return;
     }
 
     $PLUGIN_HOOKS['handle_inventory_task']['databaseinventory'] = ['PluginDatabaseinventoryTask', 'handleInventoryTask'];

@@ -51,7 +51,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
         }
 
         $menu = [
-            'title' => self::getMenuName(2),
+            'title' => self::getMenuName(),
             'page'  => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
             'icon'  => 'fas fa-database',
             'options' => [],

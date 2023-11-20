@@ -153,7 +153,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
                 $linkdbparam = $dbparam->getLinkURL();
                 $dbparamname = $dbparam->fields['name'];
             }
-            if (isset($linkcred) || isset($linkagent)) {
+            if (isset($linkcred)) {
                 $listofctlog[] = $dbpctlog + [
                     'linkcred' => $linkcred ?? '',
                     'linkdbparam' => $linkdbparam ?? '',

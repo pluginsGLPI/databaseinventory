@@ -1,4 +1,5 @@
 <?php
+
 use Glpi\Application\View\TemplateRenderer;
 
 /**
@@ -103,14 +104,14 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
             $used[] = $dbpcredential['plugin_databaseinventory_credentials_id'];
             if ($dbcredentials->getFromDB($dbpcredential['plugin_databaseinventory_credentials_id'])) {
                 $listofcredentials[] = $dbcredentials->fields +
-                [
-                    'type' => Dropdown::getDropdownName(
-                        PluginDatabaseinventoryCredentialType::getTable(),
-                        $dbcredentials->fields['plugin_databaseinventory_credentialtypes_id']
-                    ),
-                    'link' => $dbcredentials->getLinkURL(),
-                    'iddbparamcredential' => $dbpcredential['id'],
-                ];
+                    [
+                        'type' => Dropdown::getDropdownName(
+                            PluginDatabaseinventoryCredentialType::getTable(),
+                            $dbcredentials->fields['plugin_databaseinventory_credentialtypes_id']
+                        ),
+                        'link' => $dbcredentials->getLinkURL(),
+                        'iddbparamcredential' => $dbpcredential['id'],
+                    ];
             }
         }
         TemplateRenderer::getInstance()->display(

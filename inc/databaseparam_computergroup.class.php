@@ -1,4 +1,5 @@
 <?php
+
 use Glpi\Application\View\TemplateRenderer;
 
 /**
@@ -103,12 +104,12 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
             $used[] = $dbpcgroup['plugin_databaseinventory_computergroups_id'];
             if ($dbcgroups->getFromDB($dbpcgroup['plugin_databaseinventory_computergroups_id'])) {
                 $listofcgroups[] = $dbcgroups->fields +
-                [
-                    'link' => $dbcgroups->getLinkURL(),
-                    'nbdynamicitems' => $dbcgroups->countDynamicItem(),
-                    'nbstaticitems' => $dbcgroups->countStaticItem(),
-                    'iddbparamcgroup' => $dbpcgroup['id'],
-                ];
+                    [
+                        'link' => $dbcgroups->getLinkURL(),
+                        'nbdynamicitems' => $dbcgroups->countDynamicItem(),
+                        'nbstaticitems' => $dbcgroups->countStaticItem(),
+                        'iddbparamcgroup' => $dbpcgroup['id'],
+                    ];
             }
         }
         TemplateRenderer::getInstance()->display(

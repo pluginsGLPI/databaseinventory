@@ -1,4 +1,5 @@
 <?php
+
 use Glpi\Application\View\TemplateRenderer;
 
 /**

@@ -1,4 +1,5 @@
 <?php
+
 use Glpi\Application\View\TemplateRenderer;
 
 /**
@@ -106,11 +107,11 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
             $used[] = $staticgroup['computers_id'];
             if ($computers->getFromDB($staticgroup['computers_id'])) {
                 $listofcomputers[] = $computers->fields +
-                [
-                    'entityname' => Entity::getById($computers->fields['entities_id'])->fields['completename'],
-                    'link' => $computers->getLinkURL(),
-                    'idcompgroupstatic' => $staticgroup['id'],
-                ];
+                    [
+                        'entityname' => Entity::getById($computers->fields['entities_id'])->fields['completename'],
+                        'link' => $computers->getLinkURL(),
+                        'idcompgroupstatic' => $staticgroup['id'],
+                    ];
             }
         }
         TemplateRenderer::getInstance()->display(

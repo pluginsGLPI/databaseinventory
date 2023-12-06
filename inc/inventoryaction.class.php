@@ -86,7 +86,6 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                 }
                 break;
         }
-        return true;
     }
 
     public static function runPartialInventory(Agent $agent, $fromMA = false)

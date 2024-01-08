@@ -48,7 +48,7 @@ function plugin_init_databaseinventory()
 
     $PLUGIN_HOOKS['csrf_compliant']['databaseinventory'] = true;
 
-    $PLUGIN_HOOKS['config_page']['databaseinventory'] = 'front/menu.php';
+    $PLUGIN_HOOKS['config_page']['databaseinventory'] = 'front/databaseparam.php';
 
     if (!Plugin::isPluginActive('databaseinventory')) {
         return;

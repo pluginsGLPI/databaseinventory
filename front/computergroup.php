@@ -32,7 +32,13 @@ include('../../../inc/includes.php');
 
 Session::checkRight("config", UPDATE);
 
-Html::header(PluginDatabaseinventoryComputerGroup::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "admin", "PluginDatabaseinventoryMenu", "computergroup");
+Html::header(
+    PluginDatabaseinventoryComputerGroup::getTypeName(Session::getPluralNumber()),
+    $_SERVER['PHP_SELF'],
+    "admin",
+    "PluginDatabaseinventoryMenu",
+    "computergroup"
+);
 
 Search::show('PluginDatabaseinventoryComputerGroup');
 

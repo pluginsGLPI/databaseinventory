@@ -28,6 +28,36 @@
  * -------------------------------------------------------------------------
  */
 
+use Glpi\Application\View\TemplateRenderer;
+
+/**
+ * -------------------------------------------------------------------------
+ * DatabaseInventory plugin for GLPI
+ * -------------------------------------------------------------------------
+ *
+ * LICENSE
+ *
+ * This file is part of DatabaseInventory.
+ *
+ * DatabaseInventory is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * DatabaseInventory is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with DatabaseInventory. If not, see <http://www.gnu.org/licenses/>.
+ * -------------------------------------------------------------------------
+ * @copyright Copyright (C) 2021-2023 by Teclib'.
+ * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ * @link      https://services.glpi-network.com
+ * -------------------------------------------------------------------------
+ */
+
 class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelation
 {
     // From CommonDBRelation
@@ -83,129 +113,46 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
 
     private static function showForItem(PluginDatabaseinventoryDatabaseParam $databaseparams)
     {
-        /** @var DBmysql $DB */
-        global $DB;
-
         $ID = $databaseparams->getField('id');
         if (!$databaseparams->can($ID, UPDATE)) {
             return false;
         }
 
-        $datas = [];
-        $used  = [];
-        $params = [
-            'SELECT' => '*',
-            'FROM'   => self::getTable(),
-            'WHERE'  => ['plugin_databaseinventory_databaseparams_id' => $ID],
-        ];
+        $databaseparamcgroup = new PluginDatabaseinventoryDatabaseParam_ComputerGroup();
+        $dbpcgrouplist = $databaseparamcgroup->find(
+            [
+                'plugin_databaseinventory_databaseparams_id' => $ID
+            ]
+        );
 
-        $iterator = $DB->request($params);
-        foreach ($iterator as $data) {
-            $datas[]           = $data;
-            $used[] = $data['plugin_databaseinventory_computergroups_id'];
+        $dbcgroups = new PluginDatabaseinventoryComputerGroup();
+        $listofcgroups = [];
+        $used = [];
+        foreach ($dbpcgrouplist as $dbpcgroup) {
+            $used[] = $dbpcgroup['plugin_databaseinventory_computergroups_id'];
+            if ($dbcgroups->getFromDB($dbpcgroup['plugin_databaseinventory_computergroups_id'])) {
+                $listofcgroups[] = $dbcgroups->fields +
+                    [
+                        'link' => $dbcgroups->getLinkURL(),
+                        'nbdynamicitems' => $dbcgroups->countDynamicItem(),
+                        'nbstaticitems' => $dbcgroups->countStaticItem(),
+                        'iddbparamcgroup' => $dbpcgroup['id'],
+                    ];
+            }
         }
-        $number = count($datas);
-
-        $rand = mt_rand();
-
-        echo "<div class='spaced'>";
-        if ($databaseparams->canAddItem('itemtype')) {
-            echo "<div class='firstbloc'>";
-            echo "<form method='post' name='computergroup_form$rand' id='computergroup_form$rand'
-                        action='" . Toolbox::getItemTypeFormURL("PluginDatabaseinventoryDatabaseParam") . "'>";
-
-            echo "<table class='tab_cadre_fixe'>";
-            echo "<tr class='tab_bg_2'>";
-            echo "<th colspan='2'>" . __('Add computer group', 'databaseinventory') . "</th></tr>";
-
-            echo "<tr class='tab_bg_1'><td class='left'>";
-            Dropdown::show(
-                "PluginDatabaseinventoryComputerGroup",
-                [
-                    "name" => "plugin_databaseinventory_computergroups_id",
-                    "used" => $used,
-                ]
-            );
-            echo "</td><td class='center' class='tab_bg_1'>";
-
-            echo Html::hidden('plugin_databaseinventory_databaseparams_id', ['value' => $ID]);
-            echo Html::submit(_x('button', 'Add'), ['name' => 'add_computergroup']);
-            echo "</td></tr>";
-            echo "</table>";
-            Html::closeForm();
-            echo "</div>";
-        }
-        echo "</div>";
-
-        $canread = $databaseparams->can($ID, READ);
-        $canedit = $databaseparams->can($ID, UPDATE);
-        echo "<div class='spaced'>";
-        if ($canread) {
-            echo "<div class='spaced'>";
-            if ($canedit) {
-                Html::openMassiveActionsForm('mass' . __CLASS__ . $rand);
-                $massiveactionparams = [
-                    'num_displayed' => min($_SESSION['glpilist_limit'], $number),
-                    'specific_actions' => ['purge' => _x('button', 'Remove')],
-                    'container' => 'mass' . __CLASS__ . $rand,
-                ];
-                Html::showMassiveActions($massiveactionparams);
-            }
-            echo "<table class='tab_cadre_fixehov'>";
-            $header_begin  = "<tr>";
-            $header_top    = '';
-            $header_bottom = '';
-            $header_end    = '';
-
-            if ($canedit) {
-                $header_top    .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_top    .= "</th>";
-                $header_bottom .= "<th width='10'>" . Html::getCheckAllAsCheckbox('mass' . __CLASS__ . $rand);
-                $header_bottom .=  "</th>";
-            }
-
-            $header_end .= "<th>" . __('Name') . "</th>";
-            $header_end .= "<th>" . __('Comment') . "</th>";
-            $header_end .= "<th>" . __('Number of dynamic items', 'databaseinventory') . "</th>";
-            $header_end .= "<th>" . __('Number of static items', 'databaseinventory') . "</th>";
-            $header_end .= "</tr>";
-            echo $header_begin . $header_top . $header_end;
-
-            foreach ($datas as $data) {
-                $computergroup = new PluginDatabaseinventoryComputerGroup();
-                $computergroup->getFromDB($data["plugin_databaseinventory_computergroups_id"]);
-                $linkname = $computergroup->fields["name"];
-                $itemtype = PluginDatabaseinventoryComputerGroup::getType();
-                if ($_SESSION["glpiis_ids_visible"] || empty($computergroup->fields["name"])) {
-                    $linkname = sprintf(__('%1$s (%2$s)'), $linkname, $computergroup->fields["id"]);
-                }
-                $link = $itemtype::getFormURLWithID($computergroup->fields["id"]);
-                $name = "<a href=\"" . $link . "\">" . $linkname . "</a>";
-                echo "<tr class='tab_bg_1'>";
-
-                if ($canedit) {
-                    echo "<td width='10'>";
-                    Html::showMassiveActionCheckBox(__CLASS__, $data["id"]);
-                    echo "</td>";
-                }
-                echo "<td>" . $name . "</td>";
-                echo "<td>" . $computergroup->fields["comment"] . "</td>";
-                echo "<td>" . $computergroup->countDynamicItem() . "</td>";
-                echo "<td>" . $computergroup->countStaticItem() . "</td>";
-                echo "</td>";
-                echo "</tr>";
-            }
-            echo $header_begin . $header_bottom . $header_end;
-
-            echo "</table>";
-            if ($canedit && $number) {
-                $massiveactionparams['ontop'] = false;
-                Html::showMassiveActions($massiveactionparams);
-                Html::closeForm();
-            }
-            echo "</div>";
-        }
-        echo "</div>";
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/databaseparam_computergroup.html.twig',
+            [
+                'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
+                'compgrouplist' => $listofcgroups,
+                'compgroupclass' => PluginDatabaseinventoryComputerGroup::class,
+                'dbparamgroupclass' => PluginDatabaseinventoryDatabaseParam_ComputerGroup::class,
+                'canread' => $databaseparams->can($ID, READ),
+                'canedit' => $databaseparams->can($ID, UPDATE),
+                'canadd' => $databaseparams->canAddItem('itemtype'),
+                'used' => $used,
+            ]
+        );
         return true;
     }
 

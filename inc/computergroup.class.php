@@ -275,7 +275,7 @@ SQL;
 
     public static function getIcon()
     {
-        return "fas fa-list-alt";
+        return "ti ti-sitemap";
     }
 
     public function post_purgeItem()

@@ -28,6 +28,36 @@
  * -------------------------------------------------------------------------
  */
 
+use Glpi\Application\View\TemplateRenderer;
+
+/**
+ * -------------------------------------------------------------------------
+ * DatabaseInventory plugin for GLPI
+ * -------------------------------------------------------------------------
+ *
+ * LICENSE
+ *
+ * This file is part of DatabaseInventory.
+ *
+ * DatabaseInventory is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * DatabaseInventory is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with DatabaseInventory. If not, see <http://www.gnu.org/licenses/>.
+ * -------------------------------------------------------------------------
+ * @copyright Copyright (C) 2021-2023 by Teclib'.
+ * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ * @link      https://services.glpi-network.com
+ * -------------------------------------------------------------------------
+ */
+
 class PluginDatabaseinventoryCredential extends CommonDBTM
 {
     public $dohistory  = true;
@@ -103,69 +133,13 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
 
     public function showForm($ID, array $options = [])
     {
-        $rand = mt_rand();
         $this->initForm($ID, $options);
-        $this->showFormHeader($options);
-
-        echo "<tr class='tab_bg_1'>";
-        $rand = mt_rand();
-        echo "<tr><td><label for='textfield_name$rand'>" . __('Name') . "</label></td>";
-        echo "<td>";
-        echo Html::input(
-            'name',
+        TemplateRenderer::getInstance()->display(
+            '@databaseinventory/credential.html.twig',
             [
-                'value' => $this->fields["name"],
-                'id'    => "textfield_name$rand",
+                'item' => $this
             ]
         );
-        echo "<td><label for='is_active$rand'>" . __('Port') . "</label></td>";
-        echo "<td>";
-        Dropdown::showNumber(
-            'port',
-            [
-                'value' => empty($this->fields['port']) ? 0 : $this->fields['port'],
-                'min'   => 0,
-                'max'   => 99999,
-                'step'  => 1,
-                'rand'  => $rand
-            ]
-        );
-        echo "</td></tr>";
-
-        echo "<tr><td><label for='textfield_login$rand'>" . __('Login') . "</label></td>";
-        echo "<td>";
-        echo Html::input(
-            'login',
-            [
-                'value' => $this->fields["login"],
-                'id'    => "textfield_login$rand",
-            ]
-        );
-        echo "<td><label for='textfield_password$rand'>" . __('Password') . "</label></td>";
-        echo "<td>";
-
-        echo "<input type='password' id='password' name='password' value='' autocomplete='password'>";
-        if ($ID > 0) {
-            echo "&nbsp;<input type='checkbox' name='_blank_passwd'>&nbsp;" . __('Clear');
-        }
-        echo "</td></tr>";
-
-        echo "<tr><td><label for='textfield_socket$rand'>" . __('Socket') . "</label></td>";
-        echo "<td>";
-        echo Html::input(
-            'socket',
-            [
-                'value' => $this->fields["socket"],
-                'id'    => "textfield_login$rand",
-            ]
-        );
-
-        echo "<td><label for='select_type$rand'>" . PluginDatabaseinventoryCredentialType::getFieldLabel() . "</label></td>";
-        echo "<td>";
-        PluginDatabaseinventoryCredentialType::dropdown(['value' => $this->fields["plugin_databaseinventory_credentialtypes_id"], 'rand' => $rand, 'comments' => false]);
-        echo "</td></tr>";
-
-        $this->showFormButtons($options);
         return true;
     }
 

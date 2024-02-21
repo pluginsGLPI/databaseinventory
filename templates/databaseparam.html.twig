@@ -1,0 +1,48 @@
+{#
+ # -------------------------------------------------------------------------
+ # DatabaseInventory plugin for GLPI
+ # -------------------------------------------------------------------------
+ #
+ # LICENSE
+ #
+ # This file is part of DatabaseInventory.
+ #
+ # DatabaseInventory is free software; you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+ # the Free Software Foundation; either version 3 of the License, or
+ # (at your option) any later version.
+ #
+ # DatabaseInventory is distributed in the hope that it will be useful,
+ # but WITHOUT ANY WARRANTY; without even the implied warranty of
+ # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ # GNU General Public License for more details.
+ #
+ # You should have received a copy of the GNU General Public License
+ # along with DatabaseInventory. If not, see <http://www.gnu.org/licenses/>.
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2021-2023 by Teclib'.
+ # @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ # @link      https://services.glpi-network.com
+ # -------------------------------------------------------------------------
+ #}
+
+{% extends "generic_show_form.html.twig" %}
+{% import "components/form/fields_macros.html.twig" as fields %}
+
+{% block more_fields %}
+
+    {{ fields.dropdownYesNo(
+        'partial_inventory',
+        item.fields['partial_inventory'],
+        __('Execution frequency for partial inventory', 'databaseinventory'),
+    )
+    }}
+
+    {{ fields.dropdownNumberField(
+        'execution_delay',
+        item.fields['execution_delay'],
+        __('Execution delay', 'databaseinventory'),
+        {'min' : 0, 'max' : 24, 'step' : 1, 'unit' : 'hour'}
+    )}}
+
+{% endblock %}

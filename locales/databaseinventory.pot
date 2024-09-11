@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 13:22+0000\n"
+"POT-Creation-Date: 2024-09-11 07:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: inc/databaseparam_computergroup.class.php:120
-msgid "Add computer group"
-msgstr ""
-
-#: inc/databaseparam_credential.class.php:120
-msgid "Add credential"
-msgstr ""
-
-#: inc/inventoryaction.class.php:83
+#: inc/inventoryaction.class.php:84
 #, php-format
 msgid "Agent %1$s not found"
 msgstr ""
 
-#: inc/inventoryaction.class.php:67
+#: inc/inventoryaction.class.php:68
 msgid "Agent not found for computer"
 msgstr ""
 
@@ -39,19 +31,19 @@ msgstr ""
 msgid "Ask agent to proceed a database inventory"
 msgstr ""
 
-#: inc/computergroup.class.php:38 inc/databaseparam_computergroup.class.php:62
+#: inc/databaseparam_computergroup.class.php:92 inc/computergroup.class.php:68
 msgid "Computer Group"
 msgid_plural "Computers Group"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/contactlog.class.php:53
+#: inc/contactlog.class.php:83
 msgid "Contact log"
 msgid_plural "Contact logs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/databaseparam_credential.class.php:62 inc/credential.class.php:53
+#: inc/credential.class.php:83 inc/databaseparam_credential.class.php:92
 msgid "Credential"
 msgid_plural "Credentials"
 msgstr[0] ""
@@ -63,16 +55,16 @@ msgid_plural "Credential types"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/credentialtype.class.php:169
+#: inc/credentialtype.class.php:158
 msgid "DB2"
 msgstr ""
 
-#: inc/profile.class.php:37 inc/menu.class.php:35 front/menu.php:34
-#: front/menu.php:43 setup.php:90
+#: inc/menu.class.php:35 inc/profile.class.php:37 setup.php:91
+#: front/menu.php:37 front/menu.php:46
 msgid "Database Inventory"
 msgstr ""
 
-#: inc/databaseparam.class.php:38
+#: inc/databaseparam.class.php:68
 msgid "Database params"
 msgid_plural "Databases params"
 msgstr[0] ""
@@ -84,51 +76,67 @@ msgid_plural "Dynamic groups"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/databaseparam.class.php:84 inc/databaseparam.class.php:210
+#: templates/databaseparam.html.twig
+msgid "Execution delay"
+msgstr ""
+
+#: templates/databaseparam.html.twig inc/databaseparam.class.php:114
 msgid "Execution frequency for partial inventory"
 msgstr ""
 
-#: inc/computergroup.class.php:112
+#: inc/computergroup.class.php:142
 msgid "List of dynamic items"
 msgstr ""
 
-#: inc/computergroup.class.php:127
+#: inc/computergroup.class.php:157
 msgid "List of static items"
 msgstr ""
 
-#: inc/credentialtype.class.php:170
+#: templates/credential.html.twig
+msgid "Login"
+msgstr ""
+
+#: inc/credentialtype.class.php:159
 msgid "Microsoft SQL"
 msgstr ""
 
-#: inc/credentialtype.class.php:172
+#: inc/credentialtype.class.php:161
 msgid "MongoDB"
 msgstr ""
 
-#: inc/credentialtype.class.php:167
+#: inc/credentialtype.class.php:156
 msgid "MySQL"
 msgstr ""
 
-#: inc/computergroup.class.php:86 inc/databaseparam_computergroup.class.php:170
+#: inc/computergroup.class.php:116
 msgid "Number of dynamic items"
 msgstr ""
 
-#: inc/computergroup.class.php:99 inc/databaseparam_computergroup.class.php:171
+#: inc/computergroup.class.php:129
 msgid "Number of static items"
 msgstr ""
 
-#: inc/credentialtype.class.php:168
+#: inc/credentialtype.class.php:157
 msgid "Oracle"
 msgstr ""
 
-#: inc/databaseparam.class.php:76 inc/databaseparam.class.php:207
+#: inc/databaseparam.class.php:106
 msgid "Partial inventory"
+msgstr ""
+
+#: templates/credential.html.twig
+msgid "Password"
 msgstr ""
 
 #: front/computergroup.form.php:67
 msgid "Please select a computer"
 msgstr ""
 
-#: inc/credentialtype.class.php:171
+#: templates/credential.html.twig
+msgid "Port"
+msgstr ""
+
+#: inc/credentialtype.class.php:160
 msgid "PostgreSQL"
 msgstr ""
 
@@ -149,7 +157,11 @@ msgstr ""
 msgid "Run partial databases inventory"
 msgstr ""
 
-#: inc/computergroupstatic.class.php:47
+#: templates/credential.html.twig
+msgid "Socket"
+msgstr ""
+
+#: inc/computergroupstatic.class.php:77
 msgid "Static group"
 msgid_plural "Static groups"
 msgstr[0] ""

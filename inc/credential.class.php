@@ -60,8 +60,8 @@ use Glpi\Application\View\TemplateRenderer;
 
 class PluginDatabaseinventoryCredential extends CommonDBTM
 {
-    public $dohistory  = true;
-    public static $rightname  = 'database_inventory';
+    public $dohistory        = true;
+    public static $rightname = 'database_inventory';
 
     public static function canCreate()
     {
@@ -88,44 +88,44 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
         $tab = parent::rawSearchOptions();
 
         $tab[] = [
-            'id'                 => '2',
-            'table'              => $this->getTable(),
-            'field'              => 'id',
-            'name'               => __('ID'),
-            'massiveaction'      => false, // implicit field is id
-            'datatype'           => 'number'
+            'id'            => '2',
+            'table'         => $this->getTable(),
+            'field'         => 'id',
+            'name'          => __('ID'),
+            'massiveaction' => false, // implicit field is id
+            'datatype'      => 'number',
         ];
 
         $tab[] = [
-            'id'                 => '3',
-            'table'              => $this->getTable(),
-            'field'              => 'login',
-            'name'               => __('Login'),
-            'datatype'           => 'text'
+            'id'       => '3',
+            'table'    => $this->getTable(),
+            'field'    => 'login',
+            'name'     => __('Login'),
+            'datatype' => 'text',
         ];
 
         $tab[] = [
-            'id'                 => '4',
-            'table'              => $this->getTable(),
-            'field'              => 'port',
-            'name'               => __('Port'),
-            'datatype'           => 'number'
+            'id'       => '4',
+            'table'    => $this->getTable(),
+            'field'    => 'port',
+            'name'     => __('Port'),
+            'datatype' => 'number',
         ];
 
         $tab[] = [
-            'id'                 => '5',
-            'table'              => $this->getTable(),
-            'field'              => 'socket',
-            'name'               => __('Socket'),
-            'datatype'           => 'text'
+            'id'       => '5',
+            'table'    => $this->getTable(),
+            'field'    => 'socket',
+            'name'     => __('Socket'),
+            'datatype' => 'text',
         ];
 
         $tab[] = [
-            'id'                 => '6',
-            'table'              => PluginDatabaseinventoryCredentialType::getTable(),
-            'field'              => 'name',
-            'name'               => _n('Type', 'Types', 1),
-            'datatype'           => 'dropdown'
+            'id'       => '6',
+            'table'    => PluginDatabaseinventoryCredentialType::getTable(),
+            'field'    => 'name',
+            'name'     => _n('Type', 'Types', 1),
+            'datatype' => 'dropdown',
         ];
 
         return $tab;
@@ -137,24 +137,25 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/credential.html.twig',
             [
-                'item' => $this
-            ]
+                'item' => $this,
+            ],
         );
+
         return true;
     }
 
     public function getCredentialMode()
     {
-        return "login_password";
+        return 'login_password';
     }
 
     public function prepareInput(array $input, $mode = 'add'): array
     {
-        if (isset($input["password"])) {
-            if (empty($input["password"])) {
-                unset($input["password"]);
+        if (isset($input['password'])) {
+            if (empty($input['password'])) {
+                unset($input['password']);
             } else {
-                $input["password"] = (new GLPIKey())->encrypt($input["password"]);
+                $input['password'] = (new GLPIKey())->encrypt($input['password']);
             }
         }
 
@@ -164,6 +165,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
     public function prepareInputForAdd($input)
     {
         $input = $this->prepareInput($input, 'add');
+
         return $input;
     }
 
@@ -171,7 +173,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
     {
         $input = $this->prepareInput($input, 'update');
 
-        if (isset($input["_blank_passwd"]) && $input["_blank_passwd"]) {
+        if (isset($input['_blank_passwd']) && $input['_blank_passwd']) {
             $input['password'] = '';
         }
 
@@ -183,9 +185,9 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
@@ -218,8 +220,8 @@ SQL;
             // install default display preferences
             $migration->updateDisplayPrefs(
                 [
-                    PluginDatabaseinventoryCredential::class => [3, 4, 5, 6]
-                ]
+                    PluginDatabaseinventoryCredential::class => [3, 4, 5, 6],
+                ],
             );
         } else {
             // Fix `comment` field type (was a varchar prior to v1.0.0)
@@ -238,13 +240,13 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
         }
     }
 
     public static function getIcon()
     {
-        return "fas fa-lock";
+        return 'fas fa-lock';
     }
 
     public function post_purgeItem()

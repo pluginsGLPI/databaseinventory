@@ -28,7 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-include("../../../inc/includes.php");
+include('../../../inc/includes.php');
 
 /** @var array $CFG_GLPI */
 global $CFG_GLPI;
@@ -36,38 +36,38 @@ global $CFG_GLPI;
 Html::header(
     __('Database Inventory', 'databaseinventory'),
     $_SERVER['PHP_SELF'],
-    "admin",
-    "PluginDatabaseInventoryMenu"
+    'admin',
+    'PluginDatabaseInventoryMenu',
 );
 
 if (PluginDatabaseinventoryDatabaseParam::canView()) {
     echo "<div class='center'>";
     echo "<table class='tab_cadre'>";
-    echo "<tr><th colspan='2'>" . __('Database Inventory', 'databaseinventory') . "</th></tr>";
+    echo "<tr><th colspan='2'>" . __('Database Inventory', 'databaseinventory') . '</th></tr>';
 
     echo "<tr class='tab_bg_1 center'>";
     echo "<td><i class='fas fa-cog'></i></td>";
     echo "<td><a href='" . Toolbox::getItemTypeSearchURL('PluginDatabaseinventoryDatabaseParam') . "'>"
-        . PluginDatabaseinventoryDatabaseParam::getTypeName(2) . "</a></td></tr>";
+        . PluginDatabaseinventoryDatabaseParam::getTypeName(2) . '</a></td></tr>';
 
     if (PluginDatabaseinventoryCredential::canView()) {
         echo "<tr class='tab_bg_1 center'>";
         echo "<td><i class='" . PluginDatabaseinventoryCredential::getIcon() . "'></i></td>";
         echo "<td><a href='" . Toolbox::getItemTypeSearchURL('PluginDatabaseinventoryCredential') . "'>"
-            . PluginDatabaseinventoryCredential::getTypeName(2) . "</a></td></tr>";
+            . PluginDatabaseinventoryCredential::getTypeName(2) . '</a></td></tr>';
     }
 
     if (PluginDatabaseinventoryComputerGroup::canView()) {
         echo "<tr class='tab_bg_1 center'>";
         echo "<td><i class='" . PluginDatabaseinventoryComputerGroup::getIcon() . "'></i></td>";
         echo "<td><a href='" . Toolbox::getItemTypeSearchURL('PluginDatabaseinventoryComputerGroup') . "'>"
-            . PluginDatabaseinventoryComputerGroup::getTypeName(2) . "</a></td></tr>";
+            . PluginDatabaseinventoryComputerGroup::getTypeName(2) . '</a></td></tr>';
     }
 
-    echo "</table></div>";
+    echo '</table></div>';
 } else {
-    echo "<div class='center'><br><br><img src=\"" . $CFG_GLPI["root_doc"] . "/pics/warning.png\" alt=\"warning\"><br><br>";
-    echo "<b>" . __("Access denied") . "</b></div>";
+    echo "<div class='center'><br><br><img src=\"" . $CFG_GLPI['root_doc'] . '/pics/warning.png" alt="warning"><br><br>';
+    echo '<b>' . __('Access denied') . '</b></div>';
 }
 
 Html::footer();

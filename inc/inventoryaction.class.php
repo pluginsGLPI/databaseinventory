@@ -32,7 +32,7 @@ use GuzzleHttp\Psr7\Response;
 
 class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 {
-    public const MA_PARTIAL = 'partial_database_inventory';
+    public const MA_PARTIAL        = 'partial_database_inventory';
     private const ENDPOINT_PARTIAL = 'now?';
 
     public static function showMassiveActionsSubForm(MassiveAction $ma)
@@ -40,7 +40,8 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
         if ($ma->getAction() !== self::MA_PARTIAL) {
             return parent::showMassiveActionsSubForm($ma);
         }
-        echo Html::submit(__('Run', "databaseinventory"), ['name' => 'submit']);
+        echo Html::submit(__('Run', 'databaseinventory'), ['name' => 'submit']);
+
         return true;
     }
 
@@ -48,6 +49,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
     {
         if ($ma->getAction() !== self::MA_PARTIAL) {
             parent::processMassiveActionsForOneItemtype($ma, $item, $ids);
+
             return;
         }
 
@@ -58,14 +60,14 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                     $computer->getFromDB($id);
                     if ($agent = self::findAgent($computer)) {
                         if (PluginDatabaseinventoryInventoryAction::runPartialInventory($agent, true)) {
-                             $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
+                            $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
                         } else {
                             $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
                             $ma->addMessage($item->getErrorMessage(ERROR_ON_ACTION));
                         }
                     } else {
                         $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
-                        $ma->addMessage(__('Agent not found for computer', "databaseinventory") . "<a href='" . \Computer::getFormURLWithID($id) . "'>" . $computer->getFriendlyName() . "</a>");
+                        $ma->addMessage(__('Agent not found for computer', 'databaseinventory') . "<a href='" . \Computer::getFormURLWithID($id) . "'>" . $computer->getFriendlyName() . '</a>');
                     }
                 }
                 break;
@@ -92,13 +94,13 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
     {
         try {
             // retrieve data to do database inventory
-            $data = PluginDatabaseinventoryTask::handleInventoryTask(['item' => $agent]);
+            $data   = PluginDatabaseinventoryTask::handleInventoryTask(['item' => $agent]);
             $params = $data['options']['response']['inventory']['params'];
 
             $arg = ['partial' => 'yes', 'category' => 'database'];
             foreach ($params as $value) {
-                $arg['params_id'] = implode(",", array_column($params, 'params_id'));
-                $arg['use'][$value['params_id']] = implode(",", $value['use']);
+                $arg['params_id']                = implode(',', array_column($params, 'params_id'));
+                $arg['use'][$value['params_id']] = implode(',', $value['use']);
             }
 
             $endpoint = self::ENDPOINT_PARTIAL . Toolbox::append_params($arg);
@@ -121,34 +123,35 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 
     public static function handleAgentResponse(Response $response, $request): array
     {
-        $params = [];
+        $params           = [];
         $params['answer'] = sprintf(
             __('Requested at %s', 'databaseinventory'),
-            Html::convDateTime(date('Y-m-d H:i:s'))
+            Html::convDateTime(date('Y-m-d H:i:s')),
         );
+
         return $params;
     }
 
     private static function findAgent(Computer $item)
     {
-        $agent = new Agent();
+        $agent     = new Agent();
         $has_agent = $agent->getFromDBByCrit([
             'itemtype' => $item->getType(),
-            'items_id' => $item->fields['id']
+            'items_id' => $item->fields['id'],
         ]);
 
         // if no agent has been found, check if there is a linked item, and find its agent
         if (!$has_agent && $item->getType() == 'Computer') {
-            $citem = new Computer_Item();
+            $citem        = new Computer_Item();
             $has_relation = $citem->getFromDBByCrit([
                 'itemtype' => $item->getType(),
-                'items_id' => $item->fields['id']
+                'items_id' => $item->fields['id'],
             ]);
             if ($has_relation) {
-                 $has_agent = $agent->getFromDBByCrit([
-                     'itemtype' => \Computer::getType(),
-                     'items_id' => $citem->fields['computers_id']
-                 ]);
+                $has_agent = $agent->getFromDBByCrit([
+                    'itemtype' => \Computer::getType(),
+                    'items_id' => $citem->fields['computers_id'],
+                ]);
             }
         }
 
@@ -176,9 +179,9 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 
                 echo $out;
 
-                $url = Plugin::getWebDir('databaseinventory') . "/ajax/agent.php";
+                $url = Plugin::getWebDir('databaseinventory') . '/ajax/agent.php';
                 $key = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
-                $js = <<<JAVASCRIPT
+                $js  = <<<JAVASCRIPT
                     $(function() {
                         $('#request_database_inventory').on('click', function() {
                             var icon = $(this);

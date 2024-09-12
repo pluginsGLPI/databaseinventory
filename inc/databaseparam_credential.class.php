@@ -66,11 +66,11 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
     public static $itemtype_2 = 'PluginDatabaseinventoryCredential';
     public static $items_id_2 = 'plugin_databaseinventory_credentials_id';
 
-    public static $checkItem_2_Rights  = self::DONT_CHECK_ITEM_RIGHTS;
-    public static $logs_for_item_2     = false;
-    public $auto_message_on_action     = false;
+    public static $checkItem_2_Rights = self::DONT_CHECK_ITEM_RIGHTS;
+    public static $logs_for_item_2    = false;
+    public $auto_message_on_action    = false;
 
-    public static $rightname  = 'database_inventory';
+    public static $rightname = 'database_inventory';
 
     public static function canCreate()
     {
@@ -96,8 +96,10 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
     {
         if ($item instanceof PluginDatabaseinventoryDatabaseParam) {
             $count = countElementsInTable(PluginDatabaseinventoryDatabaseParam_Credential::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
+
             return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
+
         return '';
     }
 
@@ -108,6 +110,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
                 self::showForItem($item);
                 break;
         }
+
         return true;
     }
 
@@ -119,41 +122,40 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
         }
 
         $databaseparamcredentials = new PluginDatabaseinventoryDatabaseParam_Credential();
-        $dbpcredentialslist = $databaseparamcredentials->find(
+        $dbpcredentialslist       = $databaseparamcredentials->find(
             [
-                'plugin_databaseinventory_databaseparams_id' => $ID
-            ]
+                'plugin_databaseinventory_databaseparams_id' => $ID,
+            ],
         );
 
-        $dbcredentials = new PluginDatabaseinventoryCredential();
+        $dbcredentials     = new PluginDatabaseinventoryCredential();
         $listofcredentials = [];
-        $used = [];
+        $used              = [];
         foreach ($dbpcredentialslist as $dbpcredential) {
             $used[] = $dbpcredential['plugin_databaseinventory_credentials_id'];
             if ($dbcredentials->getFromDB($dbpcredential['plugin_databaseinventory_credentials_id'])) {
-                $listofcredentials[] = $dbcredentials->fields +
-                    [
-                        'type' => Dropdown::getDropdownName(
-                            PluginDatabaseinventoryCredentialType::getTable(),
-                            $dbcredentials->fields['plugin_databaseinventory_credentialtypes_id']
-                        ),
-                        'link' => $dbcredentials->getLinkURL(),
-                        'iddbparamcredential' => $dbpcredential['id'],
-                    ];
+                $listofcredentials[] = $dbcredentials->fields + [
+                    'type' => Dropdown::getDropdownName(
+                        PluginDatabaseinventoryCredentialType::getTable(),
+                        $dbcredentials->fields['plugin_databaseinventory_credentialtypes_id'],
+                    ),
+                    'link'                => $dbcredentials->getLinkURL(),
+                    'iddbparamcredential' => $dbpcredential['id'],
+                ];
             }
         }
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/databaseparam_credential.html.twig',
             [
-                'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
-                'credentiallist' => $listofcredentials,
-                'credentialclass' => PluginDatabaseinventoryCredential::class,
+                'item'                => PluginDatabaseinventoryDatabaseParam::getById($ID),
+                'credentiallist'      => $listofcredentials,
+                'credentialclass'     => PluginDatabaseinventoryCredential::class,
                 'credentialtypeclass' => PluginDatabaseinventoryDatabaseParam_Credential::class,
-                'canread' => $databaseparams->can($ID, READ),
-                'canedit' => $databaseparams->can($ID, UPDATE),
-                'canadd' => $databaseparams->canAddItem('itemtype'),
-                'used' => $used,
-            ]
+                'canread'             => $databaseparams->can($ID, READ),
+                'canedit'             => $databaseparams->can($ID, UPDATE),
+                'canadd'              => $databaseparams->canAddItem('itemtype'),
+                'used'                => $used,
+            ],
         );
 
         return true;
@@ -164,9 +166,9 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
@@ -194,7 +196,7 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
         }
     }
 }

@@ -43,9 +43,10 @@ class PluginDatabaseinventoryProfile extends Profile
             [
                 'itemtype' => PluginDatabaseinventoryDatabaseParam::getType(),
                 'label'    => PluginDatabaseinventoryProfile::getTypeName(),
-                'field'    => 'database_inventory'
-            ]
+                'field'    => 'database_inventory',
+            ],
         ];
+
         return $rights;
     }
 
@@ -54,6 +55,7 @@ class PluginDatabaseinventoryProfile extends Profile
         if ($item->getType() == 'Profile') {
             return self::createTabEntry(self::getTypeName());
         }
+
         return '';
     }
 
@@ -62,31 +64,32 @@ class PluginDatabaseinventoryProfile extends Profile
         if ($item instanceof Profile && $item->getField('id')) {
             return self::showForProfile($item->getID());
         }
+
         return true;
     }
 
     private static function showForProfile($profiles_id = 0)
     {
         $canupdate = self::canUpdate();
-        $profile = new Profile();
+        $profile   = new Profile();
         $profile->getFromDB($profiles_id);
         echo "<div class='firstbloc'>";
         echo "<form method='post' action='" . $profile->getFormURL() . "'>";
 
         $rights = self::getAllRights();
-        $profile->displayRightsChoiceMatrix($rights, array(
-            'canedit'       => $canupdate,
-            'title'         => self::getTypeName(),
-        ));
+        $profile->displayRightsChoiceMatrix($rights, [
+            'canedit' => $canupdate,
+            'title'   => self::getTypeName(),
+        ]);
 
         if ($canupdate) {
             echo "<div class='center'>";
-            echo Html::hidden('id', array('value' => $profiles_id));
-            echo Html::submit(_sx('button', 'Save'), array('name' => 'update'));
+            echo Html::hidden('id', ['value' => $profiles_id]);
+            echo Html::submit(_sx('button', 'Save'), ['name' => 'update']);
             echo "</div>\n";
             Html::closeForm();
 
-            echo "</div>";
+            echo '</div>';
         }
     }
 

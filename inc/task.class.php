@@ -34,38 +34,38 @@ class PluginDatabaseinventoryTask extends CommonGLPI
     {
         /** @var DBmysql $DB */
         global $DB;
-        $agent    = $params['item'];
-        $content  = $params['options']['content'];
+        $agent            = $params['item'];
+        $content          = $params['options']['content'];
         $credential_found = [];
 
         $databaseparam_credential_table = PluginDatabaseinventoryDatabaseParam_Credential::getTable();
-        $credential_table = PluginDatabaseinventoryCredential::getTable();
-        $credential_type_table = PluginDatabaseinventoryCredentialType::getTable();
+        $credential_table               = PluginDatabaseinventoryCredential::getTable();
+        $credential_type_table          = PluginDatabaseinventoryCredentialType::getTable();
 
         // load all credential type
         $criteria = [
-            'SELECT'       => [
+            'SELECT' => [
                 $credential_table . '.id',
             ],
-            'FROM'         =>  $credential_table,
-            'JOIN'   => [
+            'FROM' => $credential_table,
+            'JOIN' => [
                 $credential_type_table => [
                     'ON' => [
-                        $credential_table    => 'plugin_databaseinventory_credentialtypes_id',
-                        $credential_type_table => 'id'
-                    ]
+                        $credential_table      => 'plugin_databaseinventory_credentialtypes_id',
+                        $credential_type_table => 'id',
+                    ],
                 ],
                 $databaseparam_credential_table => [
                     'ON' => [
                         $databaseparam_credential_table => 'plugin_databaseinventory_credentials_id',
-                        $credential_table    => 'id'
-                    ]
+                        $credential_table               => 'id',
+                    ],
                 ],
             ],
-            'WHERE'        => [
-                $credential_type_table . ".id" => PluginDatabaseinventoryCredentialType::getModuleKeyByName($content->use),
-                $databaseparam_credential_table . ".id" => $content->params_id,
-            ]
+            'WHERE' => [
+                $credential_type_table . '.id'          => PluginDatabaseinventoryCredentialType::getModuleKeyByName($content->use),
+                $databaseparam_credential_table . '.id' => $content->params_id,
+            ],
         ];
 
         // store credentials found
@@ -95,11 +95,11 @@ class PluginDatabaseinventoryTask extends CommonGLPI
                 $crendential = new PluginDatabaseinventoryCredential();
                 $crendential->getFromDB($crendential_id);
                 $data = [
-                    "id"       => $crendential->fields['id'],
-                    "type"     => $crendential->getCredentialMode(),
-                    "use"     => $content->use,
-                    "login"    => $crendential->fields['login'],
-                    "password" => (new GLPIKey())->decrypt($crendential->fields['password']),
+                    'id'       => $crendential->fields['id'],
+                    'type'     => $crendential->getCredentialMode(),
+                    'use'      => $content->use,
+                    'login'    => $crendential->fields['login'],
+                    'password' => (new GLPIKey())->decrypt($crendential->fields['password']),
                 ];
 
                 if (!empty($crendential->fields['socket'])) {
@@ -114,11 +114,11 @@ class PluginDatabaseinventoryTask extends CommonGLPI
 
                 // store requested credentials
                 $contact_log = new PluginDatabaseinventoryContactLog();
-                $log = [
-                    "agents_id"                                 => $agent->fields['id'],
-                    "plugin_databaseinventory_credentials_id"   => $crendential_id,
-                    "plugin_databaseinventory_databaseparams_id" => $content->params_id,
-                    "date_creation "                             => $_SESSION["glpi_currenttime"]
+                $log         = [
+                    'agents_id'                                  => $agent->fields['id'],
+                    'plugin_databaseinventory_credentials_id'    => $crendential_id,
+                    'plugin_databaseinventory_databaseparams_id' => $content->params_id,
+                    'date_creation '                             => $_SESSION['glpi_currenttime'],
                 ];
                 $contact_log->add($log);
             }
@@ -159,26 +159,26 @@ class PluginDatabaseinventoryTask extends CommonGLPI
                     $database_param_computergroup_table => [
                         'ON' => [
                             $database_param_computergroup_table => 'plugin_databaseinventory_databaseparams_id',
-                            $database_param_table               => 'id'
-                        ]
+                            $database_param_table               => 'id',
+                        ],
                     ],
                     $computer_group_table => [
                         'ON' => [
                             $database_param_computergroup_table => 'plugin_databaseinventory_computergroups_id',
-                            $computer_group_table               => 'id'
-                        ]
+                            $computer_group_table               => 'id',
+                        ],
                     ],
-                    $computer_group_static_table  => [
+                    $computer_group_static_table => [
                         'ON' => [
                             $computer_group_static_table => 'plugin_databaseinventory_computergroups_id',
-                            $computer_group_table        => 'id'
-                        ]
-                    ]
+                            $computer_group_table        => 'id',
+                        ],
+                    ],
                 ],
-                'WHERE'  => [
-                    $computer_group_static_table . ".computers_id" => $computer->fields['id'],
-                    $database_param_table .       ".is_active"    => 1
-                ]
+                'WHERE' => [
+                    $computer_group_static_table . '.computers_id' => $computer->fields['id'],
+                    $database_param_table . '.is_active'           => 1,
+                ],
             ];
 
             // store databaseparam found
@@ -203,35 +203,35 @@ class PluginDatabaseinventoryTask extends CommonGLPI
                     $computer_group_table => [
                         'ON' => [
                             $computer_group_dynamic_table => 'plugin_databaseinventory_computergroups_id',
-                            $computer_group_table         => 'id'
-                        ]
+                            $computer_group_table         => 'id',
+                        ],
                     ],
                     $database_param_computergroup_table => [
                         'ON' => [
                             $database_param_computergroup_table => 'plugin_databaseinventory_computergroups_id',
-                            $computer_group_table               => 'id'
-                        ]
+                            $computer_group_table               => 'id',
+                        ],
                     ],
-                    $database_param_table  => [
+                    $database_param_table => [
                         'ON' => [
                             $database_param_computergroup_table => 'plugin_databaseinventory_databaseparams_id',
-                            $database_param_table               => 'id'
-                        ]
-                    ]
+                            $database_param_table               => 'id',
+                        ],
+                    ],
                 ],
-                'WHERE'  => [
-                    $database_param_table . ".is_active" => 1
-                ]
+                'WHERE' => [
+                    $database_param_table . '.is_active' => 1,
+                ],
             ];
 
             if (!empty($database_param_found)) {
                 $criteria['WHERE'] = [
-                    $database_param_table . ".is_active" => 1,
-                    ['NOT' => [$database_param_table . ".id" => $database_param_found]] //no need to look for what is already found
+                    $database_param_table . '.is_active' => 1,
+                    ['NOT'                               => [$database_param_table . '.id' => $database_param_found]], //no need to look for what is already found
                 ];
             } else {
                 $criteria['WHERE'] = [
-                    $database_param_table . ".is_active" => 1,
+                    $database_param_table . '.is_active' => 1,
                 ];
             }
 
@@ -281,10 +281,10 @@ class PluginDatabaseinventoryTask extends CommonGLPI
                 $database_params = new PluginDatabaseinventoryDatabaseParam();
                 $database_params->getFromDB($database_params_id);
 
-                $json                = [];
-                $json['category']    = "database";
-                $json['use']         = $database_params->getCredentialTypeLinked();
-                $json['params_id']   = $database_params_id;
+                $json              = [];
+                $json['category']  = 'database';
+                $json['use']       = $database_params->getCredentialTypeLinked();
+                $json['params_id'] = $database_params_id;
                 if ($database_params->fields['partial_inventory']) {
                     $json['delay'] = $database_params->fields['execution_delay'];
                 }

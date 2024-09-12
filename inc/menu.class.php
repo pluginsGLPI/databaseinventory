@@ -40,29 +40,28 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
         $links_class = [
             PluginDatabaseinventoryComputerGroup::class,
             PluginDatabaseinventoryDatabaseParam::class,
-            PluginDatabaseinventoryCredential::class
+            PluginDatabaseinventoryCredential::class,
         ];
 
         $links = [];
         foreach ($links_class as $link) {
-            $link_text =
-            "<span class='d-none d-xxl-block'>" . $link::getTypeName(Session::getPluralNumber()) . "</span>";
+            $link_text                                                   = "<span class='d-none d-xxl-block'>" . $link::getTypeName(Session::getPluralNumber()) . '</span>';
             $links["<i class='" . $link::getIcon() . "'></i>$link_text"] = $link::getSearchURL(false);
         }
 
         $menu = [
-            'title' => self::getMenuName(),
-            'page'  => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
-            'icon'  => 'fas fa-database',
+            'title'   => self::getMenuName(),
+            'page'    => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
+            'icon'    => 'fas fa-database',
             'options' => [],
             'links'   => $links,
         ];
 
         $menu['options']['databaseparam'] = [
-            'title'  => PluginDatabaseinventoryDatabaseParam::getTypeName(2),
-            'page'   => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
-            'icon'   => PluginDatabaseinventoryDatabaseParam::getIcon(),
-            'links'  => $links,
+            'title' => PluginDatabaseinventoryDatabaseParam::getTypeName(2),
+            'page'  => PluginDatabaseinventoryDatabaseParam::getSearchURL(false),
+            'icon'  => PluginDatabaseinventoryDatabaseParam::getIcon(),
+            'links' => $links,
         ];
 
         if (true) {
@@ -72,10 +71,10 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
             ] + $links;
         }
         $menu['options']['computergroup'] = [
-            'title'  => PluginDatabaseinventoryComputerGroup::getTypeName(2),
-            'page'   => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
-            'icon'   => PluginDatabaseinventoryComputerGroup::getIcon(),
-            'links'  => $links,
+            'title' => PluginDatabaseinventoryComputerGroup::getTypeName(2),
+            'page'  => PluginDatabaseinventoryComputerGroup::getSearchURL(false),
+            'icon'  => PluginDatabaseinventoryComputerGroup::getIcon(),
+            'links' => $links,
         ];
 
         if (true) {
@@ -85,10 +84,10 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
             ] + $links;
         }
         $menu['options']['credential'] = [
-            'title'  => PluginDatabaseinventoryCredential::getTypeName(2),
-            'page'   => PluginDatabaseinventoryCredential::getSearchURL(false),
-            'icon'   => PluginDatabaseinventoryCredential::getIcon(),
-            'links'  => $links,
+            'title' => PluginDatabaseinventoryCredential::getTypeName(2),
+            'page'  => PluginDatabaseinventoryCredential::getSearchURL(false),
+            'icon'  => PluginDatabaseinventoryCredential::getIcon(),
+            'links' => $links,
         ];
         if (true) {
             $menu['options']['credential']['links'] = [

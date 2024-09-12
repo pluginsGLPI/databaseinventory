@@ -32,14 +32,14 @@ use Glpi\Toolbox\Sanitizer;
 
 class PluginDatabaseinventoryCredentialType extends CommonDropdown
 {
-    public static $rightname = "dropdown";
+    public static $rightname = 'dropdown';
 
-    private const MYSQL         = 1;
-    private const ORACLE        = 2;
-    private const DB2           = 3;
-    private const MSSQL         = 4;
-    private const POSTGRE_SQL   = 5;
-    private const MONGO_DB      = 6;
+    private const MYSQL       = 1;
+    private const ORACLE      = 2;
+    private const DB2         = 3;
+    private const MSSQL       = 4;
+    private const POSTGRE_SQL = 5;
+    private const MONGO_DB    = 6;
 
     public static function canCreate()
     {
@@ -79,11 +79,12 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
     public function pre_deleteItem()
     {
         Session::addMessageAfterRedirect(
-            __("You cannot remove this type", "databaseinventory") . ": "
+            __('You cannot remove this type', 'databaseinventory') . ': '
                                        . $this->fields['name'],
             false,
-            ERROR
+            ERROR,
         );
+
         return false;
     }
 
@@ -128,9 +129,9 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if ($DB->tableExists('glpi_plugin_databaseinventory_credentials_types')) {
@@ -153,18 +154,18 @@ SQL;
         $state = new self();
         foreach (
             [
-                1 => __("MySQL", "databaseinventory"),
-                2 => __("Oracle", "databaseinventory"),
-                3 => __("DB2", "databaseinventory"),
-                4 => __("Microsoft SQL", "databaseinventory"),
-                5 => __("PostgreSQL", "databaseinventory"),
-                6 => __("MongoDB", "databaseinventory")
+                1 => __('MySQL', 'databaseinventory'),
+                2 => __('Oracle', 'databaseinventory'),
+                3 => __('DB2', 'databaseinventory'),
+                4 => __('Microsoft SQL', 'databaseinventory'),
+                5 => __('PostgreSQL', 'databaseinventory'),
+                6 => __('MongoDB', 'databaseinventory'),
             ] as $id => $label
         ) {
             if (!countElementsInTable($table, ['id' => $id])) {
                 $state->add([
                     'id'   => $id,
-                    'name' => Sanitizer::sanitize($label)
+                    'name' => Sanitizer::sanitize($label),
                 ]);
             }
         }
@@ -174,6 +175,6 @@ SQL;
     {
         /** @var DBmysql $DB */
         global $DB;
-        $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+        $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
     }
 }

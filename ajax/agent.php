@@ -41,6 +41,7 @@ if (isset($_POST['action']) && isset($_POST['id'])) {
     $agent = new Agent();
     if (!$agent->getFromDB($_POST['id'])) {
         Response::sendError(404, 'Unable to load agent #' . $_POST['id']);
+
         return;
     };
     $answer = [];

@@ -30,14 +30,14 @@
 
 include('../../../inc/includes.php');
 
-Session::checkRight("config", UPDATE);
+Session::checkRight('config', UPDATE);
 
 Html::header(
     PluginDatabaseinventoryDatabaseParam::getTypeName(Session::getPluralNumber()),
     $_SERVER['PHP_SELF'],
-    "admin",
-    "PluginDatabaseinventoryMenu",
-    "databaseparam"
+    'admin',
+    'PluginDatabaseinventoryMenu',
+    'databaseparam',
 );
 
 Search::show('PluginDatabaseinventoryDatabaseParam');

@@ -66,11 +66,11 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
     public static $itemtype_2 = 'Computer';
     public static $items_id_2 = 'computers_id';
 
-    public static $checkItem_2_Rights  = self::DONT_CHECK_ITEM_RIGHTS;
-    public static $logs_for_item_2     = false;
-    public $auto_message_on_action     = false;
+    public static $checkItem_2_Rights = self::DONT_CHECK_ITEM_RIGHTS;
+    public static $logs_for_item_2    = false;
+    public $auto_message_on_action    = false;
 
-    public static $rightname  = 'database_inventory';
+    public static $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
     {
@@ -96,8 +96,10 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
     {
         if ($item instanceof PluginDatabaseinventoryComputerGroup) {
             $count = countElementsInTable(self::getTable(), ['plugin_databaseinventory_computergroups_id' => $item->getID()]);
+
             return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
+
         return '';
     }
 
@@ -108,6 +110,7 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
                 self::showForItem($item);
                 break;
         }
+
         return true;
     }
 
@@ -121,39 +124,39 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
             return false;
         }
 
-        $staticsgroups = new PluginDatabaseinventoryComputerGroupStatic();
+        $staticsgroups   = new PluginDatabaseinventoryComputerGroupStatic();
         $staticgrouplist = $staticsgroups->find(
             [
-                'plugin_databaseinventory_computergroups_id' => $ID
-            ]
+                'plugin_databaseinventory_computergroups_id' => $ID,
+            ],
         );
 
-        $computers = new Computer();
+        $computers       = new Computer();
         $listofcomputers = [];
-        $used = [];
+        $used            = [];
         foreach ($staticgrouplist as $staticgroup) {
             $used[] = $staticgroup['computers_id'];
             if ($computers->getFromDB($staticgroup['computers_id'])) {
-                $listofcomputers[] = $computers->fields +
-                    [
-                        'entityname' => Entity::getById($computers->fields['entities_id'])->fields['completename'],
-                        'link' => $computers->getLinkURL(),
-                        'idcompgroupstatic' => $staticgroup['id'],
-                    ];
+                $listofcomputers[] = $computers->fields + [
+                    'entityname'        => Entity::getById($computers->fields['entities_id'])->fields['completename'],
+                    'link'              => $computers->getLinkURL(),
+                    'idcompgroupstatic' => $staticgroup['id'],
+                ];
             }
         }
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/computergroupstatic.html.twig',
             [
-                'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
-                'computerslist' => $listofcomputers,
+                'item'             => PluginDatabaseinventoryDatabaseParam::getById($ID),
+                'computerslist'    => $listofcomputers,
                 'groupstaticclass' => PluginDatabaseinventoryComputerGroupStatic::class,
-                'canread' => $computergroup->can($ID, READ),
-                'canedit' => $computergroup->can($ID, UPDATE),
-                'canadd' => $computergroup->canAddItem('itemtype'),
-                'used' => $used,
-            ]
+                'canread'          => $computergroup->can($ID, READ),
+                'canedit'          => $computergroup->can($ID, UPDATE),
+                'canadd'           => $computergroup->canAddItem('itemtype'),
+                'used'             => $used,
+            ],
         );
+
         return true;
     }
 
@@ -162,9 +165,9 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
@@ -189,7 +192,7 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
         }
     }
 }

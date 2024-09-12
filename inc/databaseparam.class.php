@@ -60,8 +60,8 @@ use Glpi\Application\View\TemplateRenderer;
 
 class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
 {
-    public $dohistory  = true;
-    public static $rightname  = 'database_inventory';
+    public $dohistory        = true;
+    public static $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
     {
@@ -83,76 +83,76 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
         $tab = parent::rawSearchOptions();
 
         $tab[] = [
-            'id'                 => '2',
-            'table'              => $this->getTable(),
-            'field'              => 'id',
-            'name'               => __('ID'),
-            'massiveaction'      => false, // implicit field is id
-            'datatype'           => 'number'
+            'id'            => '2',
+            'table'         => $this->getTable(),
+            'field'         => 'id',
+            'name'          => __('ID'),
+            'massiveaction' => false, // implicit field is id
+            'datatype'      => 'number',
         ];
 
         $tab[] = [
-            'id'                 => '3',
-            'table'              => $this->getTable(),
-            'field'              => 'is_active',
-            'name'               => __('Active'),
-            'datatype'           => 'bool'
+            'id'       => '3',
+            'table'    => $this->getTable(),
+            'field'    => 'is_active',
+            'name'     => __('Active'),
+            'datatype' => 'bool',
         ];
 
         $tab[] = [
-            'id'                 => '4',
-            'table'              => $this->getTable(),
-            'field'              => 'partial_inventory',
-            'name'               => __('Partial inventory', 'databaseinventory'),
-            'datatype'           => 'bool'
+            'id'       => '4',
+            'table'    => $this->getTable(),
+            'field'    => 'partial_inventory',
+            'name'     => __('Partial inventory', 'databaseinventory'),
+            'datatype' => 'bool',
         ];
 
         $tab[] = [
-            'id'                 => '5',
-            'table'              => $this->getTable(),
-            'field'              => 'execution_delay',
-            'name'               => __('Execution frequency for partial inventory', 'databaseinventory'),
-            'datatype'           => 'number',
-            'min'                => 0,
-            'max'                => 24,
-            'step'               => 1,
-            'unit'               => 'hour',
+            'id'       => '5',
+            'table'    => $this->getTable(),
+            'field'    => 'execution_delay',
+            'name'     => __('Execution frequency for partial inventory', 'databaseinventory'),
+            'datatype' => 'number',
+            'min'      => 0,
+            'max'      => 24,
+            'step'     => 1,
+            'unit'     => 'hour',
         ];
 
         $tab[] = [
-            'id'                 => '6',
-            'table'              => PluginDatabaseinventoryComputerGroup::getTable(),
-            'field'              => 'name',
-            'datatype'           => 'itemlink',
-            'name'               => PluginDatabaseinventoryComputerGroup::getTypeName(1),
-            'forcegroupby'       => true,
-            'massiveaction'      => false,
-            'joinparams'         => [
-                'beforejoin'         => [
-                    'table'              => PluginDatabaseinventoryDatabaseParam_ComputerGroup::getTable(),
-                    'joinparams'         => [
-                        'jointype'           => 'child',
-                    ]
-                ]
-            ]
+            'id'            => '6',
+            'table'         => PluginDatabaseinventoryComputerGroup::getTable(),
+            'field'         => 'name',
+            'datatype'      => 'itemlink',
+            'name'          => PluginDatabaseinventoryComputerGroup::getTypeName(1),
+            'forcegroupby'  => true,
+            'massiveaction' => false,
+            'joinparams'    => [
+                'beforejoin' => [
+                    'table'      => PluginDatabaseinventoryDatabaseParam_ComputerGroup::getTable(),
+                    'joinparams' => [
+                        'jointype' => 'child',
+                    ],
+                ],
+            ],
         ];
 
         $tab[] = [
-            'id'                 => '7',
-            'table'              => PluginDatabaseinventoryCredential::getTable(),
-            'field'              => 'name',
-            'datatype'           => 'itemlink',
-            'name'               => PluginDatabaseinventoryCredential::getTypeName(1),
-            'forcegroupby'       => true,
-            'massiveaction'      => false,
-            'joinparams'         => [
-                'beforejoin'         => [
-                    'table'              => PluginDatabaseinventoryDatabaseParam_Credential::getTable(),
-                    'joinparams'         => [
-                        'jointype'           => 'child',
-                    ]
-                ]
-            ]
+            'id'            => '7',
+            'table'         => PluginDatabaseinventoryCredential::getTable(),
+            'field'         => 'name',
+            'datatype'      => 'itemlink',
+            'name'          => PluginDatabaseinventoryCredential::getTypeName(1),
+            'forcegroupby'  => true,
+            'massiveaction' => false,
+            'joinparams'    => [
+                'beforejoin' => [
+                    'table'      => PluginDatabaseinventoryDatabaseParam_Credential::getTable(),
+                    'joinparams' => [
+                        'jointype' => 'child',
+                    ],
+                ],
+            ],
         ];
 
         return $tab;
@@ -164,34 +164,34 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
         global $DB;
 
         $databaseparam_credential_table = PluginDatabaseinventoryDatabaseParam_Credential::getTable();
-        $credential_table = PluginDatabaseinventoryCredential::getTable();
-        $credential_type_table = PluginDatabaseinventoryCredentialType::getTable();
-        $types = [];
+        $credential_table               = PluginDatabaseinventoryCredential::getTable();
+        $credential_type_table          = PluginDatabaseinventoryCredentialType::getTable();
+        $types                          = [];
 
         // load all credential type
         $criteria = [
-            'SELECT'       => [
+            'SELECT' => [
                 $credential_type_table . '.id',
                 $credential_type_table . '.name',
             ],
-            'FROM'         =>  $credential_type_table,
-            'JOIN'   => [
+            'FROM' => $credential_type_table,
+            'JOIN' => [
                 $credential_table => [
                     'ON' => [
-                        $credential_table    => 'plugin_databaseinventory_credentialtypes_id',
-                        $credential_type_table => 'id'
-                    ]
+                        $credential_table      => 'plugin_databaseinventory_credentialtypes_id',
+                        $credential_type_table => 'id',
+                    ],
                 ],
                 $databaseparam_credential_table => [
                     'ON' => [
                         $databaseparam_credential_table => 'plugin_databaseinventory_credentials_id',
-                        $credential_table    => 'id'
-                    ]
+                        $credential_table               => 'id',
+                    ],
                 ],
             ],
-            'WHERE'        => [
-                $databaseparam_credential_table . ".plugin_databaseinventory_databaseparams_id" => $this->fields['id'],
-            ]
+            'WHERE' => [
+                $databaseparam_credential_table . '.plugin_databaseinventory_databaseparams_id' => $this->fields['id'],
+            ],
         ];
 
         // store types found
@@ -211,6 +211,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
             ->addStandardTab('PluginDatabaseinventoryDatabaseParam_Credential', $ong, $options)
             ->addStandardTab('PluginDatabaseinventoryContactLog', $ong, $options)
             ->addStandardTab('Log', $ong, $options);
+
         return $ong;
     }
 
@@ -220,9 +221,10 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/databaseparam.html.twig',
             [
-                'item' => $this
-            ]
+                'item' => $this,
+            ],
         );
+
         return true;
     }
 
@@ -231,9 +233,9 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
@@ -260,8 +262,8 @@ SQL;
             // install default display preferences
             $migration->updateDisplayPrefs(
                 [
-                    PluginDatabaseinventoryDatabaseParam::class => [3, 4, 5, 6, 7]
-                ]
+                    PluginDatabaseinventoryDatabaseParam::class => [3, 4, 5, 6, 7],
+                ],
             );
         }
     }
@@ -272,12 +274,12 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
         }
     }
 
     public static function getIcon()
     {
-        return "fas fa-database";
+        return 'fas fa-database';
     }
 }

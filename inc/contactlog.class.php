@@ -60,8 +60,8 @@ use Glpi\Application\View\TemplateRenderer;
 
 class PluginDatabaseinventoryContactLog extends CommonDBTM
 {
-    public $dohistory  = true;
-    public static $rightname  = 'database_inventory';
+    public $dohistory        = true;
+    public static $rightname = 'database_inventory';
 
     public static function canCreate()
     {
@@ -88,11 +88,14 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         switch (get_class($item)) {
             case PluginDatabaseinventoryDatabaseParam::class:
                 $count = countElementsInTable(self::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
+
                 return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
             case Agent::class:
                 $count = countElementsInTable(self::getTable(), ['agents_id' => $item->getID()]);
+
                 return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
+
         return '';
     }
 
@@ -106,6 +109,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
                 self::showForAgent($item);
                 break;
         }
+
         return true;
     }
 
@@ -116,15 +120,15 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             return false;
         }
 
-        $contactlog = new PluginDatabaseinventoryContactLog();
+        $contactlog     = new PluginDatabaseinventoryContactLog();
         $contactloglist = $contactlog->find(
             [
-                'plugin_databaseinventory_databaseparams_id' => $ID
-            ]
+                'plugin_databaseinventory_databaseparams_id' => $ID,
+            ],
         );
 
-        $credential = new PluginDatabaseinventoryCredential();
-        $agent = new Agent();
+        $credential  = new PluginDatabaseinventoryCredential();
+        $agent       = new Agent();
         $listofctlog = [];
         foreach ($contactloglist as $dbpctlog) {
             if ($credential->getFromDB($dbpctlog['plugin_databaseinventory_credentials_id'])) {
@@ -137,9 +141,9 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             }
             if (isset($linkcred) || isset($linkagent)) {
                 $listofctlog[] = $dbpctlog + [
-                    'linkcred' => $linkcred ?? '',
+                    'linkcred'  => $linkcred  ?? '',
                     'linkagent' => $linkagent ?? '',
-                    'credname' => $credname ?? '',
+                    'credname'  => $credname  ?? '',
                     'agentname' => $agentname ?? '',
                 ];
             }
@@ -147,11 +151,12 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/contactlog.html.twig',
             [
-                'itemtype' => PluginDatabaseinventoryDatabaseParam::getType(),
+                'itemtype'    => PluginDatabaseinventoryDatabaseParam::getType(),
                 'contactlogs' => $listofctlog,
-                'canread' => $databaseparams->can($ID, READ)
-            ]
+                'canread'     => $databaseparams->can($ID, READ),
+            ],
         );
+
         return true;
     }
 
@@ -162,15 +167,15 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             return false;
         }
 
-        $contactlog = new PluginDatabaseinventoryContactLog();
+        $contactlog     = new PluginDatabaseinventoryContactLog();
         $contactloglist = $contactlog->find(
             [
-                'agents_id' => $ID
-            ]
+                'agents_id' => $ID,
+            ],
         );
 
-        $credential = new PluginDatabaseinventoryCredential();
-        $dbparam = new PluginDatabaseinventoryDatabaseParam();
+        $credential  = new PluginDatabaseinventoryCredential();
+        $dbparam     = new PluginDatabaseinventoryDatabaseParam();
         $listofctlog = [];
         foreach ($contactloglist as $dbpctlog) {
             if ($credential->getFromDB($dbpctlog['plugin_databaseinventory_credentials_id'])) {
@@ -183,9 +188,9 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             }
             if (isset($linkcred)) {
                 $listofctlog[] = $dbpctlog + [
-                    'linkcred' => $linkcred,
+                    'linkcred'    => $linkcred,
                     'linkdbparam' => $linkdbparam ?? '',
-                    'credname' => $credname ?? '',
+                    'credname'    => $credname    ?? '',
                     'dbparamname' => $dbparamname ?? '',
                 ];
             }
@@ -193,11 +198,12 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/contactlog.html.twig',
             [
-                'itemtype' => Agent::getType(),
+                'itemtype'    => Agent::getType(),
                 'contactlogs' => $listofctlog,
-                'canread' => $agent->can($ID, READ)
-            ]
+                'canread'     => $agent->can($ID, READ),
+            ],
         );
+
         return true;
     }
 
@@ -206,9 +212,9 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
@@ -237,7 +243,7 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
         }
     }
 }

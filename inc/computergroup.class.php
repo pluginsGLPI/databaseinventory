@@ -60,8 +60,8 @@ use Glpi\Application\View\TemplateRenderer;
 
 class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 {
-    public $dohistory  = true;
-    public static $rightname  = 'database_inventory';
+    public $dohistory        = true;
+    public static $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
     {
@@ -85,6 +85,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
             ->addStandardTab('PluginDatabaseinventoryComputerGroupDynamic', $ong, $options)
             ->addStandardTab('PluginDatabaseinventoryComputerGroupStatic', $ong, $options)
             ->addStandardTab('Log', $ong, $options);
+
         return $ong;
     }
 
@@ -93,20 +94,20 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         $tab = parent::rawSearchOptions();
 
         $tab[] = [
-            'id'                 => '2',
-            'table'              => $this->getTable(),
-            'field'              => 'id',
-            'name'               => __('ID'),
-            'massiveaction'      => false, // implicit field is id
-            'datatype'           => 'number'
+            'id'            => '2',
+            'table'         => $this->getTable(),
+            'field'         => 'id',
+            'name'          => __('ID'),
+            'massiveaction' => false, // implicit field is id
+            'datatype'      => 'number',
         ];
 
         $tab[] = [
-            'id'                 => '3',
-            'table'              => $this->getTable(),
-            'field'              => 'comment',
-            'name'               => __('Comment'),
-            'datatype'           => 'text'
+            'id'       => '3',
+            'table'    => $this->getTable(),
+            'field'    => 'comment',
+            'name'     => __('Comment'),
+            'datatype' => 'text',
         ];
 
         $tab[] = [
@@ -123,16 +124,16 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         ];
 
         $tab[] = [
-            'id'                 => '6',
-            'table'              => PluginDatabaseinventoryComputerGroupStatic::getTable(),
-            'field'              => 'id',
-            'name'               => __('Number of static items', 'databaseinventory'),
-            'forcegroupby'       => true,
-            'usehaving'          => true,
-            'nosearch'           => true,
-            'datatype'           => 'count',
-            'massiveaction'      => false,
-            'joinparams'       => ['jointype' => 'child'],
+            'id'            => '6',
+            'table'         => PluginDatabaseinventoryComputerGroupStatic::getTable(),
+            'field'         => 'id',
+            'name'          => __('Number of static items', 'databaseinventory'),
+            'forcegroupby'  => true,
+            'usehaving'     => true,
+            'nosearch'      => true,
+            'datatype'      => 'count',
+            'massiveaction' => false,
+            'joinparams'    => ['jointype' => 'child'],
         ];
 
         $tab[] = [
@@ -150,21 +151,21 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         ];
 
         $tab[] = [
-            'id'                 => '8',
-            'table'              => Computer::getTable(),
-            'field'              => 'name',
-            'datatype'           => 'itemlink',
-            'name'               => __('List of static items', 'databaseinventory'),
-            'forcegroupby'       => true,
-            'massiveaction'      => false,
-            'joinparams'         => [
-                'beforejoin'         => [
-                    'table'              => PluginDatabaseinventoryComputerGroupStatic::getTable(),
-                    'joinparams'         => [
-                        'jointype'           => 'child',
-                    ]
-                ]
-            ]
+            'id'            => '8',
+            'table'         => Computer::getTable(),
+            'field'         => 'name',
+            'datatype'      => 'itemlink',
+            'name'          => __('List of static items', 'databaseinventory'),
+            'forcegroupby'  => true,
+            'massiveaction' => false,
+            'joinparams'    => [
+                'beforejoin' => [
+                    'table'      => PluginDatabaseinventoryComputerGroupStatic::getTable(),
+                    'joinparams' => [
+                        'jointype' => 'child',
+                    ],
+                ],
+            ],
         ];
 
         return $tab;
@@ -176,9 +177,10 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/computergroup.html.twig',
             [
-                'item' => $this
-            ]
+                'item' => $this,
+            ],
         );
+
         return true;
     }
 
@@ -197,7 +199,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         $iterator = $DB->request($params);
         foreach ($iterator as $computergroup_dynamic) {
             $search_params = Search::manageParams('Computer', unserialize($computergroup_dynamic['search']));
-            $data = Search::prepareDatasForSearch('Computer', $search_params);
+            $data          = Search::prepareDatasForSearch('Computer', $search_params);
             Search::constructSQL($data);
             Search::constructData($data);
             $count += $data['data']['totalcount'];
@@ -218,7 +220,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         ];
 
         $iterator = $DB->request($params);
-        $count = count($iterator);
+        $count    = count($iterator);
 
         return $count;
     }
@@ -228,9 +230,9 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
@@ -253,8 +255,8 @@ SQL;
             // install default display preferences
             $migration->updateDisplayPrefs(
                 [
-                    PluginDatabaseinventoryComputerGroup::class => [3, 5, 6]
-                ]
+                    PluginDatabaseinventoryComputerGroup::class => [3, 5, 6],
+                ],
             );
         } else {
             // Fix `comment` field type (was a varchar prior to v1.0.0)
@@ -269,13 +271,13 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
         }
     }
 
     public static function getIcon()
     {
-        return "ti ti-sitemap";
+        return 'ti ti-sitemap';
     }
 
     public function post_purgeItem()

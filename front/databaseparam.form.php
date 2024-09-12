@@ -32,30 +32,30 @@ use Glpi\Event;
 
 include('../../../inc/includes.php');
 
-Session::checkRight("config", READ);
+Session::checkRight('config', READ);
 
-if (!isset($_GET["id"])) {
-    $_GET["id"] = "";
+if (!isset($_GET['id'])) {
+    $_GET['id'] = '';
 }
 
-if (!isset($_GET["withtemplate"])) {
-    $_GET["withtemplate"] = "";
+if (!isset($_GET['withtemplate'])) {
+    $_GET['withtemplate'] = '';
 }
 
-$databaseparam = new PluginDatabaseinventoryDatabaseParam();
-$databaseparam_credential = new PluginDatabaseinventoryDatabaseParam_Credential();
+$databaseparam               = new PluginDatabaseinventoryDatabaseParam();
+$databaseparam_credential    = new PluginDatabaseinventoryDatabaseParam_Credential();
 $databaseparam_computergroup = new PluginDatabaseinventoryDatabaseParam_ComputerGroup();
 
-if (isset($_POST["add"])) {
+if (isset($_POST['add'])) {
     // Add a new databaseparam
     $databaseparam->check(-1, CREATE, $_POST);
     if ($newID = $databaseparam->add($_POST)) {
         Event::log(
             $newID,
-            "PluginDatabaseinventoryDatabaseParam",
+            'PluginDatabaseinventoryDatabaseParam',
             4,
-            "inventory",
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION["glpiname"], $_POST["name"])
+            'inventory',
+            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $_POST['name']),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -63,16 +63,16 @@ if (isset($_POST["add"])) {
         }
     }
     Html::back();
-} elseif (isset($_POST["add_credential"])) {
+} elseif (isset($_POST['add_credential'])) {
     // add credential
     $databaseparam_credential->check(-1, CREATE, $_POST);
     if ($newID = $databaseparam_credential->add($_POST)) {
         Event::log(
             $newID,
-            "PluginDatabaseinventoryDatabaseParam_Credential",
+            'PluginDatabaseinventoryDatabaseParam_Credential',
             4,
-            "inventory",
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION["glpiname"], $databaseparam_credential::getTypeName(0))
+            'inventory',
+            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $databaseparam_credential::getTypeName(0)),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -81,16 +81,16 @@ if (isset($_POST["add"])) {
         }
     }
     Html::back();
-} elseif (isset($_POST["add_computergroup"])) {
+} elseif (isset($_POST['add_computergroup'])) {
     // add computer group
     $databaseparam_computergroup->check(-1, CREATE, $_POST);
     if ($newID = $databaseparam_computergroup->add($_POST)) {
         Event::log(
             $newID,
-            "PluginDatabaseinventoryDatabaseParam_ComputerGroup",
+            'PluginDatabaseinventoryDatabaseParam_ComputerGroup',
             4,
-            "inventory",
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION["glpiname"], $databaseparam_computergroup::getTypeName(0))
+            'inventory',
+            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $databaseparam_computergroup::getTypeName(0)),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -99,39 +99,39 @@ if (isset($_POST["add"])) {
         }
     }
     Html::back();
-} else if (isset($_POST["purge"])) {
+} elseif (isset($_POST['purge'])) {
     // purge a databaseparam
     $databaseparam->check($_POST['id'], PURGE);
     if ($databaseparam->delete($_POST, 1)) {
         Event::log(
-            $_POST["id"],
-            "PluginDatabaseinventoryDatabaseParam",
+            $_POST['id'],
+            'PluginDatabaseinventoryDatabaseParam',
             4,
-            "inventory",
+            'inventory',
             //TRANS: %s is the user login
-            sprintf(__('%s purges an item'), $_SESSION["glpiname"])
+            sprintf(__('%s purges an item'), $_SESSION['glpiname']),
         );
     }
     $databaseparam->redirectToList();
-} else if (isset($_POST["update"])) {
+} elseif (isset($_POST['update'])) {
     // update a databaseparam
     $databaseparam->check($_POST['id'], UPDATE);
     $databaseparam->update($_POST);
     Event::log(
-        $_POST["id"],
-        "PluginDatabaseinventoryDatabaseParam",
+        $_POST['id'],
+        'PluginDatabaseinventoryDatabaseParam',
         4,
-        "inventory",
+        'inventory',
         //TRANS: %s is the user login
-        sprintf(__('%s updates an item'), $_SESSION["glpiname"])
+        sprintf(__('%s updates an item'), $_SESSION['glpiname']),
     );
     Html::back();
 } else {
     // print databaseparam information
-    Html::header(PluginDatabaseinventoryDatabaseParam::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], "admin", "PluginDatabaseinventoryMenu", "databaseparam");
+    Html::header(PluginDatabaseinventoryDatabaseParam::getTypeName(Session::getPluralNumber()), $_SERVER['PHP_SELF'], 'admin', 'PluginDatabaseinventoryMenu', 'databaseparam');
     // show databaseparam form to add
-    if ($_GET['id'] == "") {
-        $databaseparam->showForm(-1, ['withtemplate' => $_GET["withtemplate"]]);
+    if ($_GET['id'] == '') {
+        $databaseparam->showForm(-1, ['withtemplate' => $_GET['withtemplate']]);
     } else {
         $databaseparam->display($_GET);
     }

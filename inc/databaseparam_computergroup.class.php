@@ -66,11 +66,11 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
     public static $itemtype_2 = 'PluginDatabaseinventoryComputerGroup';
     public static $items_id_2 = 'plugin_databaseinventory_computergroups_id';
 
-    public static $checkItem_2_Rights  = self::DONT_CHECK_ITEM_RIGHTS;
-    public static $logs_for_item_2     = false;
-    public $auto_message_on_action     = false;
+    public static $checkItem_2_Rights = self::DONT_CHECK_ITEM_RIGHTS;
+    public static $logs_for_item_2    = false;
+    public $auto_message_on_action    = false;
 
-    public static $rightname  = 'database_inventory';
+    public static $rightname = 'database_inventory';
 
     public static function canCreate()
     {
@@ -96,8 +96,10 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
     {
         if ($item instanceof PluginDatabaseinventoryDatabaseParam) {
             $count = countElementsInTable(PluginDatabaseinventoryDatabaseParam_ComputerGroup::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
+
             return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
+
         return '';
     }
 
@@ -108,6 +110,7 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
                 self::showForItem($item);
                 break;
         }
+
         return true;
     }
 
@@ -119,52 +122,51 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
         }
 
         $databaseparamcgroup = new PluginDatabaseinventoryDatabaseParam_ComputerGroup();
-        $dbpcgrouplist = $databaseparamcgroup->find(
+        $dbpcgrouplist       = $databaseparamcgroup->find(
             [
-                'plugin_databaseinventory_databaseparams_id' => $ID
-            ]
+                'plugin_databaseinventory_databaseparams_id' => $ID,
+            ],
         );
 
-        $dbcgroups = new PluginDatabaseinventoryComputerGroup();
+        $dbcgroups     = new PluginDatabaseinventoryComputerGroup();
         $listofcgroups = [];
-        $used = [];
+        $used          = [];
         foreach ($dbpcgrouplist as $dbpcgroup) {
             $used[] = $dbpcgroup['plugin_databaseinventory_computergroups_id'];
             if ($dbcgroups->getFromDB($dbpcgroup['plugin_databaseinventory_computergroups_id'])) {
-                $listofcgroups[] = $dbcgroups->fields +
-                    [
-                        'link' => $dbcgroups->getLinkURL(),
-                        'nbdynamicitems' => $dbcgroups->countDynamicItem(),
-                        'nbstaticitems' => $dbcgroups->countStaticItem(),
-                        'iddbparamcgroup' => $dbpcgroup['id'],
-                    ];
+                $listofcgroups[] = $dbcgroups->fields + [
+                    'link'            => $dbcgroups->getLinkURL(),
+                    'nbdynamicitems'  => $dbcgroups->countDynamicItem(),
+                    'nbstaticitems'   => $dbcgroups->countStaticItem(),
+                    'iddbparamcgroup' => $dbpcgroup['id'],
+                ];
             }
         }
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/databaseparam_computergroup.html.twig',
             [
-                'item' => PluginDatabaseinventoryDatabaseParam::getById($ID),
-                'compgrouplist' => $listofcgroups,
-                'compgroupclass' => PluginDatabaseinventoryComputerGroup::class,
+                'item'              => PluginDatabaseinventoryDatabaseParam::getById($ID),
+                'compgrouplist'     => $listofcgroups,
+                'compgroupclass'    => PluginDatabaseinventoryComputerGroup::class,
                 'dbparamgroupclass' => PluginDatabaseinventoryDatabaseParam_ComputerGroup::class,
-                'canread' => $databaseparams->can($ID, READ),
-                'canedit' => $databaseparams->can($ID, UPDATE),
-                'canadd' => $databaseparams->canAddItem('itemtype'),
-                'used' => $used,
-            ]
+                'canread'           => $databaseparams->can($ID, READ),
+                'canedit'           => $databaseparams->can($ID, UPDATE),
+                'canadd'            => $databaseparams->canAddItem('itemtype'),
+                'used'              => $used,
+            ],
         );
+
         return true;
     }
-
 
     public static function install(Migration $migration)
     {
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
@@ -192,7 +194,7 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
         }
     }
 }

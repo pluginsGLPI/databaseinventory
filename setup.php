@@ -60,12 +60,12 @@ function plugin_init_databaseinventory()
 
     $PLUGIN_HOOKS['item_purge']['databaseinventory'] = [
         'Computer' => 'cleanComputerFromStaticGroup',
-        'Agent'    => 'cleanAgentFromContactLog'
+        'Agent'    => 'cleanAgentFromContactLog',
     ];
 
-    if (Session::haveRight("config", UPDATE)) {
+    if (Session::haveRight('config', UPDATE)) {
         $PLUGIN_HOOKS['menu_toadd']['databaseinventory'] = [
-            'admin' => 'PluginDatabaseinventoryMenu'
+            'admin' => 'PluginDatabaseinventoryMenu',
         ];
 
         Plugin::registerClass('PluginDatabaseinventoryContactLog', ['addtabon' => 'Agent']);
@@ -73,7 +73,7 @@ function plugin_init_databaseinventory()
 
         $PLUGIN_HOOKS['use_massive_action']['databaseinventory']        = 1;
         $PLUGIN_HOOKS['autoinventory_information']['databaseinventory'] = [
-            'Computer' => 'postItemForm'
+            'Computer' => 'postItemForm',
         ];
     }
 }
@@ -88,16 +88,16 @@ function plugin_init_databaseinventory()
 function plugin_version_databaseinventory()
 {
     return [
-        'name'           => __('Database Inventory', 'databaseinventory'),
-        'version'        => PLUGIN_DATABASEINVENTORY_VERSION,
-        'author'         => '<a href="https://services.glpi-network.com">Teclib\'</a>',
-        'license'        => 'GPL v3',
-        'homepage'       => 'https://services.glpi-network.com',
-        'requirements'   => [
+        'name'         => __('Database Inventory', 'databaseinventory'),
+        'version'      => PLUGIN_DATABASEINVENTORY_VERSION,
+        'author'       => '<a href="https://services.glpi-network.com">Teclib\'</a>',
+        'license'      => 'GPL v3',
+        'homepage'     => 'https://services.glpi-network.com',
+        'requirements' => [
             'glpi' => [
                 'min' => PLUGIN_DATABASEINVENTORY_MIN_GLPI,
                 'max' => PLUGIN_DATABASEINVENTORY_MAX_GLPI,
-            ]
-        ]
+            ],
+        ],
     ];
 }

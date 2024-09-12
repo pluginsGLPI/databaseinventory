@@ -30,7 +30,7 @@
 
 class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 {
-    public static $rightname  = 'database_inventory';
+    public static $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
     {
@@ -50,17 +50,19 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
         if ($item instanceof PluginDatabaseinventoryComputerGroup) {
-            $count = 0;
+            $count                 = 0;
             $computergroup_dynamic = new self();
             if (
                 $computergroup_dynamic->getFromDBByCrit([
-                    'plugin_databaseinventory_computergroups_id' => $item->getID()
+                    'plugin_databaseinventory_computergroups_id' => $item->getID(),
                 ])
             ) {
                 $count = $computergroup_dynamic->countDynamicItems();
             }
+
             return self::createTabEntry(self::getTypeName(Session::getPluralNumber()), $count);
         }
+
         return '';
     }
 
@@ -79,53 +81,54 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                         $count = $computergroup_dynamic->countDynamicItems();
                     }
                 }
+
                 return  ($count) ? $count : ' 0 ';
 
             case '_virtual_dynamic_list':
                 /** @var array $CFG_GLPI */
                 global $CFG_GLPI;
-                $value = " ";
-                $out = " ";
+                $value = ' ';
+                $out   = ' ';
                 if (strpos($values['id'], Search::NULLVALUE) === false) {
                     $search_params = Search::manageParams('Computer', unserialize($values['search']));
-                    $data = Search::prepareDatasForSearch('Computer', $search_params);
+                    $data          = Search::prepareDatasForSearch('Computer', $search_params);
                     Search::constructSQL($data);
                     Search::constructData($data);
 
                     foreach ($data['data']['rows'] as $colvalue) {
                         $value .= "<a href='" . Computer::getFormURLWithID($colvalue['id']) . "'>";
-                        $value .= Dropdown::getDropdownName('glpi_computers', $colvalue['id']) . "</a>" . Search::LBBR;
+                        $value .= Dropdown::getDropdownName('glpi_computers', $colvalue['id']) . '</a>' . Search::LBBR;
                     }
                 }
 
                 if (!preg_match('/' . Search::LBHR . '/', $value)) {
-                    $values = preg_split('/' . Search::LBBR . '/i', $value);
+                    $values         = preg_split('/' . Search::LBBR . '/i', $value);
                     $line_delimiter = '<br>';
                 } else {
-                    $values = preg_split('/' . Search::LBHR . '/i', $value);
+                    $values         = preg_split('/' . Search::LBHR . '/i', $value);
                     $line_delimiter = '<hr>';
                 }
 
                 // move full list to tooltip if needed
                 if (
-                    count($values) > 1
+                    count($values)             > 1
                     && Toolbox::strlen($value) > $CFG_GLPI['cut']
                 ) {
                     $value = '';
                     foreach ($values as $v) {
                         $value .= $v . $line_delimiter;
                     }
-                    $value = preg_replace('/' . Search::LBBR . '/', '<br>', $value);
-                    $value = preg_replace('/' . Search::LBHR . '/', '<hr>', $value);
-                    $value = '<div class="fup-popup">' . $value . '</div>';
-                    $valTip = "&nbsp;" . Html::showToolTip(
+                    $value  = preg_replace('/' . Search::LBBR . '/', '<br>', $value);
+                    $value  = preg_replace('/' . Search::LBHR . '/', '<hr>', $value);
+                    $value  = '<div class="fup-popup">' . $value . '</div>';
+                    $valTip = '&nbsp;' . Html::showToolTip(
                         $value,
                         [
-                            'awesome-class'   => 'fa-comments',
-                            'display'         => false,
-                            'autoclose'       => false,
-                            'onclick'         => true
-                        ]
+                            'awesome-class' => 'fa-comments',
+                            'display'       => false,
+                            'autoclose'     => false,
+                            'onclick'       => true,
+                        ],
                     );
                     $out .= $values[0] . $valTip;
                 } else {
@@ -133,8 +136,10 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                     $value = preg_replace('/' . Search::LBHR . '/', '<hr>', $value);
                     $out .= $value;
                 }
+
                 return $out;
         }
+
         return '';
     }
 
@@ -145,35 +150,38 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                 self::showForItem($item);
                 break;
         }
+
         return true;
     }
 
     private function countDynamicItems()
     {
         $search_params = Search::manageParams('Computer', unserialize($this->fields['search']));
-        $data = Search::prepareDatasForSearch('Computer', $search_params);
+        $data          = Search::prepareDatasForSearch('Computer', $search_params);
         Search::constructSQL($data);
         Search::constructData($data);
         $count = $data['data']['totalcount'];
+
         return $count;
     }
 
     public function isDynamicSearchMatchComputer(Computer $computer)
     {
         // add new criteria to force computer ID
-        $search = unserialize($this->fields['search']);
+        $search               = unserialize($this->fields['search']);
         $search['criteria'][] = [
-            "link" => "AND",
-            "field" => 2, // computer ID
-            "searchtype" => 'contains',
-            "value" => $computer->fields['id'],
+            'link'       => 'AND',
+            'field'      => 2, // computer ID
+            'searchtype' => 'contains',
+            'value'      => $computer->fields['id'],
         ];
 
         $search_params = Search::manageParams('Computer', $search);
-        $data = Search::prepareDatasForSearch('Computer', $search_params);
+        $data          = Search::prepareDatasForSearch('Computer', $search_params);
         Search::constructSQL($data);
         Search::constructData($data);
         $count = $data['data']['totalcount'];
+
         return $count;
     }
 
@@ -191,10 +199,10 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
             $computergroup_dynamic = new self();
             if (
                 $computergroup_dynamic->getFromDBByCrit([
-                    'plugin_databaseinventory_computergroups_id' => $ID
+                    'plugin_databaseinventory_computergroups_id' => $ID,
                 ])
             ) {
-                $p = $search_params = Search::manageParams('Computer', unserialize($computergroup_dynamic->fields['search']));
+                $p         = $search_params = Search::manageParams('Computer', unserialize($computergroup_dynamic->fields['search']));
                 $firsttime = false;
             } else {
                 // retrieve filter value from search if exist and reset it
@@ -206,29 +214,29 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
             // redirect to computergroup dynamic tab after saved search
             $target = PluginDatabaseinventoryComputerGroup::getFormURLWithID($ID);
-            $target .= "&_glpi_tab=PluginDatabaseinventoryComputerGroupDynamic$1";
-            $p['target'] = $target;
+            $target .= '&_glpi_tab=PluginDatabaseinventoryComputerGroupDynamic$1';
+            $p['target']    = $target;
             $p['addhidden'] = [
                 'plugin_databaseinventory_computergroups_id' => $computergroup->getID(),
                 'id'                                         => $computergroup->getID(),
-                'start'                                      => 0
+                'start'                                      => 0,
             ];
             $p['actionname']   = 'save';
             $p['actionvalue']  = _sx('button', 'Save');
             $p['showbookmark'] = false;
             Search::showGenericSearch(Computer::getType(), $p);
 
-           //display result from search
+            //display result from search
             if (!$firsttime) {
                 $data = Search::prepareDatasForSearch('Computer', $search_params);
                 Search::constructSQL($data);
                 Search::constructData($data);
-                $data['search']['target'] = $target;
+                $data['search']['target']             = $target;
                 $data['search']['showmassiveactions'] = false;
-                $data['search']['is_deleted'] = false;
+                $data['search']['is_deleted']         = false;
                 Search::displayData($data);
 
-               //remove trashbin switch
+                //remove trashbin switch
                 echo Html::scriptBlock("
                $(document).ready(
                   function() {
@@ -247,9 +255,9 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         /** @var DBmysql $DB */
         global $DB;
 
-        $default_charset = DBConnection::getDefaultCharset();
+        $default_charset   = DBConnection::getDefaultCharset();
         $default_collation = DBConnection::getDefaultCollation();
-        $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
+        $default_key_sign  = DBConnection::getDefaultPrimaryKeySignOption();
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
@@ -273,7 +281,7 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query("DROP TABLE IF EXISTS `" . self::getTable() . "`") or die($DB->error());
+            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
         }
     }
 }

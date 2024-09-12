@@ -84,7 +84,7 @@ function plugin_databaseinventory_uninstall()
 function plugin_databaseinventory_MassiveActions($type)
 {
     // Must be super-admin
-    if (!Session::haveRight("database_inventory", UPDATE)) {
+    if (!Session::haveRight('database_inventory', UPDATE)) {
         return [];
     }
 
@@ -92,11 +92,13 @@ function plugin_databaseinventory_MassiveActions($type)
         case 'Computer':
         case 'Agent':
             $class = PluginDatabaseinventoryInventoryAction::getType();
-            $key = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
-            $label = __("Run partial databases inventory", "databaseinventory");
+            $key   = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
+            $label = __('Run partial databases inventory', 'databaseinventory');
+
             return [$class . MassiveAction::CLASS_ACTION_SEPARATOR . $key => $label];
     }
-      return [];
+
+    return [];
 }
 
 function postItemForm(CommonDBTM $item)

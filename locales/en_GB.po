@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-11 07:16+0000\n"
-"PO-Revision-Date: 2024-09-11 07:16+0000\n"
+"POT-Creation-Date: 2024-10-10 00:40+0000\n"
+"PO-Revision-Date: 2024-10-10 00:40+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_GB\n"
@@ -17,16 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: inc/inventoryaction.class.php:84
+#: inc/inventoryaction.class.php:86
 #, php-format
 msgid "Agent %1$s not found"
 msgstr "Agent %1$s not found"
 
-#: inc/inventoryaction.class.php:68
+#: inc/inventoryaction.class.php:70
 msgid "Agent not found for computer"
 msgstr "Agent not found for computer"
 
-#: inc/inventoryaction.class.php:172
+#: inc/inventoryaction.class.php:175
 msgid "Ask agent to proceed a database inventory"
 msgstr "Ask agent to proceed a database inventory"
 
@@ -42,7 +42,7 @@ msgid_plural "Contact logs"
 msgstr[0] "Contact log"
 msgstr[1] "Contact logs"
 
-#: inc/credential.class.php:83 inc/databaseparam_credential.class.php:92
+#: inc/databaseparam_credential.class.php:92 inc/credential.class.php:83
 msgid "Credential"
 msgid_plural "Credentials"
 msgstr[0] "Credential"
@@ -54,12 +54,12 @@ msgid_plural "Credential types"
 msgstr[0] "Credential type"
 msgstr[1] "Credential types"
 
-#: inc/credentialtype.class.php:158
+#: inc/credentialtype.class.php:159
 msgid "DB2"
 msgstr "DB2"
 
-#: inc/menu.class.php:35 inc/profile.class.php:37 setup.php:91
-#: front/menu.php:37 front/menu.php:46
+#: setup.php:91 front/menu.php:37 front/menu.php:46 inc/profile.class.php:37
+#: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "Database Inventory"
 
@@ -83,11 +83,11 @@ msgstr "Execution delay"
 msgid "Execution frequency for partial inventory"
 msgstr "Execution frequency for partial inventory"
 
-#: inc/computergroup.class.php:142
+#: inc/computergroup.class.php:143
 msgid "List of dynamic items"
 msgstr "List of dynamic items"
 
-#: inc/computergroup.class.php:157
+#: inc/computergroup.class.php:158
 msgid "List of static items"
 msgstr "List of static items"
 
@@ -95,27 +95,27 @@ msgstr "List of static items"
 msgid "Login"
 msgstr "Login"
 
-#: inc/credentialtype.class.php:159
+#: inc/credentialtype.class.php:160
 msgid "Microsoft SQL"
 msgstr "Microsoft SQL"
 
-#: inc/credentialtype.class.php:161
+#: inc/credentialtype.class.php:162
 msgid "MongoDB"
 msgstr "MongoDB"
 
-#: inc/credentialtype.class.php:156
+#: inc/credentialtype.class.php:157
 msgid "MySQL"
 msgstr "MySQL"
 
-#: inc/computergroup.class.php:116
+#: inc/computergroup.class.php:117
 msgid "Number of dynamic items"
 msgstr "Number of dynamic items"
 
-#: inc/computergroup.class.php:129
+#: inc/computergroup.class.php:130
 msgid "Number of static items"
 msgstr "Number of static items"
 
-#: inc/credentialtype.class.php:157
+#: inc/credentialtype.class.php:158
 msgid "Oracle"
 msgstr "Oracle"
 
@@ -135,15 +135,15 @@ msgstr "Please select a computer"
 msgid "Port"
 msgstr "Port"
 
-#: inc/credentialtype.class.php:160
+#: inc/credentialtype.class.php:161
 msgid "PostgreSQL"
 msgstr "PostgreSQL"
 
-#: inc/inventoryaction.class.php:171
+#: inc/inventoryaction.class.php:174
 msgid "Request database inventory"
 msgstr "Request database inventory"
 
-#: inc/inventoryaction.class.php:126
+#: inc/inventoryaction.class.php:128
 #, php-format
 msgid "Requested at %s"
 msgstr "Requested at %s"

@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# feonsu <feonsu@gmail.com>, 2023
+# feonsu <feonsu@gmail.com>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-11 07:16+0000\n"
+"POT-Creation-Date: 2024-10-10 00:40+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
-"Last-Translator: feonsu <feonsu@gmail.com>, 2023\n"
+"Last-Translator: feonsu <feonsu@gmail.com>, 2024\n"
 "Language-Team: Slovak (Slovakia) (https://app.transifex.com/teclib/teams/28042/sk_SK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,16 +21,16 @@ msgstr ""
 "Language: sk_SK\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: inc/inventoryaction.class.php:84
+#: inc/inventoryaction.class.php:86
 #, php-format
 msgid "Agent %1$s not found"
 msgstr "Agent %1$s nebol nájdený"
 
-#: inc/inventoryaction.class.php:68
+#: inc/inventoryaction.class.php:70
 msgid "Agent not found for computer"
 msgstr "Agent pre počítač nebol nájdený"
 
-#: inc/inventoryaction.class.php:172
+#: inc/inventoryaction.class.php:175
 msgid "Ask agent to proceed a database inventory"
 msgstr "Požiadať agenta o vykonanie inventára databáz"
 
@@ -50,7 +50,7 @@ msgstr[1] "Kontaktné záznamy"
 msgstr[2] "Kontaktné záznamy"
 msgstr[3] "Kontaktné záznamy"
 
-#: inc/credential.class.php:83 inc/databaseparam_credential.class.php:92
+#: inc/databaseparam_credential.class.php:92 inc/credential.class.php:83
 msgid "Credential"
 msgid_plural "Credentials"
 msgstr[0] "Prihlasovací údaj"
@@ -66,12 +66,12 @@ msgstr[1] "Typy prihlasovacích údajov"
 msgstr[2] "Typy prihlasovacích údajov"
 msgstr[3] "Typy prihlasovacích údajov"
 
-#: inc/credentialtype.class.php:158
+#: inc/credentialtype.class.php:159
 msgid "DB2"
 msgstr "DB2"
 
-#: inc/menu.class.php:35 inc/profile.class.php:37 setup.php:91
-#: front/menu.php:37 front/menu.php:46
+#: setup.php:91 front/menu.php:37 front/menu.php:46 inc/profile.class.php:37
+#: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "Inventár databáz"
 
@@ -93,45 +93,45 @@ msgstr[3] "Dynamické skupiny"
 
 #: templates/databaseparam.html.twig
 msgid "Execution delay"
-msgstr ""
+msgstr "Oneskorenie spúšťania"
 
 #: templates/databaseparam.html.twig inc/databaseparam.class.php:114
 msgid "Execution frequency for partial inventory"
 msgstr "Frekvencia spúšťania pre čiastočný inventár"
 
-#: inc/computergroup.class.php:142
+#: inc/computergroup.class.php:143
 msgid "List of dynamic items"
 msgstr "Zoznam dynamických položiek"
 
-#: inc/computergroup.class.php:157
+#: inc/computergroup.class.php:158
 msgid "List of static items"
 msgstr "Zoznam statických položiek"
 
 #: templates/credential.html.twig
 msgid "Login"
-msgstr ""
+msgstr "Prihlásenie"
 
-#: inc/credentialtype.class.php:159
+#: inc/credentialtype.class.php:160
 msgid "Microsoft SQL"
 msgstr "Microsoft SQL"
 
-#: inc/credentialtype.class.php:161
+#: inc/credentialtype.class.php:162
 msgid "MongoDB"
 msgstr "MongoDB"
 
-#: inc/credentialtype.class.php:156
+#: inc/credentialtype.class.php:157
 msgid "MySQL"
 msgstr "MySQL"
 
-#: inc/computergroup.class.php:116
+#: inc/computergroup.class.php:117
 msgid "Number of dynamic items"
 msgstr "Počet dynamických položiek"
 
-#: inc/computergroup.class.php:129
+#: inc/computergroup.class.php:130
 msgid "Number of static items"
 msgstr "Počet statických položiek"
 
-#: inc/credentialtype.class.php:157
+#: inc/credentialtype.class.php:158
 msgid "Oracle"
 msgstr "Oracle"
 
@@ -141,7 +141,7 @@ msgstr "Čiastočný inventár"
 
 #: templates/credential.html.twig
 msgid "Password"
-msgstr ""
+msgstr "Heslo"
 
 #: front/computergroup.form.php:67
 msgid "Please select a computer"
@@ -149,17 +149,17 @@ msgstr "Vyberte počítač"
 
 #: templates/credential.html.twig
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
-#: inc/credentialtype.class.php:160
+#: inc/credentialtype.class.php:161
 msgid "PostgreSQL"
 msgstr "PostgreSQL"
 
-#: inc/inventoryaction.class.php:171
+#: inc/inventoryaction.class.php:174
 msgid "Request database inventory"
 msgstr "Požiadať o inventár databáz"
 
-#: inc/inventoryaction.class.php:126
+#: inc/inventoryaction.class.php:128
 #, php-format
 msgid "Requested at %s"
 msgstr "Požiadané %s"
@@ -174,7 +174,7 @@ msgstr "Spustiť čiastočný inventár databáz"
 
 #: templates/credential.html.twig
 msgid "Socket"
-msgstr ""
+msgstr "Soket"
 
 #: inc/computergroupstatic.class.php:77
 msgid "Static group"

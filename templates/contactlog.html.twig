@@ -52,7 +52,7 @@
                         {% else %}
                             <td><a href = {{contactlog['linkagent']}}> {{ contactlog['agentname'] }}</a></td>
                         {% endif %}
-                        <td>{{ contactlog['date_creation'] }}</td>
+                        <td>{{ contactlog['date_creation']|formatted_datetime }}</td>
                     </tr>
                 {% endfor %}
                 {{ tableheader }}

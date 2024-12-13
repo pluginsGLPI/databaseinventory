@@ -101,15 +101,14 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
-        switch ($tabnum) {
-            case 1:
+        switch (get_class($item)) {
+            case (PluginDatabaseinventoryDatabaseParam::class):
                 self::showForDatabaseParams($item);
                 break;
-            case 2:
+            case (Agent::class):
                 self::showForAgent($item);
                 break;
         }
-
         return true;
     }
 

@@ -105,10 +105,12 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
-        switch ($tabnum) {
-            case 1:
-                self::showForItem($item);
-                break;
+        if ($item instanceof PluginDatabaseinventoryDatabaseParam) {
+            switch ($tabnum) {
+                case 1:
+                    self::showForItem($item);
+                    break;
+            }
         }
 
         return true;

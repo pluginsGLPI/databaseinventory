@@ -87,7 +87,7 @@ if (isset($_POST['add'])) {
 } elseif (isset($_POST['purge'])) {
     // purge a computergroup
     $computergroup->check($_POST['id'], PURGE);
-    if ($computergroup->delete($_POST, 1)) {
+    if ($computergroup->delete($_POST, true)) {
         Event::log(
             $_POST['id'],
             'PluginDatabaseinventoryComputerGroup',

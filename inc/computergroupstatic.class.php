@@ -105,10 +105,12 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
-        switch ($tabnum) {
-            case 1:
-                self::showForItem($item);
-                break;
+        if ($item instanceof PluginDatabaseinventoryComputerGroup) {
+            switch ($tabnum) {
+                case 1:
+                    self::showForItem($item);
+                    break;
+            }
         }
 
         return true;

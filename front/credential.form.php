@@ -64,7 +64,7 @@ if (isset($_POST['add'])) {
 } elseif (isset($_POST['purge'])) {
     // purge a credential
     $credential->check($_POST['id'], PURGE);
-    if ($credential->delete($_POST, 1)) {
+    if ($credential->delete($_POST, true)) {
         Event::log(
             $_POST['id'],
             'PluginDatabaseinventoryCredential',

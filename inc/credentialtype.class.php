@@ -148,7 +148,7 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
                     KEY `name` (`name`)
                 ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
 SQL;
-            $DB->query($query) or die($DB->error());
+            $DB->doQuery($query);
         }
 
         $state = new self();
@@ -175,6 +175,6 @@ SQL;
     {
         /** @var DBmysql $DB */
         global $DB;
-        $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
+        $DB->doQuery('DROP TABLE IF EXISTS `' . self::getTable() . '`');
     }
 }

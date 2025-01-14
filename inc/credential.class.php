@@ -215,7 +215,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
                     KEY `date_mod` (`date_mod`)
                 ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
 SQL;
-            $DB->query($query) or die($DB->error());
+            $DB->doQuery($query);
 
             // install default display preferences
             $migration->updateDisplayPrefs(
@@ -240,7 +240,7 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
+            $DB->doQuery('DROP TABLE IF EXISTS `' . self::getTable() . '`');
         }
     }
 

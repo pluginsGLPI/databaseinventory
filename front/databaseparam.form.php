@@ -102,7 +102,7 @@ if (isset($_POST['add'])) {
 } elseif (isset($_POST['purge'])) {
     // purge a databaseparam
     $databaseparam->check($_POST['id'], PURGE);
-    if ($databaseparam->delete($_POST, 1)) {
+    if ($databaseparam->delete($_POST, true)) {
         Event::log(
             $_POST['id'],
             'PluginDatabaseinventoryDatabaseParam',

@@ -105,10 +105,12 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
-        switch ($tabnum) {
-            case 1:
-                self::showForItem($item);
-                break;
+        if ($item instanceof PluginDatabaseinventoryDatabaseParam) {
+            switch ($tabnum) {
+                case 1:
+                    self::showForItem($item);
+                    break;
+            }
         }
 
         return true;
@@ -181,7 +183,7 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
                    KEY `plugin_databaseinventory_databaseparams_id` (`plugin_databaseinventory_databaseparams_id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
 SQL;
-            $DB->query($query) or die($DB->error());
+            $DB->doQuery($query);
         } else {
             // Drop useless `type` field
             $migration->dropField($table, 'type');
@@ -194,7 +196,7 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
+            $DB->doQuery('DROP TABLE IF EXISTS `' . self::getTable() . '`');
         }
     }
 }

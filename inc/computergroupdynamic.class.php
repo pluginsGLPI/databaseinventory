@@ -145,10 +145,12 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
-        switch ($tabnum) {
-            case 1:
-                self::showForItem($item);
-                break;
+        if ($item instanceof PluginDatabaseinventoryComputerGroup) {
+            switch ($tabnum) {
+                case 1:
+                    self::showForItem($item);
+                    break;
+            }
         }
 
         return true;
@@ -271,7 +273,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                     KEY `plugin_databaseinventory_computergroups_id` (`plugin_databaseinventory_computergroups_id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;
 SQL;
-            $DB->query($query) or die($DB->error());
+            $DB->doQuery($query);
         }
     }
 
@@ -281,7 +283,7 @@ SQL;
         global $DB;
         $table = self::getTable();
         if ($DB->tableExists($table)) {
-            $DB->query('DROP TABLE IF EXISTS `' . self::getTable() . '`') or die($DB->error());
+            $DB->doQuery('DROP TABLE IF EXISTS `' . self::getTable() . '`');
         }
     }
 }

@@ -28,12 +28,11 @@
  * -------------------------------------------------------------------------
  */
 
-define('PLUGIN_DATABASEINVENTORY_VERSION', '1.0.4');
-
+define('PLUGIN_DATABASEINVENTORY_VERSION', '1.1.0-beta2');
 // Minimal GLPI version, inclusive
-define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '10.0.0');
+define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '11.0.0');
 // Maximum GLPI version, exclusive
-define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '10.0.99');
+define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '11.0.99');
 
 /**
  * Init hooks of the plugin.

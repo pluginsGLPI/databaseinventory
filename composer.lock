@@ -408,6 +408,7 @@
         {
             "name": "friendsofphp/php-cs-fixer",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v3.75.0",
             "source": {
                 "type": "git",
@@ -419,6 +420,8 @@
                 "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/399a128ff2fdaf4281e4e79b755693286cdf325c",
                 "reference": "399a128ff2fdaf4281e4e79b755693286cdf325c",
 =======
+=======
+>>>>>>> ec48bd0 (Bump the dev-dependencies group with 2 updates)
             "version": "v3.69.1",
             "source": {
                 "type": "git",
@@ -429,7 +432,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/13b0c0eede38c11cd674b080f2b485d0f14ffa9f",
                 "reference": "13b0c0eede38c11cd674b080f2b485d0f14ffa9f",
+<<<<<<< HEAD
 >>>>>>> 11062af (update composer)
+=======
+=======
+            "version": "v3.68.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
+                "reference": "7bedb718b633355272428c60736dc97fb96daf27"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/7bedb718b633355272428c60736dc97fb96daf27",
+                "reference": "7bedb718b633355272428c60736dc97fb96daf27",
+>>>>>>> 31379e6 (Bump the dev-dependencies group with 2 updates)
+>>>>>>> ec48bd0 (Bump the dev-dependencies group with 2 updates)
                 "shasum": ""
             },
             "require": {
@@ -447,7 +465,11 @@
                 "react/promise": "^2.0 || ^3.0",
                 "react/socket": "^1.0",
                 "react/stream": "^1.0",
+<<<<<<< HEAD
                 "sebastian/diff": "^4.0 || ^5.1 || ^6.0 || ^7.0",
+=======
+                "sebastian/diff": "^4.0 || ^5.1 || ^6.0",
+>>>>>>> 31379e6 (Bump the dev-dependencies group with 2 updates)
                 "symfony/console": "^5.4 || ^6.4 || ^7.0",
                 "symfony/event-dispatcher": "^5.4 || ^6.4 || ^7.0",
                 "symfony/filesystem": "^5.4 || ^6.4 || ^7.0",
@@ -473,6 +495,7 @@
                 "mikey179/vfsstream": "^1.6.12",
                 "php-coveralls/php-coveralls": "^2.7",
                 "php-cs-fixer/accessible-object": "^1.1",
+<<<<<<< HEAD
                 "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.6",
                 "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.6",
 <<<<<<< HEAD
@@ -483,7 +506,17 @@
                 "phpunit/phpunit": "^9.6.22 || ^10.5.45 || ^11.5.7",
                 "symfony/var-dumper": "^5.4.48 || ^6.4.18 || ^7.2.0",
                 "symfony/yaml": "^5.4.45 || ^6.4.18 || ^7.2.0"
+<<<<<<< HEAD
 >>>>>>> 11062af (update composer)
+=======
+=======
+                "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.5",
+                "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.5",
+                "phpunit/phpunit": "^9.6.22 || ^10.5.40 || ^11.5.2",
+                "symfony/var-dumper": "^5.4.48 || ^6.4.15 || ^7.2.0",
+                "symfony/yaml": "^5.4.45 || ^6.4.13 || ^7.2.0"
+>>>>>>> 31379e6 (Bump the dev-dependencies group with 2 updates)
+>>>>>>> ec48bd0 (Bump the dev-dependencies group with 2 updates)
             },
             "suggest": {
                 "ext-dom": "For handling output formats in XML",
@@ -525,10 +558,17 @@
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.75.0"
 =======
                 "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.69.1"
 >>>>>>> 11062af (update composer)
+=======
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.69.1"
+=======
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.68.5"
+>>>>>>> 31379e6 (Bump the dev-dependencies group with 2 updates)
+>>>>>>> ec48bd0 (Bump the dev-dependencies group with 2 updates)
             },
             "funding": [
                 {
@@ -536,6 +576,7 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "time": "2025-03-31T18:40:42+00:00"
         },
@@ -596,6 +637,12 @@
 =======
             "time": "2025-02-18T23:57:43+00:00"
 >>>>>>> 11062af (update composer)
+=======
+            "time": "2025-02-18T23:57:43+00:00"
+=======
+            "time": "2025-01-30T17:00:50+00:00"
+>>>>>>> 31379e6 (Bump the dev-dependencies group with 2 updates)
+>>>>>>> ec48bd0 (Bump the dev-dependencies group with 2 updates)
         },
         {
             "name": "glpi-project/tools",
@@ -764,6 +811,7 @@
         },
         {
             "name": "phpstan/phpstan",
+<<<<<<< HEAD
             "version": "2.1.6",
             "source": {
                 "type": "git",
@@ -774,6 +822,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/phpstan/phpstan/zipball/6eaec7c6c9e90dcfe46ad1e1ffa5171e2dab641c",
                 "reference": "6eaec7c6c9e90dcfe46ad1e1ffa5171e2dab641c",
+=======
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "7d08f569e582ade182a375c366cbd896eccadd3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7d08f569e582ade182a375c366cbd896eccadd3a",
+                "reference": "7d08f569e582ade182a375c366cbd896eccadd3a",
+>>>>>>> 31379e6 (Bump the dev-dependencies group with 2 updates)
                 "shasum": ""
             },
             "require": {
@@ -819,10 +879,17 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2025-04-27T12:28:25+00:00"
 =======
             "time": "2025-02-19T15:46:42+00:00"
 >>>>>>> 11062af (update composer)
+=======
+            "time": "2025-02-19T15:46:42+00:00"
+=======
+            "time": "2025-01-21T14:54:06+00:00"
+>>>>>>> 31379e6 (Bump the dev-dependencies group with 2 updates)
+>>>>>>> ec48bd0 (Bump the dev-dependencies group with 2 updates)
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",

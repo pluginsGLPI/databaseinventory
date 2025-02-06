@@ -41,32 +41,32 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
     private const POSTGRE_SQL = 5;
     private const MONGO_DB    = 6;
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return false;
     }
 
-    public static function canUpdate()
+    public static function canUpdate(): bool
     {
         return false;
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return false;
     }
 
-    public static function canDelete()
+    public static function canDelete(): bool
     {
         return false;
     }
 
-    public static function canView()
+    public static function canView(): bool
     {
         return false;
     }
 
-    public function canViewItem()
+    public function canViewItem(): bool
     {
         return false;
     }
@@ -165,7 +165,7 @@ SQL;
             if (!countElementsInTable($table, ['id' => $id])) {
                 $state->add([
                     'id'   => $id,
-                    'name' => Sanitizer::sanitize($label),
+                    'name' => $label,
                 ]);
             }
         }

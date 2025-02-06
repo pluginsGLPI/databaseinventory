@@ -31,9 +31,9 @@
 define('PLUGIN_DATABASEINVENTORY_VERSION', '1.0.2');
 
 // Minimal GLPI version, inclusive
-define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '10.0.0');
+define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '11.0.0');
 // Maximum GLPI version, exclusive
-define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '10.0.99');
+define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '11.0.99');
 
 /**
  * Init hooks of the plugin.
@@ -100,4 +100,12 @@ function plugin_version_databaseinventory()
             ],
         ],
     ];
+}
+
+function plugin_databaseinventory_geturl(): string
+{
+    /** @var array $CFG_GLPI */
+    global $CFG_GLPI;
+
+    return sprintf('%s/plugins/databaseinventory/', $CFG_GLPI['url_base']);
 }

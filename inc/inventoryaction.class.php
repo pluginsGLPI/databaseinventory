@@ -28,6 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
+use Glpi\Asset\Asset_PeripheralAsset;
 use GuzzleHttp\Psr7\Response;
 
 class PluginDatabaseinventoryInventoryAction extends CommonDBTM
@@ -111,7 +112,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                 // not authorized
                 return self::handleAgentResponse($response, $endpoint);
             }
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
+        } catch (\GuzzleHttp\Exception\ClientException $e) { // @phpstan-ignore-line
             if ($fromMA) {
                 return false;
             } else {
@@ -121,7 +122,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
         }
     }
 
-    public static function handleAgentResponse(Response $response, $request): array
+    public static function handleAgentResponse($response, $request): array
     {
         $params           = [];
         $params['answer'] = sprintf(
@@ -142,7 +143,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 
         // if no agent has been found, check if there is a linked item, and find its agent
         if (!$has_agent && $item->getType() == 'Computer') {
-            $citem        = new Computer_Item();
+            $citem        = new Asset_PeripheralAsset();
             $has_relation = $citem->getFromDBByCrit([
                 'itemtype' => $item->getType(),
                 'items_id' => $item->fields['id'],
@@ -179,7 +180,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 
                 echo $out;
 
-                $url = Plugin::getWebDir('databaseinventory') . '/ajax/agent.php';
+                $url = plugin_databaseinventory_geturl() . 'ajax/agent.php';
                 $key = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
                 $js  = <<<JAVASCRIPT
                     $(function() {

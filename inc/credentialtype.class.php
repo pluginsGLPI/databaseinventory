@@ -28,7 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-use Glpi\Toolbox\Sanitizer;
+
 
 class PluginDatabaseinventoryCredentialType extends CommonDropdown
 {

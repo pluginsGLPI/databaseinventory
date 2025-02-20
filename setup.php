@@ -101,11 +101,3 @@ function plugin_version_databaseinventory()
         ],
     ];
 }
-
-function plugin_databaseinventory_geturl(): string
-{
-    /** @var array $CFG_GLPI */
-    global $CFG_GLPI;
-
-    return sprintf('%s/plugins/databaseinventory/', $CFG_GLPI['url_base']);
-}

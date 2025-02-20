@@ -40,9 +40,7 @@ Session::checkLoginUser();
 if (isset($_POST['action']) && isset($_POST['id'])) {
     $agent = new Agent();
     if (!$agent->getFromDB($_POST['id'])) {
-        $exception = new \Glpi\Exception\Http\HttpException(404); // @phpstan-ignore-line
-        $exception->setMessageToDisplay('Unable to load agent #' . $_POST['id']);
-        throw $exception; // @phpstan-ignore-line
+        throw new \Glpi\Exception\Http\NotFoundHttpException('Unable to load agent #' . $_POST['id']);
     };
     $answer = [];
 

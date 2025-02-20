@@ -112,7 +112,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                 // not authorized
                 return self::handleAgentResponse($response, $endpoint);
             }
-        } catch (\GuzzleHttp\Exception\ClientException $e) { // @phpstan-ignore-line
+        }
             if ($fromMA) {
                 return false;
             } else {

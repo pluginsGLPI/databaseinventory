@@ -407,6 +407,7 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
+<<<<<<< HEAD
             "version": "v3.75.0",
             "source": {
                 "type": "git",
@@ -417,6 +418,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/399a128ff2fdaf4281e4e79b755693286cdf325c",
                 "reference": "399a128ff2fdaf4281e4e79b755693286cdf325c",
+=======
+            "version": "v3.69.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
+                "reference": "13b0c0eede38c11cd674b080f2b485d0f14ffa9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/13b0c0eede38c11cd674b080f2b485d0f14ffa9f",
+                "reference": "13b0c0eede38c11cd674b080f2b485d0f14ffa9f",
+>>>>>>> 11062af (update composer)
                 "shasum": ""
             },
             "require": {
@@ -447,18 +460,30 @@
                 "symfony/stopwatch": "^5.4 || ^6.4 || ^7.0"
             },
             "require-dev": {
+<<<<<<< HEAD
                 "facile-it/paraunit": "^1.3.1 || ^2.6",
                 "infection/infection": "^0.29.14",
                 "justinrainbow/json-schema": "^5.3 || ^6.2",
+=======
+                "facile-it/paraunit": "^1.3.1 || ^2.5",
+                "infection/infection": "^0.29.10",
+                "justinrainbow/json-schema": "^5.3 || ^6.0",
+>>>>>>> 11062af (update composer)
                 "keradus/cli-executor": "^2.1",
                 "mikey179/vfsstream": "^1.6.12",
                 "php-coveralls/php-coveralls": "^2.7",
                 "php-cs-fixer/accessible-object": "^1.1",
                 "php-cs-fixer/phpunit-constraint-isidenticalstring": "^1.6",
                 "php-cs-fixer/phpunit-constraint-xmlmatchesxsd": "^1.6",
+<<<<<<< HEAD
                 "phpunit/phpunit": "^9.6.22 || ^10.5.45 || ^11.5.12",
                 "symfony/var-dumper": "^5.4.48 || ^6.4.18 || ^7.2.3",
                 "symfony/yaml": "^5.4.45 || ^6.4.18 || ^7.2.3"
+=======
+                "phpunit/phpunit": "^9.6.22 || ^10.5.45 || ^11.5.7",
+                "symfony/var-dumper": "^5.4.48 || ^6.4.18 || ^7.2.0",
+                "symfony/yaml": "^5.4.45 || ^6.4.18 || ^7.2.0"
+>>>>>>> 11062af (update composer)
             },
             "suggest": {
                 "ext-dom": "For handling output formats in XML",
@@ -499,7 +524,11 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.75.0"
+=======
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.69.1"
+>>>>>>> 11062af (update composer)
             },
             "funding": [
                 {
@@ -507,6 +536,7 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2025-03-31T18:40:42+00:00"
         },
         {
@@ -563,6 +593,9 @@
                 "source": "https://github.com/friendsoftwig/twigcs/tree/v6.1.0"
             },
             "time": "2023-01-04T16:01:24+00:00"
+=======
+            "time": "2025-02-18T23:57:43+00:00"
+>>>>>>> 11062af (update composer)
         },
         {
             "name": "glpi-project/tools",
@@ -731,16 +764,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.4",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8f99e18eb775dbaf6460c95fa0b65312da9c746a"
+                "reference": "6eaec7c6c9e90dcfe46ad1e1ffa5171e2dab641c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8f99e18eb775dbaf6460c95fa0b65312da9c746a",
-                "reference": "8f99e18eb775dbaf6460c95fa0b65312da9c746a",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/6eaec7c6c9e90dcfe46ad1e1ffa5171e2dab641c",
+                "reference": "6eaec7c6c9e90dcfe46ad1e1ffa5171e2dab641c",
                 "shasum": ""
             },
             "require": {
@@ -785,7 +818,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2025-04-27T12:28:25+00:00"
+=======
+            "time": "2025-02-19T15:46:42+00:00"
+>>>>>>> 11062af (update composer)
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -2863,24 +2900,23 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.19.0",
+            "version": "v3.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d4f8c2b86374f08efc859323dbcd95c590f7124e"
+                "reference": "3468920399451a384bef53cf7996965f7cd40183"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d4f8c2b86374f08efc859323dbcd95c590f7124e",
-                "reference": "d4f8c2b86374f08efc859323dbcd95c590f7124e",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3468920399451a384bef53cf7996965f7cd40183",
+                "reference": "3468920399451a384bef53cf7996965f7cd40183",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.2",
+                "php": ">=8.1.0",
                 "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "^1.8",
-                "symfony/polyfill-mbstring": "^1.3",
-                "symfony/polyfill-php81": "^1.29"
+                "symfony/polyfill-mbstring": "^1.3"
             },
             "require-dev": {
                 "phpstan/phpstan": "^2.0",
@@ -2927,7 +2963,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.19.0"
+                "source": "https://github.com/twigphp/Twig/tree/v3.20.0"
             },
             "funding": [
                 {
@@ -2939,7 +2975,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-29T07:06:14+00:00"
+            "time": "2025-02-13T08:34:43+00:00"
         }
     ],
     "aliases": [],

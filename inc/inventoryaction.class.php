@@ -112,13 +112,14 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                 // not authorized
                 return self::handleAgentResponse($response, $endpoint);
             }
+        } catch (Exception $e) {
         }
-            if ($fromMA) {
-                return false;
-            } else {
-                // not authorized
-                return ['answer' => __('Not allowed')];
-            }
+
+        if ($fromMA) {
+            return false;
+        } else {
+            // not authorized
+            return ['answer' => $e->getMessage()];
         }
     }
 
@@ -168,6 +169,9 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
         if (!$item->isDynamic()) {
             return;
         }
+
+        /** @var array $CFG_GLPI */
+        global $CFG_GLPI;
 
         if ($item::getType() == Computer::getType()) {
             if ($agent = self::findAgent($item)) {

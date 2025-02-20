@@ -180,7 +180,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 
                 echo $out;
 
-                $url = plugin_databaseinventory_geturl() . 'ajax/agent.php';
+                $url = $CFG_GLPI['url_base'] . '/plugins/databaseinventory/ajax/agent.php';
                 $key = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
                 $js  = <<<JAVASCRIPT
                     $(function() {

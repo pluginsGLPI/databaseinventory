@@ -134,6 +134,9 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
     public function showForm($ID, array $options = [])
     {
         $this->initForm($ID, $options);
+
+        $this->fields['password'] = (new GLPIKey())->decrypt($this->fields['password']);
+
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/credential.html.twig',
             [

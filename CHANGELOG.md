@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Fixed
 
-- Fix `password` encrypt
+- Do not disclose `password` from `form` input.
 
 ## [1.0.2] - 2024-12-13
 

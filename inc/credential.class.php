@@ -161,6 +161,9 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
                 $input['password'] = (new GLPIKey())->encrypt($input['password']);
             }
         }
+        if (isset($input['_blank_password'])) {
+            $input['password'] = '';
+        }
 
         return $input;
     }

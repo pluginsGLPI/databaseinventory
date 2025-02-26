@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Fixed
 
-- Correctly handle `password` for `twig` template
+- Fix `password` encrypt
 
 ## [1.0.2] - 2024-12-13
 

@@ -63,17 +63,17 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
     public $dohistory        = true;
     public static $rightname = 'database_inventory';
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return Session::haveRight(static::$rightname, CREATE);
     }
 
-    public static function canUpdate()
+    public static function canUpdate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return Session::haveRight(static::$rightname, PURGE);
     }

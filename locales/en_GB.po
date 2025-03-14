@@ -1,14 +1,14 @@
 # English translations for PACKAGE package.
-# Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Automatically generated, 2024.
+# Automatically generated, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 00:40+0000\n"
-"PO-Revision-Date: 2024-10-10 00:40+0000\n"
+"POT-Creation-Date: 2025-03-14 00:43+0000\n"
+"PO-Revision-Date: 2025-03-14 00:43+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_GB\n"
@@ -30,7 +30,7 @@ msgstr "Agent not found for computer"
 msgid "Ask agent to proceed a database inventory"
 msgstr "Ask agent to proceed a database inventory"
 
-#: inc/databaseparam_computergroup.class.php:92 inc/computergroup.class.php:68
+#: inc/computergroup.class.php:68 inc/databaseparam_computergroup.class.php:92
 msgid "Computer Group"
 msgid_plural "Computers Group"
 msgstr[0] "Computer Group"
@@ -58,8 +58,8 @@ msgstr[1] "Credential types"
 msgid "DB2"
 msgstr "DB2"
 
-#: setup.php:91 front/menu.php:37 front/menu.php:46 inc/profile.class.php:37
-#: inc/menu.class.php:35
+#: inc/profile.class.php:37 inc/menu.class.php:35 setup.php:91
+#: front/menu.php:37 front/menu.php:46
 msgid "Database Inventory"
 msgstr "Database Inventory"
 

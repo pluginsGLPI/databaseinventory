@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-10 00:40+0000\n"
+"POT-Creation-Date: 2025-02-27 00:42+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: Cédric Anne, 2023\n"
 "Language-Team: French (France) (https://app.transifex.com/teclib/teams/28042/fr_FR/)\n"
@@ -34,7 +34,7 @@ msgstr "Agent non trouvé pour cet ordinateur"
 msgid "Ask agent to proceed a database inventory"
 msgstr "Demander à l'agent de procéder à un inventaire de base de données"
 
-#: inc/databaseparam_computergroup.class.php:92 inc/computergroup.class.php:68
+#: inc/computergroup.class.php:68 inc/databaseparam_computergroup.class.php:92
 msgid "Computer Group"
 msgid_plural "Computers Group"
 msgstr[0] "Groupe d'ordinateurs"
@@ -66,8 +66,8 @@ msgstr[2] "Types d'identifiant"
 msgid "DB2"
 msgstr "DB2"
 
-#: setup.php:91 front/menu.php:37 front/menu.php:46 inc/profile.class.php:37
-#: inc/menu.class.php:35
+#: inc/profile.class.php:37 inc/menu.class.php:35 setup.php:91
+#: front/menu.php:37 front/menu.php:46
 msgid "Database Inventory"
 msgstr "Database Inventory"
 

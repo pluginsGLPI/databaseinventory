@@ -47,7 +47,7 @@
                 {% set btn_add %}
                     <button class="btn btn-primary" type="submit" name="add_computergroup" value="1">
                         <i class="fas fa-plus"></i>
-                        <span>{{_x('button', 'Add') }}</span>
+                        <span>{{ _x('button', 'Add') }}</span>
                     </button>
                 {% endset %}
 
@@ -60,7 +60,7 @@
                 {{ fields.hiddenField(
                     'plugin_databaseinventory_databaseparams_id',
                     item.getID(),
-                )}}
+                ) }}
             </div>
         </form>
     {% endif %}
@@ -102,7 +102,7 @@
                                         {% if checked %}checked="checked"{% endif %}>
                                 </td>
                             {% endif %}
-                            <td><a href = {{compgroup['link']}}> {{ compgroup['name'] }}</a></td>
+                            <td><a href = {{ compgroup['link'] }}> {{ compgroup['name'] }}</a></td>
                             <td>{{ compgroup['comment'] }}</td>
                             <td>{{ compgroup['nbdynamicitems'] }}</td>
                             <td>{{ compgroup['nbstaticitems'] }}</td>

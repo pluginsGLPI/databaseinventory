@@ -3,12 +3,8 @@
         "php": ">=8.2"
     },
     "require-dev": {
-<<<<<<< HEAD
         "friendsofphp/php-cs-fixer": "^3.75",
         "friendsoftwig/twigcs": "^6.1",
-=======
-        "friendsofphp/php-cs-fixer": "^3.68",
->>>>>>> ec48bd0 (Bump the dev-dependencies group with 2 updates)
         "glpi-project/tools": "^0.7.4",
         "php-parallel-lint/php-parallel-lint": "^1.4",
         "phpstan/extension-installer": "^1.4",

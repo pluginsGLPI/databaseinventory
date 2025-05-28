@@ -68,12 +68,12 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         return _n('Computer Group', 'Computers Group', $nb, 'databaseinventory');
     }
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }

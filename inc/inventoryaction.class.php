@@ -190,7 +190,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                                 type: 'POST',
                                 url: '{$url}',
                                 timeout: 3000, //3 seconds timeout
-                                data: {'action': '{$key}', 'id': '{$agent->fields['id']}'},
+                                data: {'action': '{$key}', 'id': '{$agent->fields['id']}', 'computers_id' : '{$item->fields['id']}'},
                                 success: function(json) {
                                     icon.removeClass('fa-spin');
                                     $('#database_inventory_status').html(json.answer);

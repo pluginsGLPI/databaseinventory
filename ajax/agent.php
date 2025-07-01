@@ -37,6 +37,13 @@ Html::header_nocache();
 
 Session::checkLoginUser();
 
+Session::checkRight("inventory", READ);
+
+$computer = new Computer();
+$computer->check($_POST['computers_id'], UPDATE);
+
+
+
 if (isset($_POST['action']) && isset($_POST['id'])) {
     $agent = new Agent();
     if (!$agent->getFromDB($_POST['id'])) {

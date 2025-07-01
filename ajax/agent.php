@@ -36,12 +36,8 @@ header('Content-Type: application/json; charset=UTF-8');
 Html::header_nocache();
 
 Session::checkLoginUser();
-
 Session::checkRight("inventory", READ);
-
-$computer = new Computer();
-$computer->check($_POST['computers_id'], UPDATE);
-
+Session::checkRight("database_inventory", PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY);
 
 if (isset($_POST['action']) && isset($_POST['id'])) {
     $agent = new Agent();

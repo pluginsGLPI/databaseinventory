@@ -32,6 +32,8 @@ class PluginDatabaseinventoryProfile extends Profile
 {
     public static $rightname = 'profile';
 
+    const RUN_DATABSE_INVENTORY = 256;
+
     public static function getTypeName($nb = 0)
     {
         return __('Database Inventory', 'databaseinventory');
@@ -41,12 +43,28 @@ class PluginDatabaseinventoryProfile extends Profile
     {
         $rights = [
             [
-                'itemtype' => PluginDatabaseinventoryDatabaseParam::getType(),
-                'label'    => PluginDatabaseinventoryProfile::getTypeName(),
-                'field'    => 'database_inventory',
+                'itemtype'  => PluginDatabaseinventoryDatabaseParam::getType(),
+                'label'     => PluginDatabaseinventoryProfile::getTypeName(),
+                'field'     => 'database_inventory',
+                'rights'    => [
+                    CREATE  => __('Create'),
+                    READ    => __('Read'),
+                    UPDATE  => __('Update'),
+                    PURGE   => ['short' => __('Purge'),
+                        'long'  => _x('button', 'Delete permanently'),
+                    ],
+                    self::RUN_DATABSE_INVENTORY => __("Run database inventory", "databaseinventory"),
+                ],
             ],
         ];
 
+        return $rights;
+    }
+
+    function getRights($interface = 'central')
+    {
+        $rights = parent::getRights();
+        $rights[self::RUN_DATABSE_INVENTORY] = __("Run database inventory", "databaseinventory");
         return $rights;
     }
 
@@ -96,10 +114,10 @@ class PluginDatabaseinventoryProfile extends Profile
     public static function install(Migration $migration)
     {
         // Add right for administrators
-        $migration->addRight('database_inventory', PURGE + CREATE + UPDATE + READ, ['config' => UPDATE]);
+        $migration->addRight('database_inventory', PURGE + CREATE + UPDATE + READ + self::RUN_DATABSE_INVENTORY, ['config' => UPDATE]);
 
         // Add right to the current session
-        $_SESSION['glpiactiveprofile']['database_inventory'] = PURGE + CREATE + UPDATE + READ;
+        $_SESSION['glpiactiveprofile']['database_inventory'] = PURGE + CREATE + UPDATE + READ + self::RUN_DATABSE_INVENTORY;
 
         return true;
     }

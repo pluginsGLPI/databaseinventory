@@ -34,6 +34,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 {
     public const MA_PARTIAL        = 'partial_database_inventory';
     private const ENDPOINT_PARTIAL = 'now?';
+    public static $rightname = 'database_inventory_run_inventory';
 
     public static function showMassiveActionsSubForm(MassiveAction $ma)
     {
@@ -165,6 +166,10 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
     public static function postItemForm($item)
     {
         if (!$item->isDynamic()) {
+            return;
+        }
+
+        if (!Session::checkRight("database_inventory", PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
             return;
         }
 

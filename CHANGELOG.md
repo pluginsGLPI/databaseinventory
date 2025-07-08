@@ -4,15 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
 ## [UNRELEASE]
 
-## Fixed
+### Fixed
 
 - Do not disclose `password` from `form` input.
+- Improved access control checks when requesting database inventory.
 
 ## [1.0.2] - 2024-12-13
 
-## Fixed
+### Fixed
 
 - Fix `displayTabContentForItem` for `PluginDatabaseinventoryContactLog`
 - Fix foreign key constraint in `where` clause.

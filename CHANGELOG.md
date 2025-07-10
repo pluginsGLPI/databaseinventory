@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [UNRELEASE]
 
+## [1.0.3] - 2025-07-10
+
 ### Fixed
 
 - Do not disclose `password` from `form` input.

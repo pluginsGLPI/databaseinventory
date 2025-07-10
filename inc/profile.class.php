@@ -32,7 +32,7 @@ class PluginDatabaseinventoryProfile extends Profile
 {
     public static $rightname = 'profile';
 
-    const RUN_DATABSE_INVENTORY = 256;
+    public const RUN_DATABSE_INVENTORY = 256;
 
     public static function getTypeName($nb = 0)
     {
@@ -61,7 +61,7 @@ class PluginDatabaseinventoryProfile extends Profile
         return $rights;
     }
 
-    function getRights($interface = 'central')
+    public function getRights($interface = 'central')
     {
         $rights = parent::getRights();
         $rights[self::RUN_DATABSE_INVENTORY] = __("Run database inventory", "databaseinventory");

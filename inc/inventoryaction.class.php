@@ -169,7 +169,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
             return;
         }
 
-        if (!Session::checkRight("database_inventory", PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
+        if (!Session::haveRight("database_inventory", PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
             return;
         }
 

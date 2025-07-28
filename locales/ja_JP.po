@@ -1,86 +1,86 @@
-# English translations for PACKAGE package.
-# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Automatically generated, 2025.
-#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# INOUE Daisuke, 2025
+# 
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-28 00:58+0000\n"
-"PO-Revision-Date: 2025-07-28 00:58+0000\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: en_GB\n"
+"PO-Revision-Date: 2023-09-22 13:12+0000\n"
+"Last-Translator: INOUE Daisuke, 2025\n"
+"Language-Team: Japanese (Japan) (https://app.transifex.com/teclib/teams/28042/ja_JP/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ja_JP\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: templates/credential.html.twig
 msgid "Port"
-msgstr "Port"
+msgstr "ポート"
 
 #: templates/credential.html.twig
 msgid "Login"
-msgstr "Login"
+msgstr "ユーザー名"
 
 #: templates/credential.html.twig
 msgid "Password"
-msgstr "Password"
+msgstr "パスワード"
 
 #: templates/credential.html.twig
 msgid "Socket"
-msgstr "Socket"
+msgstr "ソケット"
 
 #: templates/databaseparam.html.twig inc/databaseparam.class.php:114
 msgid "Execution frequency for partial inventory"
-msgstr "Execution frequency for partial inventory"
+msgstr "部分インベントリーの実行間隔"
 
 #: templates/databaseparam.html.twig
 msgid "Execution delay"
-msgstr "Execution delay"
+msgstr "実行の遅延"
 
 #: hook.php:96
 msgid "Run partial databases inventory"
-msgstr "Run partial databases inventory"
+msgstr "部分データベースインベントリーを実行"
 
 #: setup.php:91 front/menu.php:38 front/menu.php:47 inc/menu.class.php:35
 #: inc/profile.class.php:39
 msgid "Database Inventory"
-msgstr "Database Inventory"
+msgstr "データベースインベントリー"
 
 #: front/computergroup.form.php:67
 msgid "Please select a computer"
-msgstr "Please select a computer"
+msgstr "コンピューターを選択してください"
 
 #: inc/databaseparam_credential.class.php:92 inc/credential.class.php:83
 msgid "Credential"
 msgid_plural "Credentials"
-msgstr[0] "Credential"
-msgstr[1] "Credentials"
+msgstr[0] "認証"
 
 #: inc/contactlog.class.php:83
 msgid "Contact log"
 msgid_plural "Contact logs"
-msgstr[0] "Contact log"
-msgstr[1] "Contact logs"
+msgstr[0] "接続ログ"
 
 #: inc/databaseparam_computergroup.class.php:92 inc/computergroup.class.php:68
 msgid "Computer Group"
 msgid_plural "Computers Group"
-msgstr[0] "Computer Group"
-msgstr[1] "Computers Group"
+msgstr[0] "コンピューターグループ"
 
 #: inc/credentialtype.class.php:76
 msgid "Credential type"
 msgid_plural "Credential types"
-msgstr[0] "Credential type"
-msgstr[1] "Credential types"
+msgstr[0] "認証の型"
 
 #: inc/credentialtype.class.php:82
 msgid "You cannot remove this type"
-msgstr "You cannot remove this type"
+msgstr "この型を削除する権限がありません"
 
 #: inc/credentialtype.class.php:157
 msgid "MySQL"
@@ -96,7 +96,7 @@ msgstr "DB2"
 
 #: inc/credentialtype.class.php:160
 msgid "Microsoft SQL"
-msgstr "Microsoft SQL"
+msgstr "Microsoft SQL Server"
 
 #: inc/credentialtype.class.php:161
 msgid "PostgreSQL"
@@ -109,67 +109,64 @@ msgstr "MongoDB"
 #: inc/computergroupdynamic.class.php:37
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
-msgstr[0] "Dynamic group"
-msgstr[1] "Dynamic groups"
+msgstr[0] "動的グループ"
 
 #: inc/databaseparam.class.php:68
 msgid "Database params"
 msgid_plural "Databases params"
-msgstr[0] "Database params"
-msgstr[1] "Databases params"
+msgstr[0] "データベースのパラメーター"
 
 #: inc/databaseparam.class.php:106
 msgid "Partial inventory"
-msgstr "Partial inventory"
+msgstr "部分インベントリー"
 
 #: inc/inventoryaction.class.php:44
 msgid "Run"
-msgstr "Run"
+msgstr "実行"
 
 #: inc/inventoryaction.class.php:71
 msgid "Agent not found for computer"
-msgstr "Agent not found for computer"
+msgstr "コンピューターのエージェントが見つかりません"
 
 #: inc/inventoryaction.class.php:87
 #, php-format
 msgid "Agent %1$s not found"
-msgstr "Agent %1$s not found"
+msgstr "%1$s エージェントが見つかりません"
 
 #: inc/inventoryaction.class.php:129
 #, php-format
 msgid "Requested at %s"
-msgstr "Requested at %s"
+msgstr "%s に要求"
 
 #: inc/inventoryaction.class.php:179
 msgid "Request database inventory"
-msgstr "Request database inventory"
+msgstr "データベースインベントリーを要求"
 
 #: inc/inventoryaction.class.php:180
 msgid "Ask agent to proceed a database inventory"
-msgstr "Ask agent to proceed a database inventory"
+msgstr "エージェントにデータベースインベントリーを要求"
 
 #: inc/computergroup.class.php:117
 msgid "Number of dynamic items"
-msgstr "Number of dynamic items"
+msgstr "動的アイテムの数"
 
 #: inc/computergroup.class.php:130
 msgid "Number of static items"
-msgstr "Number of static items"
+msgstr "静的アイテムの数"
 
 #: inc/computergroup.class.php:143
 msgid "List of dynamic items"
-msgstr "List of dynamic items"
+msgstr "動的アイテムの一覧"
 
 #: inc/computergroup.class.php:158
 msgid "List of static items"
-msgstr "List of static items"
+msgstr "静的アイテムの一覧"
 
 #: inc/computergroupstatic.class.php:77
 msgid "Static group"
 msgid_plural "Static groups"
-msgstr[0] "Static group"
-msgstr[1] "Static groups"
+msgstr[0] "静的グループ"
 
 #: inc/profile.class.php:56 inc/profile.class.php:67
 msgid "Run database inventory"
-msgstr "Run database inventory"
+msgstr "データベースインベントリーを実行"

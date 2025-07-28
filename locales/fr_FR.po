@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-27 00:42+0000\n"
+"POT-Creation-Date: 2025-07-14 00:55+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: Cédric Anne, 2023\n"
 "Language-Team: French (France) (https://app.transifex.com/teclib/teams/28042/fr_FR/)\n"
@@ -21,32 +21,42 @@ msgstr ""
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: inc/inventoryaction.class.php:86
-#, php-format
-msgid "Agent %1$s not found"
-msgstr "Agent %1$s non trouvé"
+#: templates/credential.html.twig
+msgid "Port"
+msgstr ""
 
-#: inc/inventoryaction.class.php:70
-msgid "Agent not found for computer"
-msgstr "Agent non trouvé pour cet ordinateur"
+#: templates/credential.html.twig
+msgid "Login"
+msgstr ""
 
-#: inc/inventoryaction.class.php:175
-msgid "Ask agent to proceed a database inventory"
-msgstr "Demander à l'agent de procéder à un inventaire de base de données"
+#: templates/credential.html.twig
+msgid "Password"
+msgstr ""
 
-#: inc/computergroup.class.php:68 inc/databaseparam_computergroup.class.php:92
-msgid "Computer Group"
-msgid_plural "Computers Group"
-msgstr[0] "Groupe d'ordinateurs"
-msgstr[1] "Groupes d'ordinateurs"
-msgstr[2] "Groupes d'ordinateurs"
+#: templates/credential.html.twig
+msgid "Socket"
+msgstr ""
 
-#: inc/contactlog.class.php:83
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] "Journal de contact"
-msgstr[1] "Journaux de contact"
-msgstr[2] "Journaux de contact"
+#: templates/databaseparam.html.twig inc/databaseparam.class.php:114
+msgid "Execution frequency for partial inventory"
+msgstr "Fréquence d'exécution pour l'inventaire partiel"
+
+#: templates/databaseparam.html.twig
+msgid "Execution delay"
+msgstr ""
+
+#: hook.php:96
+msgid "Run partial databases inventory"
+msgstr "Exécuter l'inventaire partiel de base de données"
+
+#: setup.php:91 front/menu.php:38 front/menu.php:47 inc/menu.class.php:35
+#: inc/profile.class.php:39
+msgid "Database Inventory"
+msgstr "Database Inventory"
+
+#: front/computergroup.form.php:67
+msgid "Please select a computer"
+msgstr "Veuillez sélectionner un ordinateur"
 
 #: inc/databaseparam_credential.class.php:92 inc/credential.class.php:83
 msgid "Credential"
@@ -55,6 +65,20 @@ msgstr[0] "Identifiant"
 msgstr[1] "Identifiants"
 msgstr[2] "Identifiants"
 
+#: inc/contactlog.class.php:83
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] "Journal de contact"
+msgstr[1] "Journaux de contact"
+msgstr[2] "Journaux de contact"
+
+#: inc/databaseparam_computergroup.class.php:92 inc/computergroup.class.php:68
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] "Groupe d'ordinateurs"
+msgstr[1] "Groupes d'ordinateurs"
+msgstr[2] "Groupes d'ordinateurs"
+
 #: inc/credentialtype.class.php:76
 msgid "Credential type"
 msgid_plural "Credential types"
@@ -62,21 +86,33 @@ msgstr[0] "Type d'identifiant"
 msgstr[1] "Types d'identifiant"
 msgstr[2] "Types d'identifiant"
 
+#: inc/credentialtype.class.php:82
+msgid "You cannot remove this type"
+msgstr "Vous ne pouvez pas supprimer ce type"
+
+#: inc/credentialtype.class.php:157
+msgid "MySQL"
+msgstr "MySQL"
+
+#: inc/credentialtype.class.php:158
+msgid "Oracle"
+msgstr "Oracle"
+
 #: inc/credentialtype.class.php:159
 msgid "DB2"
 msgstr "DB2"
 
-#: inc/profile.class.php:37 inc/menu.class.php:35 setup.php:91
-#: front/menu.php:37 front/menu.php:46
-msgid "Database Inventory"
-msgstr "Database Inventory"
+#: inc/credentialtype.class.php:160
+msgid "Microsoft SQL"
+msgstr "Microsoft SQL"
 
-#: inc/databaseparam.class.php:68
-msgid "Database params"
-msgid_plural "Databases params"
-msgstr[0] "Paramètres de base de données"
-msgstr[1] "Paramètres de bases de données"
-msgstr[2] "Paramètres de bases de données"
+#: inc/credentialtype.class.php:161
+msgid "PostgreSQL"
+msgstr "PostgreSQL"
+
+#: inc/credentialtype.class.php:162
+msgid "MongoDB"
+msgstr "MongoDB"
 
 #: inc/computergroupdynamic.class.php:37
 msgid "Dynamic group"
@@ -85,37 +121,42 @@ msgstr[0] "Groupe dynamique"
 msgstr[1] "Groupes dynamiques"
 msgstr[2] "Groupes dynamiques"
 
-#: templates/databaseparam.html.twig
-msgid "Execution delay"
-msgstr ""
+#: inc/databaseparam.class.php:68
+msgid "Database params"
+msgid_plural "Databases params"
+msgstr[0] "Paramètres de base de données"
+msgstr[1] "Paramètres de bases de données"
+msgstr[2] "Paramètres de bases de données"
 
-#: templates/databaseparam.html.twig inc/databaseparam.class.php:114
-msgid "Execution frequency for partial inventory"
-msgstr "Fréquence d'exécution pour l'inventaire partiel"
+#: inc/databaseparam.class.php:106
+msgid "Partial inventory"
+msgstr "Inventaire partiel"
 
-#: inc/computergroup.class.php:143
-msgid "List of dynamic items"
-msgstr "Liste des éléments dynamiques"
+#: inc/inventoryaction.class.php:44
+msgid "Run"
+msgstr "Exécuter"
 
-#: inc/computergroup.class.php:158
-msgid "List of static items"
-msgstr "Liste des éléments statiques"
+#: inc/inventoryaction.class.php:71
+msgid "Agent not found for computer"
+msgstr "Agent non trouvé pour cet ordinateur"
 
-#: templates/credential.html.twig
-msgid "Login"
-msgstr ""
+#: inc/inventoryaction.class.php:87
+#, php-format
+msgid "Agent %1$s not found"
+msgstr "Agent %1$s non trouvé"
 
-#: inc/credentialtype.class.php:160
-msgid "Microsoft SQL"
-msgstr "Microsoft SQL"
+#: inc/inventoryaction.class.php:129
+#, php-format
+msgid "Requested at %s"
+msgstr "Demandé le %s"
 
-#: inc/credentialtype.class.php:162
-msgid "MongoDB"
-msgstr "MongoDB"
+#: inc/inventoryaction.class.php:179
+msgid "Request database inventory"
+msgstr "Demander l'inventaire de base de données"
 
-#: inc/credentialtype.class.php:157
-msgid "MySQL"
-msgstr "MySQL"
+#: inc/inventoryaction.class.php:180
+msgid "Ask agent to proceed a database inventory"
+msgstr "Demander à l'agent de procéder à un inventaire de base de données"
 
 #: inc/computergroup.class.php:117
 msgid "Number of dynamic items"
@@ -125,50 +166,13 @@ msgstr "Nombre d'éléments dynamiques"
 msgid "Number of static items"
 msgstr "Nombre d'éléments statiques"
 
-#: inc/credentialtype.class.php:158
-msgid "Oracle"
-msgstr "Oracle"
+#: inc/computergroup.class.php:143
+msgid "List of dynamic items"
+msgstr "Liste des éléments dynamiques"
 
-#: inc/databaseparam.class.php:106
-msgid "Partial inventory"
-msgstr "Inventaire partiel"
-
-#: templates/credential.html.twig
-msgid "Password"
-msgstr ""
-
-#: front/computergroup.form.php:67
-msgid "Please select a computer"
-msgstr "Veuillez sélectionner un ordinateur"
-
-#: templates/credential.html.twig
-msgid "Port"
-msgstr ""
-
-#: inc/credentialtype.class.php:161
-msgid "PostgreSQL"
-msgstr "PostgreSQL"
-
-#: inc/inventoryaction.class.php:174
-msgid "Request database inventory"
-msgstr "Demander l'inventaire de base de données"
-
-#: inc/inventoryaction.class.php:128
-#, php-format
-msgid "Requested at %s"
-msgstr "Demandé le %s"
-
-#: inc/inventoryaction.class.php:43
-msgid "Run"
-msgstr "Exécuter"
-
-#: hook.php:96
-msgid "Run partial databases inventory"
-msgstr "Exécuter l'inventaire partiel de base de données"
-
-#: templates/credential.html.twig
-msgid "Socket"
-msgstr ""
+#: inc/computergroup.class.php:158
+msgid "List of static items"
+msgstr "Liste des éléments statiques"
 
 #: inc/computergroupstatic.class.php:77
 msgid "Static group"
@@ -177,6 +181,6 @@ msgstr[0] "Groupe statique"
 msgstr[1] "Groupes statiques"
 msgstr[2] "Groupes statiques"
 
-#: inc/credentialtype.class.php:82
-msgid "You cannot remove this type"
-msgstr "Vous ne pouvez pas supprimer ce type"
+#: inc/profile.class.php:56 inc/profile.class.php:67
+msgid "Run database inventory"
+msgstr ""

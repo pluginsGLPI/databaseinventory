@@ -56,12 +56,10 @@
         <en>
             <tag>Database</tag>
             <tag>Inventory</tag>
-            <tag>GLPI-Network</tag>
         </en>
         <lang>
             <tag>Base de données</tag>
             <tag>Inventaire</tag>
-            <tag>GLPI-Network</tag>
         </lang>
     </tags>
     <screenshots>

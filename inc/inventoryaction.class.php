@@ -114,13 +114,12 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                 return self::handleAgentResponse($response, $endpoint);
             }
         } catch (Exception $e) {
-        }
-
-        if ($fromMA) {
-            return false;
-        } else {
-            // not authorized
-            return ['answer' => $e->getMessage()];
+            if ($fromMA) {
+                return false;
+            } else {
+                // not authorized
+                return ['answer' => $e->getMessage()];
+            }
         }
     }
 

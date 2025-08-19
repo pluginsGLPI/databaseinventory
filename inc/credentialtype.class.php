@@ -73,13 +73,13 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Credential type', 'Credential types', $nb, 'databaseinventory');
+        return _sn('Credential type', 'Credential types', $nb, 'databaseinventory');
     }
 
     public function pre_deleteItem()
     {
         Session::addMessageAfterRedirect(
-            __('You cannot remove this type', 'databaseinventory') . ': '
+            __s('You cannot remove this type', 'databaseinventory') . ': '
                                        . $this->fields['name'],
             false,
             ERROR,
@@ -154,12 +154,12 @@ SQL;
         $state = new self();
         foreach (
             [
-                1 => __('MySQL', 'databaseinventory'),
-                2 => __('Oracle', 'databaseinventory'),
-                3 => __('DB2', 'databaseinventory'),
-                4 => __('Microsoft SQL', 'databaseinventory'),
-                5 => __('PostgreSQL', 'databaseinventory'),
-                6 => __('MongoDB', 'databaseinventory'),
+                1 => __s('MySQL', 'databaseinventory'),
+                2 => __s('Oracle', 'databaseinventory'),
+                3 => __s('DB2', 'databaseinventory'),
+                4 => __s('Microsoft SQL', 'databaseinventory'),
+                5 => __s('PostgreSQL', 'databaseinventory'),
+                6 => __s('MongoDB', 'databaseinventory'),
             ] as $id => $label
         ) {
             if (!countElementsInTable($table, ['id' => $id])) {

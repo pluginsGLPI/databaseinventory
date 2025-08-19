@@ -89,7 +89,7 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Credential', 'Credentials', $nb, 'databaseinventory');
+        return _sn('Credential', 'Credentials', $nb, 'databaseinventory');
     }
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)

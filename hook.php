@@ -93,7 +93,7 @@ function plugin_databaseinventory_MassiveActions($type)
         case 'Agent':
             $class = PluginDatabaseinventoryInventoryAction::getType();
             $key   = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
-            $label = __('Run partial databases inventory', 'databaseinventory');
+            $label = __s('Run partial databases inventory', 'databaseinventory');
 
             return [$class . MassiveAction::CLASS_ACTION_SEPARATOR . $key => $label];
     }

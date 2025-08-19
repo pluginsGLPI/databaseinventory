@@ -55,7 +55,7 @@ if (isset($_POST['add'])) {
             'PluginDatabaseinventoryDatabaseParam',
             4,
             'inventory',
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $_POST['name']),
+            sprintf(__s('%1$s adds the item %2$s'), $_SESSION['glpiname'], $_POST['name']),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -72,7 +72,7 @@ if (isset($_POST['add'])) {
             'PluginDatabaseinventoryDatabaseParam_Credential',
             4,
             'inventory',
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $databaseparam_credential::getTypeName(0)),
+            sprintf(__s('%1$s adds the item %2$s'), $_SESSION['glpiname'], $databaseparam_credential::getTypeName(0)),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -90,7 +90,7 @@ if (isset($_POST['add'])) {
             'PluginDatabaseinventoryDatabaseParam_ComputerGroup',
             4,
             'inventory',
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $databaseparam_computergroup::getTypeName(0)),
+            sprintf(__s('%1$s adds the item %2$s'), $_SESSION['glpiname'], $databaseparam_computergroup::getTypeName(0)),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -109,7 +109,7 @@ if (isset($_POST['add'])) {
             4,
             'inventory',
             //TRANS: %s is the user login
-            sprintf(__('%s purges an item'), $_SESSION['glpiname']),
+            sprintf(__s('%s purges an item'), $_SESSION['glpiname']),
         );
     }
     $databaseparam->redirectToList();
@@ -123,7 +123,7 @@ if (isset($_POST['add'])) {
         4,
         'inventory',
         //TRANS: %s is the user login
-        sprintf(__('%s updates an item'), $_SESSION['glpiname']),
+        sprintf(__s('%s updates an item'), $_SESSION['glpiname']),
     );
     Html::back();
 } else {

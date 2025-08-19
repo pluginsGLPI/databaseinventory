@@ -80,7 +80,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Contact log', 'Contact logs', $nb, 'databaseinventory');
+        return _sn('Contact log', 'Contact logs', $nb, 'databaseinventory');
     }
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)

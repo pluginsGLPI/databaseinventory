@@ -74,7 +74,7 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Static group', 'Static groups', $nb, 'databaseinventory');
+        return _sn('Static group', 'Static groups', $nb, 'databaseinventory');
     }
 
     public static function canCreate(): bool

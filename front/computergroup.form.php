@@ -54,7 +54,7 @@ if (isset($_POST['add'])) {
             'PluginDatabaseinventoryComputerGroup',
             4,
             'inventory',
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $_POST['name']),
+            sprintf(__s('%1$s adds the item %2$s'), $_SESSION['glpiname'], $_POST['name']),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -64,7 +64,7 @@ if (isset($_POST['add'])) {
     Html::back();
 } elseif (isset($_POST['add_staticcomputer'])) {
     if (!$_POST['computers_id']) {
-        Session::addMessageAfterRedirect(__('Please select a computer', 'databaseinventory'), false, ERROR);
+        Session::addMessageAfterRedirect(__s('Please select a computer', 'databaseinventory'), false, ERROR);
         Html::back();
     }
 
@@ -75,7 +75,7 @@ if (isset($_POST['add'])) {
             'PluginDatabaseinventoryComputerGroupStatic',
             4,
             'inventory',
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $computergroupstatic::getTypeName(0)),
+            sprintf(__s('%1$s adds the item %2$s'), $_SESSION['glpiname'], $computergroupstatic::getTypeName(0)),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -94,7 +94,7 @@ if (isset($_POST['add'])) {
             4,
             'inventory',
             //TRANS: %s is the user login
-            sprintf(__('%s purges an item'), $_SESSION['glpiname']),
+            sprintf(__s('%s purges an item'), $_SESSION['glpiname']),
         );
     }
     $computergroup->redirectToList();
@@ -108,7 +108,7 @@ if (isset($_POST['add'])) {
         4,
         'inventory',
         //TRANS: %s is the user login
-        sprintf(__('%s updates an item'), $_SESSION['glpiname']),
+        sprintf(__s('%s updates an item'), $_SESSION['glpiname']),
     );
     Html::back();
 } else {

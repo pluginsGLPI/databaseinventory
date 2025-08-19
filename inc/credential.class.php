@@ -80,7 +80,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Credential', 'Credentials', $nb, 'databaseinventory');
+        return _sn('Credential', 'Credentials', $nb, 'databaseinventory');
     }
 
     public function rawSearchOptions()
@@ -91,7 +91,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
             'id'            => '2',
             'table'         => $this->getTable(),
             'field'         => 'id',
-            'name'          => __('ID'),
+            'name'          => __s('ID'),
             'massiveaction' => false, // implicit field is id
             'datatype'      => 'number',
         ];
@@ -100,7 +100,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
             'id'       => '3',
             'table'    => $this->getTable(),
             'field'    => 'login',
-            'name'     => __('Login'),
+            'name'     => __s('Login'),
             'datatype' => 'text',
         ];
 
@@ -108,7 +108,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
             'id'       => '4',
             'table'    => $this->getTable(),
             'field'    => 'port',
-            'name'     => __('Port'),
+            'name'     => __s('Port'),
             'datatype' => 'number',
         ];
 
@@ -116,7 +116,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
             'id'       => '5',
             'table'    => $this->getTable(),
             'field'    => 'socket',
-            'name'     => __('Socket'),
+            'name'     => __s('Socket'),
             'datatype' => 'text',
         ];
 
@@ -124,7 +124,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
             'id'       => '6',
             'table'    => PluginDatabaseinventoryCredentialType::getTable(),
             'field'    => 'name',
-            'name'     => _n('Type', 'Types', 1),
+            'name'     => _sn('Type', 'Types', 1),
             'datatype' => 'dropdown',
         ];
 

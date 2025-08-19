@@ -89,7 +89,7 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Computer Group', 'Computers Group', $nb, 'databaseinventory');
+        return _sn('Computer Group', 'Computers Group', $nb, 'databaseinventory');
     }
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)

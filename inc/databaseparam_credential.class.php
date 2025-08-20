@@ -72,24 +72,24 @@ class PluginDatabaseinventoryDatabaseParam_Credential extends CommonDBRelation
 
     public static $rightname = 'database_inventory';
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public function canCreateItem()
+    public function canCreateItem(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Credential', 'Credentials', $nb, 'databaseinventory');
+        return _sn('Credential', 'Credentials', $nb, 'databaseinventory');
     }
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)

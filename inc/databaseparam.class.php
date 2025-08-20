@@ -65,15 +65,15 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Database params', 'Databases params', $nb, 'databaseinventory');
+        return _sn('Database params', 'Databases params', $nb, 'databaseinventory');
     }
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
@@ -86,7 +86,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
             'id'            => '2',
             'table'         => $this->getTable(),
             'field'         => 'id',
-            'name'          => __('ID'),
+            'name'          => __s('ID'),
             'massiveaction' => false, // implicit field is id
             'datatype'      => 'number',
         ];
@@ -95,7 +95,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
             'id'       => '3',
             'table'    => $this->getTable(),
             'field'    => 'is_active',
-            'name'     => __('Active'),
+            'name'     => __s('Active'),
             'datatype' => 'bool',
         ];
 
@@ -103,7 +103,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
             'id'       => '4',
             'table'    => $this->getTable(),
             'field'    => 'partial_inventory',
-            'name'     => __('Partial inventory', 'databaseinventory'),
+            'name'     => __s('Partial inventory', 'databaseinventory'),
             'datatype' => 'bool',
         ];
 
@@ -111,7 +111,7 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
             'id'       => '5',
             'table'    => $this->getTable(),
             'field'    => 'execution_delay',
-            'name'     => __('Execution frequency for partial inventory', 'databaseinventory'),
+            'name'     => __s('Execution frequency for partial inventory', 'databaseinventory'),
             'datatype' => 'number',
             'min'      => 0,
             'max'      => 24,

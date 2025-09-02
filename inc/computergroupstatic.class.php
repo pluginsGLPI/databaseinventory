@@ -149,13 +149,13 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/computergroupstatic.html.twig',
             [
-                'item'             => PluginDatabaseinventoryDatabaseParam::getById($ID),
-                'computerslist'    => $listofcomputers,
-                'groupstaticclass' => PluginDatabaseinventoryComputerGroupStatic::class,
-                'canread'          => $computergroup->can($ID, READ),
-                'canedit'          => $computergroup->can($ID, UPDATE),
-                'canadd'           => $computergroup->canAddItem('itemtype'),
-                'used'             => $used,
+                'item'              => PluginDatabaseinventoryComputerGroup::getById($ID),
+                'computerslist'     => $listofcomputers,
+                'groupstaticclass'  => PluginDatabaseinventoryComputerGroupStatic::class,
+                'canread'           => $computergroup->can($ID, READ),
+                'canedit'           => $computergroup->can($ID, UPDATE),
+                'canadd'            => $computergroup->canAddItem('itemtype'),
+                'used'              => $used,
             ],
         );
 

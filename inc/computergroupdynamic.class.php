@@ -160,7 +160,6 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
     {
         $search_params = Search::manageParams('Computer', unserialize($this->fields['search']));
         $data          = Search::prepareDatasForSearch('Computer', $search_params);
-
         Search::constructSQL($data);
         Search::constructData($data);
         $count = $data['data']['totalcount'];

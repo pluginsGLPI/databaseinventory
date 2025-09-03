@@ -178,16 +178,15 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
             'value'      => $computer->fields['id'],
         ];
 
-        $bkp_glpi_name = $_SESSION['glpiname'];
-        $_SESSION['glpiname'] = 'databaseinventory_plugin';
-
+        if (!isset($_SESSION['glpiname'])) {
+            Session::start();
+            $_SESSION['glpiname'] = 'databaseinventory_plugin';
+        }
         $search_params = Search::manageParams('Computer', $search);
         $data          = Search::prepareDatasForSearch('Computer', $search_params);
         Search::constructSQL($data);
         Search::constructData($data);
         $count = $data['data']['totalcount'];
-
-        $_SESSION['glpiname'] = $bkp_glpi_name;
 
         return $count;
     }

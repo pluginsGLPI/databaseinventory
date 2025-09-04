@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [UNRELEASE]
 
+### Fixed
+
+- Fix `Undefined array key "glpiname"` during database inventory task.
+
 ## [1.0.3] - 2025-07-10
 
 ### Fixed

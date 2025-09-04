@@ -64,7 +64,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
             ],
             'WHERE' => [
                 $credential_type_table . '.id'  => PluginDatabaseinventoryCredentialType::getModuleKeyByName($content->use),
-                $databaseparam_credential_table . '.plugin_databaseinventory_credentials_id' => $content->params_id,
+                $databaseparam_credential_table . '.plugin_databaseinventory_databaseparams_id' => $content->params_id,
             ],
         ];
 

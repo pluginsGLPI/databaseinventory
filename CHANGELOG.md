@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [UNRELEASE]
 
+## [1.0.4] - 2025-09-04
+
 ### Fixed
 
 - Fix foreign key constraint in SQL query.

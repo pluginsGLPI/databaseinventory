@@ -34,15 +34,15 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Dynamic group', 'Dynamic groups', $nb, 'databaseinventory');
+        return _sn('Dynamic group', 'Dynamic groups', $nb, 'databaseinventory');
     }
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }

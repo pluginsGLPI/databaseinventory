@@ -42,9 +42,7 @@ Session::checkRight("database_inventory", PluginDatabaseinventoryProfile::RUN_DA
 if (isset($_POST['action']) && isset($_POST['id'])) {
     $agent = new Agent();
     if (!$agent->getFromDB($_POST['id'])) {
-        Response::sendError(404, 'Unable to load agent #' . $_POST['id']);
-
-        return;
+        throw new \Glpi\Exception\Http\NotFoundHttpException();
     };
     $answer = [];
 

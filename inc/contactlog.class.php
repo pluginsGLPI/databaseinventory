@@ -63,24 +63,24 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
     public $dohistory        = true;
     public static $rightname = 'database_inventory';
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canUpdate()
+    public static function canUpdate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Contact log', 'Contact logs', $nb, 'databaseinventory');
+        return _sn('Contact log', 'Contact logs', $nb, 'databaseinventory');
     }
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)

@@ -32,7 +32,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
 {
     public static function getMenuName()
     {
-        return __('Database Inventory', 'databaseinventory');
+        return __s('Database Inventory', 'databaseinventory');
     }
 
     public static function getMenuContent()

@@ -36,7 +36,7 @@ class PluginDatabaseinventoryProfile extends Profile
 
     public static function getTypeName($nb = 0)
     {
-        return __('Database Inventory', 'databaseinventory');
+        return __s('Database Inventory', 'databaseinventory');
     }
 
     private static function getAllRights($all = false)
@@ -47,13 +47,13 @@ class PluginDatabaseinventoryProfile extends Profile
                 'label'     => PluginDatabaseinventoryProfile::getTypeName(),
                 'field'     => 'database_inventory',
                 'rights'    => [
-                    CREATE  => __('Create'),
-                    READ    => __('Read'),
-                    UPDATE  => __('Update'),
-                    PURGE   => ['short' => __('Purge'),
+                    CREATE  => __s('Create'),
+                    READ    => __s('Read'),
+                    UPDATE  => __s('Update'),
+                    PURGE   => ['short' => __s('Purge'),
                         'long'  => _x('button', 'Delete permanently'),
                     ],
-                    self::RUN_DATABSE_INVENTORY => __("Run database inventory", "databaseinventory"),
+                    self::RUN_DATABSE_INVENTORY => __s("Run database inventory", "databaseinventory"),
                 ],
             ],
         ];
@@ -64,7 +64,7 @@ class PluginDatabaseinventoryProfile extends Profile
     public function getRights($interface = 'central')
     {
         $rights = parent::getRights();
-        $rights[self::RUN_DATABSE_INVENTORY] = __("Run database inventory", "databaseinventory");
+        $rights[self::RUN_DATABSE_INVENTORY] = __s("Run database inventory", "databaseinventory");
         return $rights;
     }
 

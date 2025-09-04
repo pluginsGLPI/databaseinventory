@@ -35,7 +35,7 @@ Session::checkLoginUser();
 global $CFG_GLPI;
 
 Html::header(
-    __('Database Inventory', 'databaseinventory'),
+    __s('Database Inventory', 'databaseinventory'),
     $_SERVER['PHP_SELF'],
     'admin',
     'PluginDatabaseInventoryMenu',
@@ -44,7 +44,7 @@ Html::header(
 if (PluginDatabaseinventoryDatabaseParam::canView()) {
     echo "<div class='center'>";
     echo "<table class='tab_cadre'>";
-    echo "<tr><th colspan='2'>" . __('Database Inventory', 'databaseinventory') . '</th></tr>';
+    echo "<tr><th colspan='2'>" . __s('Database Inventory', 'databaseinventory') . '</th></tr>';
 
     echo "<tr class='tab_bg_1 center'>";
     echo "<td><i class='fas fa-cog'></i></td>";
@@ -68,7 +68,7 @@ if (PluginDatabaseinventoryDatabaseParam::canView()) {
     echo '</table></div>';
 } else {
     echo "<div class='center'><br><br><img src=\"" . $CFG_GLPI['root_doc'] . '/pics/warning.png" alt="warning"><br><br>';
-    echo '<b>' . __('Access denied') . '</b></div>';
+    echo '<b>' . __s('Access denied') . '</b></div>';
 }
 
 Html::footer();

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [UNRELEASE]
 
+### Fixed
+
+- Fix `Undefined array key "id"` when computer not already linkedo agent
+
 ## [1.0.4] - 2025-09-04
 
 ### Fixed

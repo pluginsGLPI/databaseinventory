@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-29 15:39+0200\n"
+"POT-Creation-Date: 2025-09-23 00:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,44 +42,18 @@ msgstr ""
 msgid "Execution delay"
 msgstr ""
 
-#: inc/databaseparam_computergroup.class.php:92 inc/computergroup.class.php:68
-msgid "Computer Group"
-msgid_plural "Computers Group"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/contactlog.class.php:83
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/computergroupdynamic.class.php:37
-msgid "Dynamic group"
-msgid_plural "Dynamic groups"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/profile.class.php:39 inc/menu.class.php:35 setup.php:91
-#: front/menu.php:38 front/menu.php:47
+#: setup.php:91 front/menu.php:38 front/menu.php:47 inc/profile.class.php:39
+#: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr ""
 
-#: inc/profile.class.php:56 inc/profile.class.php:67
-msgid "Run database inventory"
+#: hook.php:96
+msgid "Run partial databases inventory"
 msgstr ""
 
-#: inc/credential.class.php:83 inc/databaseparam_credential.class.php:92
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/computergroupstatic.class.php:77
-msgid "Static group"
-msgid_plural "Static groups"
-msgstr[0] ""
-msgstr[1] ""
+#: front/computergroup.form.php:67
+msgid "Please select a computer"
+msgstr ""
 
 #: inc/inventoryaction.class.php:44
 msgid "Run"
@@ -106,6 +80,18 @@ msgstr ""
 #: inc/inventoryaction.class.php:180
 msgid "Ask agent to proceed a database inventory"
 msgstr ""
+
+#: inc/contactlog.class.php:83
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/databaseparam_credential.class.php:92 inc/credential.class.php:83
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] ""
+msgstr[1] ""
 
 #: inc/credentialtype.class.php:76
 msgid "Credential type"
@@ -141,6 +127,38 @@ msgstr ""
 msgid "MongoDB"
 msgstr ""
 
+#: inc/profile.class.php:56 inc/profile.class.php:67
+msgid "Run database inventory"
+msgstr ""
+
+#: inc/computergroupstatic.class.php:77
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/databaseparam.class.php:68
+msgid "Database params"
+msgid_plural "Databases params"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/databaseparam.class.php:106
+msgid "Partial inventory"
+msgstr ""
+
+#: inc/computergroupdynamic.class.php:37
+msgid "Dynamic group"
+msgid_plural "Dynamic groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/databaseparam_computergroup.class.php:92 inc/computergroup.class.php:68
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] ""
+msgstr[1] ""
+
 #: inc/computergroup.class.php:117
 msgid "Number of dynamic items"
 msgstr ""
@@ -155,22 +173,4 @@ msgstr ""
 
 #: inc/computergroup.class.php:158
 msgid "List of static items"
-msgstr ""
-
-#: inc/databaseparam.class.php:68
-msgid "Database params"
-msgid_plural "Databases params"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/databaseparam.class.php:106
-msgid "Partial inventory"
-msgstr ""
-
-#: hook.php:96
-msgid "Run partial databases inventory"
-msgstr ""
-
-#: front/computergroup.form.php:67
-msgid "Please select a computer"
 msgstr ""

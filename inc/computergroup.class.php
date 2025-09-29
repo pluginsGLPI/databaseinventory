@@ -65,15 +65,15 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Computer Group', 'Computers Group', $nb, 'databaseinventory');
+        return _sn('Computer Group', 'Computers Group', $nb, 'databaseinventory');
     }
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
@@ -97,7 +97,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
             'id'            => '2',
             'table'         => $this->getTable(),
             'field'         => 'id',
-            'name'          => __('ID'),
+            'name'          => __s('ID'),
             'massiveaction' => false, // implicit field is id
             'datatype'      => 'number',
         ];
@@ -106,7 +106,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
             'id'       => '3',
             'table'    => $this->getTable(),
             'field'    => 'comment',
-            'name'     => __('Comment'),
+            'name'     => __s('Comment'),
             'datatype' => 'text',
         ];
 
@@ -114,7 +114,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
             'id'               => '5',
             'table'            => PluginDatabaseinventoryComputerGroupDynamic::getTable(),
             'field'            => 'search',
-            'name'             => __('Number of dynamic items', 'databaseinventory'),
+            'name'             => __s('Number of dynamic items', 'databaseinventory'),
             'nosearch'         => true,
             'massiveaction'    => false,
             'forcegroupby'     => true,
@@ -127,7 +127,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
             'id'            => '6',
             'table'         => PluginDatabaseinventoryComputerGroupStatic::getTable(),
             'field'         => 'id',
-            'name'          => __('Number of static items', 'databaseinventory'),
+            'name'          => __s('Number of static items', 'databaseinventory'),
             'forcegroupby'  => true,
             'usehaving'     => true,
             'nosearch'      => true,
@@ -140,7 +140,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
             'id'               => '7',
             'table'            => PluginDatabaseinventoryComputerGroupDynamic::getTable(),
             'field'            => '_virtual_dynamic_list',
-            'name'             => __('List of dynamic items', 'databaseinventory'),
+            'name'             => __s('List of dynamic items', 'databaseinventory'),
             'massiveaction'    => false,
             'forcegroupby'     => true,
             'nosearch'         => true,
@@ -155,7 +155,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
             'table'         => Computer::getTable(),
             'field'         => 'name',
             'datatype'      => 'itemlink',
-            'name'          => __('List of static items', 'databaseinventory'),
+            'name'          => __s('List of static items', 'databaseinventory'),
             'forcegroupby'  => true,
             'massiveaction' => false,
             'joinparams'    => [

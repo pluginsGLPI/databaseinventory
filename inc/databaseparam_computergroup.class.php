@@ -72,24 +72,24 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
 
     public static $rightname = 'database_inventory';
 
-    public static function canCreate()
+    public static function canCreate(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public function canCreateItem()
+    public function canCreateItem(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
-    public static function canPurge()
+    public static function canPurge(): bool
     {
         return Session::haveRight(static::$rightname, UPDATE);
     }
 
     public static function getTypeName($nb = 0)
     {
-        return _n('Computer Group', 'Computers Group', $nb, 'databaseinventory');
+        return _sn('Computer Group', 'Computers Group', $nb, 'databaseinventory');
     }
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)

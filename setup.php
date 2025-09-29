@@ -28,12 +28,13 @@
  * -------------------------------------------------------------------------
  */
 
-define('PLUGIN_DATABASEINVENTORY_VERSION', '1.0.4');
+use function Safe\define;
 
+define('PLUGIN_DATABASEINVENTORY_VERSION', '1.1.0');
 // Minimal GLPI version, inclusive
-define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '10.0.0');
+define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '11.0.0');
 // Maximum GLPI version, exclusive
-define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '10.0.99');
+define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '11.0.99');
 
 /**
  * Init hooks of the plugin.
@@ -88,7 +89,7 @@ function plugin_init_databaseinventory()
 function plugin_version_databaseinventory()
 {
     return [
-        'name'         => __('Database Inventory', 'databaseinventory'),
+        'name'         => __s('Database Inventory', 'databaseinventory'),
         'version'      => PLUGIN_DATABASEINVENTORY_VERSION,
         'author'       => '<a href="https://services.glpi-network.com">Teclib\'</a>',
         'license'      => 'GPL v3',

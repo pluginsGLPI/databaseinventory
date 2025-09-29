@@ -30,8 +30,6 @@
 
 use Glpi\Event;
 
-include('../../../inc/includes.php');
-
 Session::checkRight('config', READ);
 
 if (!isset($_GET['id'])) {
@@ -53,7 +51,7 @@ if (isset($_POST['add'])) {
             'PluginDatabaseinventoryCredential',
             4,
             'inventory',
-            sprintf(__('%1$s adds the item %2$s'), $_SESSION['glpiname'], $_POST['name']),
+            sprintf(__s('%1$s adds the item %2$s'), $_SESSION['glpiname'], $_POST['name']),
         );
 
         if ($_SESSION['glpibackcreated']) {
@@ -71,7 +69,7 @@ if (isset($_POST['add'])) {
             4,
             'inventory',
             //TRANS: %s is the user login
-            sprintf(__('%s purges an item'), $_SESSION['glpiname']),
+            sprintf(__s('%s purges an item'), $_SESSION['glpiname']),
         );
     }
     $credential->redirectToList();
@@ -85,7 +83,7 @@ if (isset($_POST['add'])) {
         4,
         'inventory',
         //TRANS: %s is the user login
-        sprintf(__('%s updates an item'), $_SESSION['glpiname']),
+        sprintf(__s('%s updates an item'), $_SESSION['glpiname']),
     );
     Html::back();
 } else {

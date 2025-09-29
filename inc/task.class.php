@@ -138,7 +138,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
         $database_param_found = [];
 
         // only Computer type
-        if (get_class($computer) == Computer::getType()) {
+        if (get_class($computer) == Computer::getType() && !$computer->isNewItem()) {
             $database_param_table               = PluginDatabaseinventoryDatabaseParam::getTable() ;
             $database_param_computergroup_table = PluginDatabaseinventoryDatabaseParam_ComputerGroup::getTable();
             $computer_group_static_table        = PluginDatabaseinventoryComputerGroupStatic::getTable();

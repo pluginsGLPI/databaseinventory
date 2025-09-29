@@ -29,7 +29,6 @@
  */
 
 use Glpi\Asset\Asset_PeripheralAsset;
-use GuzzleHttp\Psr7\Response;
 
 class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 {
@@ -69,7 +68,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                         }
                     } else {
                         $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
-                        $ma->addMessage(__s('Agent not found for computer', 'databaseinventory') . "<a href='" . \Computer::getFormURLWithID($id) . "'>" . $computer->getFriendlyName() . '</a>');
+                        $ma->addMessage(__s('Agent not found for computer', 'databaseinventory') . "<a href='" . Computer::getFormURLWithID($id) . "'>" . $computer->getFriendlyName() . '</a>');
                     }
                 }
                 break;
@@ -151,7 +150,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
             ]);
             if ($has_relation) {
                 $has_agent = $agent->getFromDBByCrit([
-                    'itemtype' => \Computer::getType(),
+                    'itemtype' => Computer::getType(),
                     'items_id' => $citem->fields['computers_id'],
                 ]);
             }
@@ -176,20 +175,17 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
         /** @var array $CFG_GLPI */
         global $CFG_GLPI;
 
-        if ($item::getType() == Computer::getType()) {
-            if ($agent = self::findAgent($item)) {
-                $out = '<div class="mb-3 col-12 col-sm-6">';
-                $out .= '<label class="form-label" >' . __s('Request database inventory', 'database inventory');
-                $out .= '<i id="request_database_inventory" class="fas fa-sync" style="cursor: pointer;" title="' . __s('Ask agent to proceed a database inventory', 'databaseinventory') . '"></i>';
-                $out .= '</label>';
-                $out .= '<span id="database_inventory_status">' . __s('Unknown') . '</span>';
-                $out .= '</div>';
-
-                echo $out;
-
-                $url = $CFG_GLPI['url_base'] . '/plugins/databaseinventory/ajax/agent.php';
-                $key = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
-                $js  = <<<JAVASCRIPT
+        if ($item::getType() == Computer::getType() && $agent = self::findAgent($item)) {
+            $out = '<div class="mb-3 col-12 col-sm-6">';
+            $out .= '<label class="form-label" >' . __s('Request database inventory', 'database inventory');
+            $out .= '<i id="request_database_inventory" class="fas fa-sync" style="cursor: pointer;" title="' . __s('Ask agent to proceed a database inventory', 'databaseinventory') . '"></i>';
+            $out .= '</label>';
+            $out .= '<span id="database_inventory_status">' . __s('Unknown') . '</span>';
+            $out .= '</div>';
+            echo $out;
+            $url = $CFG_GLPI['url_base'] . '/plugins/databaseinventory/ajax/agent.php';
+            $key = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
+            $js  = <<<JAVASCRIPT
                     $(function() {
                         $('#request_database_inventory').on('click', function() {
                             var icon = $(this);
@@ -207,8 +203,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                         });
                     });
 JAVASCRIPT;
-                echo Html::scriptBlock($js);
-            }
+            echo Html::scriptBlock($js);
         }
     }
 }

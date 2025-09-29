@@ -30,8 +30,6 @@
 
 use Glpi\Event;
 
-include('../../../inc/includes.php');
-
 Session::checkRight('config', READ);
 
 if (!isset($_GET['id'])) {
@@ -119,10 +117,10 @@ if (isset($_POST['add'])) {
     if (isset($_GET['save'])) {
         $input  = ['plugin_databaseinventory_computergroups_id' => $_GET['plugin_databaseinventory_computergroups_id']];
         $search = serialize([
-            'is_deleted'   => isset($_GET['is_deleted']) ? $_GET['is_deleted'] : 0 ,
-            'as_map'       => isset($_GET['as_map']) ? $_GET['as_map'] : 0,
+            'is_deleted'   => $_GET['is_deleted'] ?? 0 ,
+            'as_map'       => $_GET['as_map'] ?? 0,
             'criteria'     => $_GET['criteria'],
-            'metacriteria' => isset($_GET['metacriteria']) ? $_GET['metacriteria'] : [],
+            'metacriteria' => $_GET['metacriteria'] ?? [],
         ]);
 
         if (!$computergroup_dynamic->getFromDBByCrit($input)) {

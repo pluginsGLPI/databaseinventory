@@ -28,6 +28,10 @@
  * -------------------------------------------------------------------------
  */
 
+use function Safe\preg_match;
+use function Safe\preg_replace;
+use function Safe\preg_split;
+
 class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 {
     public static $rightname = 'database_inventory';
@@ -74,22 +78,20 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         switch ($field) {
             case 'search':
                 $count = 0;
-                if (isset($values['id'])) {
-                    if (strpos($values['id'], Search::NULLVALUE) === false) {
-                        $computergroup_dynamic = new PluginDatabaseinventoryComputerGroupDynamic();
-                        $computergroup_dynamic->getFromDB($values['id']);
-                        $count = $computergroup_dynamic->countDynamicItems();
-                    }
+                if (isset($values['id']) && !str_contains($values['id'], Search::NULLVALUE)) {
+                    $computergroup_dynamic = new PluginDatabaseinventoryComputerGroupDynamic();
+                    $computergroup_dynamic->getFromDB($values['id']);
+                    $count = $computergroup_dynamic->countDynamicItems();
                 }
 
-                return  ($count) ? $count : ' 0 ';
+                return  $count ?: ' 0 ';
 
             case '_virtual_dynamic_list':
                 /** @var array $CFG_GLPI */
                 global $CFG_GLPI;
                 $value = ' ';
                 $out   = ' ';
-                if (strpos($values['id'], Search::NULLVALUE) === false) {
+                if (!str_contains($values['id'], Search::NULLVALUE)) {
                     $search_params = Search::manageParams('Computer', unserialize($values['search']));
                     $data          = Search::prepareDatasForSearch('Computer', $search_params);
                     Search::constructSQL($data);
@@ -101,7 +103,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                     }
                 }
 
-                if (!preg_match('/' . Search::LBHR . '/', $value)) {
+                if (preg_match('/' . Search::LBHR . '/', $value) === 0) {
                     $values         = preg_split('/' . Search::LBBR . '/i', $value);
                     $line_delimiter = '<br>';
                 } else {

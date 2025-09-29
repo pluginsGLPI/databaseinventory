@@ -28,6 +28,8 @@
  * -------------------------------------------------------------------------
  */
 
+use function Safe\define;
+
 define('PLUGIN_DATABASEINVENTORY_VERSION', '1.1.0-beta4');
 // Minimal GLPI version, inclusive
 define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '11.0.0');

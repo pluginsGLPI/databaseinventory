@@ -28,7 +28,6 @@
  * -------------------------------------------------------------------------
  */
 
-include('../../../inc/includes.php');
 Session::checkLoginUser();
 
 /** @var array $CFG_GLPI */

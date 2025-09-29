@@ -224,7 +224,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
                 ],
             ];
 
-            if (!empty($database_param_found)) {
+            if ($database_param_found !== []) {
                 $criteria['WHERE'] = [
                     $database_param_table . '.is_active' => 1,
                     ['NOT'                               => [$database_param_table . '.id' => $database_param_found]], //no need to look for what is already found
@@ -241,10 +241,8 @@ class PluginDatabaseinventoryTask extends CommonGLPI
             foreach ($iterator as $data) {
                 $dynamic_group = new PluginDatabaseinventoryComputerGroupDynamic();
                 $dynamic_group->getFromDB($data['id']);
-                if ($dynamic_group->isDynamicSearchMatchComputer($computer)) {
-                    if (!in_array($data['database_param_id'], $database_param_found)) {
-                        $database_param_found[] = $data['database_param_id'];
-                    }
+                if ($dynamic_group->isDynamicSearchMatchComputer($computer) && !in_array($data['database_param_id'], $database_param_found)) {
+                    $database_param_found[] = $data['database_param_id'];
                 }
             }
         }

@@ -28,10 +28,12 @@
  * -------------------------------------------------------------------------
  */
 
-use Glpi\Http\Response;
+use Glpi\Exception\Http\NotFoundHttpException;
+
+use function Safe\json_encode;
 
 $AJAX_INCLUDE = 1;
-include('../../../inc/includes.php');
+include(__DIR__ . '/../../../inc/includes.php');
 header('Content-Type: application/json; charset=UTF-8');
 Html::header_nocache();
 
@@ -42,7 +44,7 @@ Session::checkRight("database_inventory", PluginDatabaseinventoryProfile::RUN_DA
 if (isset($_POST['action']) && isset($_POST['id'])) {
     $agent = new Agent();
     if (!$agent->getFromDB($_POST['id'])) {
-        throw new \Glpi\Exception\Http\NotFoundHttpException();
+        throw new NotFoundHttpException();
     };
     $answer = [];
 

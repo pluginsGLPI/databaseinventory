@@ -181,7 +181,6 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         ];
 
         if (!isset($_SESSION['glpiname'])) {
-            Session::start();
             $_SESSION['glpiname'] = 'databaseinventory_plugin';
         }
         $search_params = Search::manageParams('Computer', $search);

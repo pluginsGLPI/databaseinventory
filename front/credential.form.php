@@ -58,6 +58,7 @@ if (isset($_POST['add'])) {
             Html::redirect($credential->getLinkURL());
         }
     }
+
     Html::back();
 } elseif (isset($_POST['purge'])) {
     // purge a credential
@@ -72,6 +73,7 @@ if (isset($_POST['add'])) {
             sprintf(__s('%s purges an item'), $_SESSION['glpiname']),
         );
     }
+
     $credential->redirectToList();
 } elseif (isset($_POST['update'])) {
     // update a credential
@@ -95,5 +97,6 @@ if (isset($_POST['add'])) {
     } else {
         $credential->display($_GET);
     }
+
     Html::footer();
 }

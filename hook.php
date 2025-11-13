@@ -53,6 +53,7 @@ function plugin_databaseinventory_install()
             }
         }
     }
+
     $migration->executeMigration();
 
     return true;
@@ -79,6 +80,7 @@ function plugin_databaseinventory_uninstall()
             }
         }
     }
+
     $migration->executeMigration();
 
     return true;

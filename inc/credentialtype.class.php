@@ -35,10 +35,15 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
     public static $rightname = 'dropdown';
 
     private const MYSQL       = 1;
+
     private const ORACLE      = 2;
+
     private const DB2         = 3;
+
     private const MSSQL       = 4;
+
     private const POSTGRE_SQL = 5;
+
     private const MONGO_DB    = 6;
 
     public static function canCreate(): bool
@@ -90,38 +95,28 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
 
     public static function getModuleKeyById($credential_type_id)
     {
-        switch ($credential_type_id) {
-            case self::MYSQL:
-                return 'mysql';
-            case self::ORACLE:
-                return 'oracle';
-            case self::DB2:
-                return 'db2';
-            case self::MSSQL:
-                return 'mssql';
-            case self::POSTGRE_SQL:
-                return 'postgresql';
-            case self::MONGO_DB:
-                return 'mongodb';
-        }
+        return match ($credential_type_id) {
+            self::MYSQL => 'mysql',
+            self::ORACLE => 'oracle',
+            self::DB2 => 'db2',
+            self::MSSQL => 'mssql',
+            self::POSTGRE_SQL => 'postgresql',
+            self::MONGO_DB => 'mongodb',
+            default => null,
+        };
     }
 
     public static function getModuleKeyByName($credential_type)
     {
-        switch ($credential_type) {
-            case 'mysql':
-                return self::MYSQL;
-            case 'oracle':
-                return self::ORACLE;
-            case 'db2':
-                return self::DB2;
-            case 'mssql':
-                return self::MSSQL;
-            case 'postgresql':
-                return self::POSTGRE_SQL;
-            case 'mongodb':
-                return self::MONGO_DB;
-        }
+        return match ($credential_type) {
+            'mysql' => self::MYSQL,
+            'oracle' => self::ORACLE,
+            'db2' => self::DB2,
+            'mssql' => self::MSSQL,
+            'postgresql' => self::POSTGRE_SQL,
+            'mongodb' => self::MONGO_DB,
+            default => null,
+        };
     }
 
     public static function install(Migration $migration)
@@ -138,9 +133,9 @@ class PluginDatabaseinventoryCredentialType extends CommonDropdown
             // PluginDatabaseinventoryCredentialType was named PluginDatabaseinventoryCredential_Type prior to v1.0.0
             $migration->renameTable('glpi_plugin_databaseinventory_credentials_types', $table);
         } elseif (!$DB->tableExists($table)) {
-            $migration->displayMessage("Installing $table");
+            $migration->displayMessage('Installing ' . $table);
             $query = <<<SQL
-                CREATE TABLE IF NOT EXISTS `$table` (
+                CREATE TABLE IF NOT EXISTS `{$table}` (
                     `id` int {$default_key_sign} NOT NULL auto_increment,
                     `name` varchar(255) default NULL,
                     `comment` text,

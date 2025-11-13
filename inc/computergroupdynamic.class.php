@@ -75,6 +75,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         if (!is_array($values)) {
             $values = [$field => $values];
         }
+
         switch ($field) {
             case 'search':
                 $count = 0;
@@ -91,7 +92,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                 global $CFG_GLPI;
                 $value = ' ';
                 $out   = ' ';
-                if (!str_contains($values['id'], Search::NULLVALUE)) {
+                if (!str_contains((string) $values['id'], Search::NULLVALUE)) {
                     $search_params = Search::manageParams('Computer', unserialize($values['search']));
                     $data          = Search::prepareDatasForSearch('Computer', $search_params);
                     Search::constructSQL($data);
@@ -120,6 +121,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                     foreach ($values as $v) {
                         $value .= $v . $line_delimiter;
                     }
+
                     $value  = preg_replace('/' . Search::LBBR . '/', '<br>', $value);
                     $value  = preg_replace('/' . Search::LBHR . '/', '<hr>', $value);
                     $value  = '<div class="fup-popup">' . $value . '</div>';
@@ -147,12 +149,8 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
-        if ($item instanceof PluginDatabaseinventoryComputerGroup) {
-            switch ($tabnum) {
-                case 1:
-                    self::showForItem($item);
-                    break;
-            }
+        if ($item instanceof PluginDatabaseinventoryComputerGroup && $tabnum === 1) {
+            self::showForItem($item);
         }
 
         return true;
@@ -164,9 +162,8 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         $data          = Search::prepareDatasForSearch('Computer', $search_params);
         Search::constructSQL($data);
         Search::constructData($data);
-        $count = $data['data']['totalcount'];
 
-        return $count;
+        return $data['data']['totalcount'];
     }
 
     public function isDynamicSearchMatchComputer(Computer $computer)
@@ -183,13 +180,13 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         if (!isset($_SESSION['glpiname'])) {
             $_SESSION['glpiname'] = 'databaseinventory_plugin';
         }
+
         $search_params = Search::manageParams('Computer', $search);
         $data          = Search::prepareDatasForSearch('Computer', $search_params);
         Search::constructSQL($data);
         Search::constructData($data);
-        $count = $data['data']['totalcount'];
 
-        return $count;
+        return $data['data']['totalcount'];
     }
 
     private static function showForItem(PluginDatabaseinventoryComputerGroup $computergroup)
@@ -204,16 +201,16 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
             $firsttime = true;
             // load dynamic search criteria from DB if exist
             $computergroup_dynamic = new self();
-            if (
-                $computergroup_dynamic->getFromDBByCrit([
-                    'plugin_databaseinventory_computergroups_id' => $ID,
-                ])
-            ) {
-                $p         = $search_params = Search::manageParams('Computer', unserialize($computergroup_dynamic->fields['search']));
+            if ($computergroup_dynamic->getFromDBByCrit([
+                'plugin_databaseinventory_computergroups_id' => $ID,
+            ])) {
+                $p = Search::manageParams('Computer', unserialize($computergroup_dynamic->fields['search']));
+                $search_params = $p;
                 $firsttime = false;
             } else {
                 // retrieve filter value from search if exist and reset it
-                $p = $search_params = Search::manageParams('Computer', $_GET);
+                $p = Search::manageParams('Computer', $_GET);
+                $search_params = $p;
                 if (isset($_SESSION['glpisearch']['Computer'])) {
                     unset($_SESSION['glpisearch']['Computer']);
                 }
@@ -268,9 +265,9 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
-            $migration->displayMessage("Installing $table");
+            $migration->displayMessage('Installing ' . $table);
             $query = <<<SQL
-                CREATE TABLE IF NOT EXISTS `$table` (
+                CREATE TABLE IF NOT EXISTS `{$table}` (
                     `id` int {$default_key_sign} NOT NULL AUTO_INCREMENT,
                     `plugin_databaseinventory_computergroups_id` int {$default_key_sign} NOT NULL DEFAULT '0',
                     `search` text,

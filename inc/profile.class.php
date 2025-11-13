@@ -39,9 +39,9 @@ class PluginDatabaseinventoryProfile extends Profile
         return __s('Database Inventory', 'databaseinventory');
     }
 
-    private static function getAllRights($all = false)
+    private static function getAllRights()
     {
-        $rights = [
+        return [
             [
                 'itemtype'  => PluginDatabaseinventoryDatabaseParam::getType(),
                 'label'     => PluginDatabaseinventoryProfile::getTypeName(),
@@ -57,8 +57,6 @@ class PluginDatabaseinventoryProfile extends Profile
                 ],
             ],
         ];
-
-        return $rights;
     }
 
     public function getRights($interface = 'central')

@@ -33,7 +33,9 @@ use Glpi\Asset\Asset_PeripheralAsset;
 class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 {
     public const MA_PARTIAL        = 'partial_database_inventory';
+
     private const ENDPOINT_PARTIAL = 'now?';
+
     public static $rightname = 'database_inventory_run_inventory';
 
     public static function showMassiveActionsSubForm(MassiveAction $ma)
@@ -41,6 +43,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
         if ($ma->getAction() !== self::MA_PARTIAL) {
             return parent::showMassiveActionsSubForm($ma);
         }
+
         echo Html::submit(__s('Run', 'databaseinventory'), ['name' => 'submit']);
 
         return true;
@@ -71,6 +74,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                         $ma->addMessage(__s('Agent not found for computer', 'databaseinventory') . "<a href='" . Computer::getFormURLWithID($id) . "'>" . $computer->getFriendlyName() . '</a>');
                     }
                 }
+
                 break;
             case Agent::getType():
                 foreach ($ids as $id) {
@@ -87,6 +91,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                         $ma->addMessage(sprintf(__s('Agent %1$s not found', 'databaseinventory'), $id));
                     }
                 }
+
                 break;
         }
     }
@@ -112,25 +117,22 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                 // not authorized
                 return self::handleAgentResponse($response, $endpoint);
             }
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             if ($fromMA) {
                 return false;
             } else {
                 // not authorized
-                return ['answer' => $e->getMessage()];
+                return ['answer' => $exception->getMessage()];
             }
         }
     }
 
     public static function handleAgentResponse($response, $request): array
     {
-        $params           = [];
-        $params['answer'] = sprintf(
+        return ['answer' => sprintf(
             __s('Requested at %s', 'databaseinventory'),
             Html::convDateTime(date('Y-m-d H:i:s')),
-        );
-
-        return $params;
+        )];
     }
 
     private static function findAgent(Computer $item)
@@ -172,6 +174,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
         if (!Session::haveRight("database_inventory", PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
             return;
         }
+
         /** @var array $CFG_GLPI */
         global $CFG_GLPI;
 

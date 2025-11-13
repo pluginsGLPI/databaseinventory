@@ -61,6 +61,7 @@ use Glpi\Application\View\TemplateRenderer;
 class PluginDatabaseinventoryContactLog extends CommonDBTM
 {
     public $dohistory        = true;
+
     public static $rightname = 'database_inventory';
 
     public static function canCreate(): bool
@@ -85,7 +86,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
-        switch (get_class($item)) {
+        switch ($item::class) {
             case PluginDatabaseinventoryDatabaseParam::class:
                 $count = countElementsInTable(self::getTable(), ['plugin_databaseinventory_databaseparams_id' => $item->getID()]);
 
@@ -101,7 +102,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
-        switch (get_class($item)) {
+        switch ($item::class) {
             case (PluginDatabaseinventoryDatabaseParam::class):
                 self::showForDatabaseParams($item);
                 break;
@@ -109,6 +110,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
                 self::showForAgent($item);
                 break;
         }
+
         return true;
     }
 
@@ -134,10 +136,12 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
                 $linkcred = $credential->getLinkURL();
                 $credname = $credential->fields['name'];
             }
+
             if ($agent->getFromDB($dbpctlog['agents_id'])) {
                 $linkagent = $agent->getLinkURL();
                 $agentname = $agent->fields['name'];
             }
+
             if (isset($linkcred) || isset($linkagent)) {
                 $listofctlog[] = $dbpctlog + [
                     'linkcred'  => $linkcred  ?? '',
@@ -147,6 +151,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
                 ];
             }
         }
+
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/contactlog.html.twig',
             [
@@ -181,10 +186,12 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
                 $linkcred = $credential->getLinkURL();
                 $credname = $credential->fields['name'];
             }
+
             if ($dbparam->getFromDB($dbpctlog['plugin_databaseinventory_databaseparams_id'])) {
                 $linkdbparam = $dbparam->getLinkURL();
                 $dbparamname = $dbparam->fields['name'];
             }
+
             if (isset($linkcred)) {
                 $listofctlog[] = $dbpctlog + [
                     'linkcred'    => $linkcred,
@@ -194,6 +201,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
                 ];
             }
         }
+
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/contactlog.html.twig',
             [
@@ -217,9 +225,9 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
-            $migration->displayMessage("Installing $table");
+            $migration->displayMessage('Installing ' . $table);
             $query = <<<SQL
-                CREATE TABLE IF NOT EXISTS `$table` (
+                CREATE TABLE IF NOT EXISTS `{$table}` (
                     `id` int {$default_key_sign} NOT NULL AUTO_INCREMENT,
                     `agents_id` int {$default_key_sign} NOT NULL DEFAULT '0',
                     `plugin_databaseinventory_credentials_id` int {$default_key_sign} NOT NULL DEFAULT '0',

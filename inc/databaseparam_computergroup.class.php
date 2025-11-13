@@ -62,12 +62,17 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
 {
     // From CommonDBRelation
     public static $itemtype_1 = 'PluginDatabaseinventoryDatabaseParam';
+
     public static $items_id_1 = 'plugin_databaseinventory_databaseparams_id';
+
     public static $itemtype_2 = 'PluginDatabaseinventoryComputerGroup';
+
     public static $items_id_2 = 'plugin_databaseinventory_computergroups_id';
 
     public static $checkItem_2_Rights = self::DONT_CHECK_ITEM_RIGHTS;
+
     public static $logs_for_item_2    = false;
+
     public $auto_message_on_action    = false;
 
     public static $rightname = 'database_inventory';
@@ -105,12 +110,8 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
 
     public static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0)
     {
-        if ($item instanceof PluginDatabaseinventoryDatabaseParam) {
-            switch ($tabnum) {
-                case 1:
-                    self::showForItem($item);
-                    break;
-            }
+        if ($item instanceof PluginDatabaseinventoryDatabaseParam && $tabnum === 1) {
+            self::showForItem($item);
         }
 
         return true;
@@ -144,6 +145,7 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
                 ];
             }
         }
+
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/databaseparam_computergroup.html.twig',
             [
@@ -172,9 +174,9 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
-            $migration->displayMessage("Installing $table");
+            $migration->displayMessage('Installing ' . $table);
             $query = <<<SQL
-                CREATE TABLE IF NOT EXISTS `$table` (
+                CREATE TABLE IF NOT EXISTS `{$table}` (
                     `id` int {$default_key_sign} NOT NULL AUTO_INCREMENT,
                     `plugin_databaseinventory_databaseparams_id` int {$default_key_sign} NOT NULL DEFAULT '0',
                     `plugin_databaseinventory_computergroups_id` int {$default_key_sign} NOT NULL DEFAULT '0',

@@ -46,7 +46,7 @@ if (isset($_POST['action']) && isset($_POST['id'])) {
     if (!$agent->getFromDB($_POST['id'])) {
         throw new NotFoundHttpException();
     }
-    ;
+
     $answer = [];
 
     if ($_POST['action'] === PluginDatabaseinventoryInventoryAction::MA_PARTIAL) {

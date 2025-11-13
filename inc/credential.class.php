@@ -61,6 +61,7 @@ use Glpi\Application\View\TemplateRenderer;
 class PluginDatabaseinventoryCredential extends CommonDBTM
 {
     public $dohistory        = true;
+
     public static $rightname = 'database_inventory';
 
     public static function canCreate(): bool
@@ -159,6 +160,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
                 $input['password'] = (new GLPIKey())->encrypt($input['password']);
             }
         }
+
         if (isset($input['_blank_password'])) {
             $input['password'] = '';
         }
@@ -168,9 +170,7 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
 
     public function prepareInputForAdd($input)
     {
-        $input = $this->prepareInput($input, 'add');
-
-        return $input;
+        return $this->prepareInput($input, 'add');
     }
 
     public function prepareInputForUpdate($input)
@@ -195,9 +195,9 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
-            $migration->displayMessage("Installing $table");
+            $migration->displayMessage('Installing ' . $table);
             $query = <<<SQL
-                CREATE TABLE IF NOT EXISTS `$table` (
+                CREATE TABLE IF NOT EXISTS `{$table}` (
                     `id` int {$default_key_sign} NOT NULL AUTO_INCREMENT,
                     `name` varchar(255) DEFAULT NULL,
                     `login` varchar(255) DEFAULT NULL,

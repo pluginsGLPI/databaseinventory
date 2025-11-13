@@ -60,6 +60,7 @@ if (isset($_POST['add'])) {
             Html::redirect($databaseparam->getLinkURL());
         }
     }
+
     Html::back();
 } elseif (isset($_POST['add_credential'])) {
     // add credential
@@ -78,6 +79,7 @@ if (isset($_POST['add'])) {
             Html::redirect($databaseparam->getLinkURL());
         }
     }
+
     Html::back();
 } elseif (isset($_POST['add_computergroup'])) {
     // add computer group
@@ -96,6 +98,7 @@ if (isset($_POST['add'])) {
             Html::redirect($databaseparam->getLinkURL());
         }
     }
+
     Html::back();
 } elseif (isset($_POST['purge'])) {
     // purge a databaseparam
@@ -110,6 +113,7 @@ if (isset($_POST['add'])) {
             sprintf(__s('%s purges an item'), $_SESSION['glpiname']),
         );
     }
+
     $databaseparam->redirectToList();
 } elseif (isset($_POST['update'])) {
     // update a databaseparam
@@ -133,5 +137,6 @@ if (isset($_POST['add'])) {
     } else {
         $databaseparam->display($_GET);
     }
+
     Html::footer();
 }

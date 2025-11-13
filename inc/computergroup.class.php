@@ -61,6 +61,7 @@ use Glpi\Application\View\TemplateRenderer;
 class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 {
     public $dohistory        = true;
+
     public static $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
@@ -220,9 +221,8 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
         ];
 
         $iterator = $DB->request($params);
-        $count    = count($iterator);
 
-        return $count;
+        return count($iterator);
     }
 
     public static function install(Migration $migration)
@@ -236,9 +236,9 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
         $table = self::getTable();
         if (!$DB->tableExists($table)) {
-            $migration->displayMessage("Installing $table");
+            $migration->displayMessage('Installing ' . $table);
             $query = <<<SQL
-                CREATE TABLE IF NOT EXISTS `$table` (
+                CREATE TABLE IF NOT EXISTS `{$table}` (
                     `id` int {$default_key_sign} NOT NULL AUTO_INCREMENT,
                     `name` varchar(255) DEFAULT NULL,
                     `comment` text,

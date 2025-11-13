@@ -45,13 +45,12 @@ if (isset($_POST['action']) && isset($_POST['id'])) {
     $agent = new Agent();
     if (!$agent->getFromDB($_POST['id'])) {
         throw new NotFoundHttpException();
-    };
+    }
+    ;
     $answer = [];
 
-    switch ($_POST['action']) {
-        case PluginDatabaseinventoryInventoryAction::MA_PARTIAL:
-            $answer = PluginDatabaseinventoryInventoryAction::runPartialInventory($agent);
-            break;
+    if ($_POST['action'] === PluginDatabaseinventoryInventoryAction::MA_PARTIAL) {
+        $answer = PluginDatabaseinventoryInventoryAction::runPartialInventory($agent);
     }
 
     echo json_encode($answer);

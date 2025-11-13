@@ -59,6 +59,7 @@ if (isset($_POST['add'])) {
             Html::redirect($computergroup->getLinkURL());
         }
     }
+
     Html::back();
 } elseif (isset($_POST['add_staticcomputer'])) {
     if (!$_POST['computers_id']) {
@@ -81,6 +82,7 @@ if (isset($_POST['add'])) {
             Html::redirect($computergroup->getLinkURL());
         }
     }
+
     Html::back();
 } elseif (isset($_POST['purge'])) {
     // purge a computergroup
@@ -95,6 +97,7 @@ if (isset($_POST['add'])) {
             sprintf(__s('%s purges an item'), $_SESSION['glpiname']),
         );
     }
+
     $computergroup->redirectToList();
 } elseif (isset($_POST['update'])) {
     // update a computergroup
@@ -143,5 +146,6 @@ if (isset($_POST['add'])) {
     } else {
         $computergroup->display($_GET);
     }
+
     Html::footer();
 }

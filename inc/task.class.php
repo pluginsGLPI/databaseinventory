@@ -90,38 +90,36 @@ class PluginDatabaseinventoryTask extends CommonGLPI
          *        )
          *  )
          */
-        if (count($credential_found)) {
-            foreach ($credential_found as $crendential_id) {
-                $crendential = new PluginDatabaseinventoryCredential();
-                $crendential->getFromDB($crendential_id);
-                $data = [
-                    'id'       => $crendential->fields['id'],
-                    'type'     => $crendential->getCredentialMode(),
-                    'use'      => $content->use,
-                    'login'    => $crendential->fields['login'],
-                    'password' => (new GLPIKey())->decrypt($crendential->fields['password']),
-                ];
+        foreach ($credential_found as $crendential_id) {
+            $crendential = new PluginDatabaseinventoryCredential();
+            $crendential->getFromDB($crendential_id);
+            $data = [
+                'id'       => $crendential->fields['id'],
+                'type'     => $crendential->getCredentialMode(),
+                'use'      => $content->use,
+                'login'    => $crendential->fields['login'],
+                'password' => (new GLPIKey())->decrypt($crendential->fields['password']),
+            ];
 
-                if (!empty($crendential->fields['socket'])) {
-                    $data['socket'] = $crendential->fields['socket'];
-                }
-
-                if ($crendential->fields['port'] != 0) {
-                    $data['port'] = $crendential->fields['port'];
-                }
-
-                $params['options']['response']['credentials'][] = $data;
-
-                // store requested credentials
-                $contact_log = new PluginDatabaseinventoryContactLog();
-                $log         = [
-                    'agents_id'                                  => $agent->fields['id'],
-                    'plugin_databaseinventory_credentials_id'    => $crendential_id,
-                    'plugin_databaseinventory_databaseparams_id' => $content->params_id,
-                    'date_creation '                             => $_SESSION['glpi_currenttime'],
-                ];
-                $contact_log->add($log);
+            if (!empty($crendential->fields['socket'])) {
+                $data['socket'] = $crendential->fields['socket'];
             }
+
+            if ($crendential->fields['port'] != 0) {
+                $data['port'] = $crendential->fields['port'];
+            }
+
+            $params['options']['response']['credentials'][] = $data;
+
+            // store requested credentials
+            $contact_log = new PluginDatabaseinventoryContactLog();
+            $log         = [
+                'agents_id'                                  => $agent->fields['id'],
+                'plugin_databaseinventory_credentials_id'    => $crendential_id,
+                'plugin_databaseinventory_databaseparams_id' => $content->params_id,
+                'date_creation '                             => $_SESSION['glpi_currenttime'],
+            ];
+            $contact_log->add($log);
         }
 
         return $params;
@@ -138,7 +136,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
         $database_param_found = [];
 
         // only Computer type
-        if (get_class($computer) == Computer::getType() && !$computer->isNewItem()) {
+        if ($computer::class == Computer::getType() && !$computer->isNewItem()) {
             $database_param_table               = PluginDatabaseinventoryDatabaseParam::getTable() ;
             $database_param_computergroup_table = PluginDatabaseinventoryDatabaseParam_ComputerGroup::getTable();
             $computer_group_static_table        = PluginDatabaseinventoryComputerGroupStatic::getTable();
@@ -274,20 +272,19 @@ class PluginDatabaseinventoryTask extends CommonGLPI
          *        )
          *  )
          */
-        if (count($database_param_found)) {
-            foreach ($database_param_found as $database_params_id) {
-                $database_params = new PluginDatabaseinventoryDatabaseParam();
-                $database_params->getFromDB($database_params_id);
+        foreach ($database_param_found as $database_params_id) {
+            $database_params = new PluginDatabaseinventoryDatabaseParam();
+            $database_params->getFromDB($database_params_id);
 
-                $json              = [];
-                $json['category']  = 'database';
-                $json['use']       = $database_params->getCredentialTypeLinked();
-                $json['params_id'] = $database_params_id;
-                if ($database_params->fields['partial_inventory']) {
-                    $json['delay'] = $database_params->fields['execution_delay'];
-                }
-                $params['options']['response']['inventory']['params'][] = $json;
+            $json              = [];
+            $json['category']  = 'database';
+            $json['use']       = $database_params->getCredentialTypeLinked();
+            $json['params_id'] = $database_params_id;
+            if ($database_params->fields['partial_inventory']) {
+                $json['delay'] = $database_params->fields['execution_delay'];
             }
+
+            $params['options']['response']['inventory']['params'][] = $json;
         }
 
         return $params;

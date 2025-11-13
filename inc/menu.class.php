@@ -46,7 +46,7 @@ class PluginDatabaseinventoryMenu extends CommonGLPI
         $links = [];
         foreach ($links_class as $link) {
             $link_text                                                   = "<span class='d-none d-xxl-block'>" . $link::getTypeName(Session::getPluralNumber()) . '</span>';
-            $links["<i class='" . $link::getIcon() . "'></i>$link_text"] = $link::getSearchURL(false);
+            $links["<i class='" . $link::getIcon() . ("'></i>" . $link_text)] = $link::getSearchURL(false);
         }
 
         $menu = [

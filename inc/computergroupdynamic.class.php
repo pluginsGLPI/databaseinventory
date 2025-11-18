@@ -28,6 +28,8 @@
  * -------------------------------------------------------------------------
  */
 
+use function Safe\ob_start;
+use function Safe\ob_get_clean;
 use function Safe\preg_match;
 use function Safe\preg_replace;
 use function Safe\preg_split;
@@ -231,10 +233,10 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
 
             //hack because submit button is not a submit... See https://github.com/glpi-project/glpi/pull/20731
-            Safe\ob_start();
+            ob_start();
             Search::showGenericSearch(Computer::getType(), $p);
-            $generic_search = Safe\ob_get_clean();
-            echo Safe\preg_replace('/type="button" name="save"/', 'type="submit" name="save"', $generic_search);
+            $generic_search = ob_get_clean();
+            echo preg_replace('/type="button" name="save"/', 'type="submit" name="save"', $generic_search);
 
 
             //display result from search

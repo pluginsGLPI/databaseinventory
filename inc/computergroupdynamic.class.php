@@ -228,7 +228,14 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
             $p['actionname']   = 'save';
             $p['actionvalue']  = _sx('button', 'Save');
             $p['showbookmark'] = false;
+
+
+            //hack because submit button is not a submit... See https://github.com/glpi-project/glpi/pull/20731
+            Safe\ob_start();
             Search::showGenericSearch(Computer::getType(), $p);
+            $generic_search = Safe\ob_get_clean();
+            echo Safe\preg_replace('/type="button" name="save"/', 'type="submit" name="save"', $generic_search);
+
 
             //display result from search
             if (!$firsttime) {

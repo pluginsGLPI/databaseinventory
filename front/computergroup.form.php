@@ -119,13 +119,12 @@ if (isset($_POST['add'])) {
     // save search parameters for dynamic group
     if (isset($_GET['save'])) {
         $input  = ['plugin_databaseinventory_computergroups_id' => $_GET['plugin_databaseinventory_computergroups_id']];
-        $search = serialize([
-            'is_deleted'   => $_GET['is_deleted'] ?? 0 ,
+        $search = json_encode([
+            'is_deleted'   => $_GET['is_deleted'] ?? 0,
             'as_map'       => $_GET['as_map'] ?? 0,
             'criteria'     => $_GET['criteria'],
             'metacriteria' => $_GET['metacriteria'] ?? [],
-        ]);
-
+        ], JSON_THROW_ON_ERROR);
         if (!$computergroup_dynamic->getFromDBByCrit($input)) {
             $input['search'] = $search;
             $computergroup_dynamic->add($input);

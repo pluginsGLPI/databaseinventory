@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Migrate dynamic group search from serialized to JSON format
 - Fix dynamic group submit button
 
+## [1.0.5] - 2025-11-25
+
+### Fixed
+
+- Migrate dynamic group search from serialized to JSON format
+- Fix `Undefined array key "id"` when computer not already linkedo agent
+
 ## [1.1.1] - 2025-11-13
 
 ### Fixed
@@ -26,12 +33,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - GLPI 11 compatibility
 
-## [1.0.5] - 2025-11-25
-
-### Fixed
-
-- Migrate dynamic group search from serialized to JSON format
-- Fix `Undefined array key "id"` when computer not already linkedo agent
 
 ### Fixed
 

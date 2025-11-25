@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [UNRELEASE]
 
-### Fixed
+## [1.0.5] - 2025-11-25
 
+### Fixed
+
+- Migrate dynamic group search from serialized to JSON format
 - Fix `Undefined array key "id"` when computer not already linkedo agent
 
 ## [1.0.4] - 2025-09-04

@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Migrate dynamic group search from serialized to JSON format
-- Fix dynamic group submit bouton
+- Fix dynamic group submit button
 
 ## [1.1.1] - 2025-11-13
 

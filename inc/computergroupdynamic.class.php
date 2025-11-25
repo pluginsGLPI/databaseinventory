@@ -29,6 +29,7 @@
  */
 
 use function Safe\json_decode;
+use function Safe\json_encode;
 use function Safe\ob_start;
 use function Safe\ob_get_clean;
 use function Safe\preg_match;

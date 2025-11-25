@@ -95,8 +95,9 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                 $value = ' ';
                 $out   = ' ';
                 if (!str_contains((string) $values['id'], Search::NULLVALUE)) {
-                    $search_params = Search::manageParams('Computer',
-                        json_decode($values['search'], true, 512, JSON_THROW_ON_ERROR)
+                    $search_params = Search::manageParams(
+                        'Computer',
+                        json_decode((string) $values['search'], true, 512, JSON_THROW_ON_ERROR),
                     );
 
 
@@ -164,8 +165,9 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
     private function countDynamicItems()
     {
-        $search_params = Search::manageParams('Computer',
-            json_decode($this->fields['search'], true, 512, JSON_THROW_ON_ERROR)
+        $search_params = Search::manageParams(
+            'Computer',
+            json_decode((string) $this->fields['search'], true, 512, JSON_THROW_ON_ERROR),
         );
 
         $data          = Search::prepareDatasForSearch('Computer', $search_params);
@@ -178,7 +180,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
     public function isDynamicSearchMatchComputer(Computer $computer)
     {
         // add new criteria to force computer ID
-        $search = json_decode($this->fields['search']);
+        $search = json_decode((string) $this->fields['search']);
 
         $search['criteria'][] = [
             'link'       => 'AND',
@@ -214,8 +216,9 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
             if ($computergroup_dynamic->getFromDBByCrit([
                 'plugin_databaseinventory_computergroups_id' => $ID,
             ])) {
-                $p = Search::manageParams('Computer',
-                    json_decode($computergroup_dynamic->fields['search'], true, 512, JSON_THROW_ON_ERROR)
+                $p = Search::manageParams(
+                    'Computer',
+                    json_decode((string) $computergroup_dynamic->fields['search'], true, 512, JSON_THROW_ON_ERROR),
                 );
 
                 $search_params = $p;
@@ -310,9 +313,9 @@ SQL;
                     if ($unserialized !== false) {
                         $json_search = json_encode($unserialized, JSON_THROW_ON_ERROR);
                     }
-                } catch (Throwable $e) {
+                } catch (Throwable) {
                     $migration->displayMessage(
-                        "DatabaseInventory - Invalid serialized data for DynamicGroup ID {$id}, data will be reset."
+                        sprintf('DatabaseInventory - Invalid serialized data for DynamicGroup ID %s, data will be reset.', $id),
                     );
                     continue;
                 }
@@ -320,7 +323,7 @@ SQL;
                 $DB->update(
                     $table,
                     ['search' => $json_search],
-                    ['id' => $id]
+                    ['id' => $id],
                 );
             }
 

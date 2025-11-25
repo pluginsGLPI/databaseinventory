@@ -199,7 +199,7 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
         $iterator = $DB->request($params);
         foreach ($iterator as $computergroup_dynamic) {
-            $search_params = Search::manageParams('Computer', json_decode($computergroup_dynamic['search'], true, 512, JSON_THROW_ON_ERROR));
+            $search_params = Search::manageParams('Computer', json_decode((string) $computergroup_dynamic['search'], true, 512, JSON_THROW_ON_ERROR));
             $data          = Search::prepareDatasForSearch('Computer', $search_params);
             Search::constructSQL($data);
             Search::constructData($data);

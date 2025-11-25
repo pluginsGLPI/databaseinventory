@@ -214,7 +214,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
                     'plugin_databaseinventory_computergroups_id' => $ID,
                 ])
             ) {
-                $p = Search::manageParams(
+                $p = $search_params = Search::manageParams(
                     'Computer',
                     json_decode($computergroup_dynamic->fields['search'], true, 512, JSON_THROW_ON_ERROR),
                 );

@@ -4,98 +4,105 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# INOUE Daisuke, 2025
+# Peter Rundqvist, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 00:50+0000\n"
+"POT-Creation-Date: 2025-11-25 00:48+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
-"Last-Translator: INOUE Daisuke, 2025\n"
-"Language-Team: Japanese (Japan) (https://app.transifex.com/teclib/teams/28042/ja_JP/)\n"
+"Last-Translator: Peter Rundqvist, 2025\n"
+"Language-Team: Swedish (Sweden) (https://app.transifex.com/teclib/teams/28042/sv_SE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja_JP\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: sv_SE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/credential.html.twig
 msgid "Port"
-msgstr "ポート"
+msgstr "Port"
 
 #: templates/credential.html.twig
 msgid "Login"
-msgstr "ユーザー名"
+msgstr "Användarnamn"
 
 #: templates/credential.html.twig
 msgid "Password"
-msgstr "パスワード"
+msgstr "Lösenord"
 
 #: templates/credential.html.twig
 msgid "Socket"
-msgstr "ソケット"
+msgstr "Socket"
 
 #: templates/databaseparam.html.twig inc/databaseparam.class.php:115
 msgid "Execution frequency for partial inventory"
-msgstr "部分インベントリーの実行間隔"
+msgstr "Fördröj körning av partiell inventering"
 
 #: templates/databaseparam.html.twig
 msgid "Execution delay"
-msgstr "実行の遅延"
+msgstr "Fördröjning"
 
 #: setup.php:92 inc/profile.class.php:39 inc/menu.class.php:35
 #: front/menu.php:37 front/menu.php:46
 msgid "Database Inventory"
-msgstr "データベースインベントリー"
+msgstr "Databasinventering"
 
 #: inc/databaseparam.class.php:69
 msgid "Database params"
 msgid_plural "Databases params"
-msgstr[0] "データベースのパラメーター"
+msgstr[0] "DB-parameter"
+msgstr[1] "DB-parametrar"
 
 #: inc/databaseparam.class.php:107
 msgid "Partial inventory"
-msgstr "部分インベントリー"
+msgstr "Partiell inventering"
 
 #: inc/profile.class.php:56 inc/profile.class.php:65
 msgid "Run database inventory"
-msgstr "データベースインベントリーを実行"
+msgstr "Köra databasinventering"
 
 #: inc/computergroupstatic.class.php:82
 msgid "Static group"
 msgid_plural "Static groups"
-msgstr[0] "静的グループ"
+msgstr[0] "Statisk grupp"
+msgstr[1] "Statiska grupper"
 
 #: inc/contactlog.class.php:84
 msgid "Contact log"
 msgid_plural "Contact logs"
-msgstr[0] "接続ログ"
+msgstr[0] "Anslutningslogg"
+msgstr[1] "Anslutningsloggar"
 
 #: inc/databaseparam_credential.class.php:97 inc/credential.class.php:84
 msgid "Credential"
 msgid_plural "Credentials"
-msgstr[0] "認証"
+msgstr[0] "Inloggningsuppgift"
+msgstr[1] "Inloggningsuppgifter"
 
 #: inc/computergroupdynamic.class.php:43
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
-msgstr[0] "動的グループ"
+msgstr[0] "Dynamisk grupp"
+msgstr[1] "Dynamiska grupper"
 
 #: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
 msgid "Computer Group"
 msgid_plural "Computers Group"
-msgstr[0] "コンピューターグループ"
+msgstr[0] "Datorgrupp"
+msgstr[1] "Datorgrupper"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
 msgid_plural "Credential types"
-msgstr[0] "認証の型"
+msgstr[0] "Autentiseringstyper"
+msgstr[1] "Autentiseringstyper"
 
 #: inc/credentialtype.class.php:87
 msgid "You cannot remove this type"
-msgstr "この型を削除する権限がありません"
+msgstr "Det går inte att ta bort denna typ"
 
 #: inc/credentialtype.class.php:152
 msgid "MySQL"
@@ -111,7 +118,7 @@ msgstr "DB2"
 
 #: inc/credentialtype.class.php:155
 msgid "Microsoft SQL"
-msgstr "Microsoft SQL Server"
+msgstr "Microsoft SQL"
 
 #: inc/credentialtype.class.php:156
 msgid "PostgreSQL"
@@ -123,50 +130,50 @@ msgstr "MongoDB"
 
 #: inc/inventoryaction.class.php:47
 msgid "Run"
-msgstr "実行"
+msgstr "Kör"
 
 #: inc/inventoryaction.class.php:74
 msgid "Agent not found for computer"
-msgstr "コンピューターのエージェントが見つかりません"
+msgstr "Hittade ingen agent för dator"
 
 #: inc/inventoryaction.class.php:91
 #, php-format
 msgid "Agent %1$s not found"
-msgstr "%1$s エージェントが見つかりません"
+msgstr "Hittade inte %1$s-agenten"
 
 #: inc/inventoryaction.class.php:133
 #, php-format
 msgid "Requested at %s"
-msgstr "%s に要求"
+msgstr "Begärdes %s"
 
 #: inc/inventoryaction.class.php:183
 msgid "Request database inventory"
-msgstr "データベースインベントリーを要求"
+msgstr "Begär databasinventering"
 
 #: inc/inventoryaction.class.php:184
 msgid "Ask agent to proceed a database inventory"
-msgstr "エージェントにデータベースインベントリーを要求"
+msgstr "Be agenten fortsätta med en inventering"
 
 #: inc/computergroup.class.php:118
 msgid "Number of dynamic items"
-msgstr "動的アイテムの数"
+msgstr "Antal dynamiska objekt"
 
 #: inc/computergroup.class.php:131
 msgid "Number of static items"
-msgstr "静的アイテムの数"
+msgstr "Antal statiska objekt"
 
 #: inc/computergroup.class.php:144
 msgid "List of dynamic items"
-msgstr "動的アイテムの一覧"
+msgstr "Dynamiska objekt"
 
 #: inc/computergroup.class.php:159
 msgid "List of static items"
-msgstr "静的アイテムの一覧"
+msgstr "Statiska objekt"
 
 #: front/computergroup.form.php:66
 msgid "Please select a computer"
-msgstr "コンピューターを選択してください"
+msgstr "Välj dator"
 
 #: hook.php:101
 msgid "Run partial databases inventory"
-msgstr "部分データベースインベントリーを実行"
+msgstr "Kör partiell inventering"

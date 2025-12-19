@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 00:50+0000\n"
+"POT-Creation-Date: 2025-12-16 00:53+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: Cédric Anne, 2023\n"
 "Language-Team: French (France) (https://app.transifex.com/teclib/teams/28042/fr_FR/)\n"
@@ -86,7 +86,7 @@ msgstr[0] "Identifiant"
 msgstr[1] "Identifiants"
 msgstr[2] "Identifiants"
 
-#: inc/computergroupdynamic.class.php:43
+#: inc/computergroupdynamic.class.php:45
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
 msgstr[0] "Groupe dynamique"

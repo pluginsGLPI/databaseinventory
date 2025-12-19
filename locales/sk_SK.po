@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 00:50+0000\n"
+"POT-Creation-Date: 2025-12-16 00:53+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: feonsu <feonsu@gmail.com>, 2025\n"
 "Language-Team: Slovak (Slovakia) (https://app.transifex.com/teclib/teams/28042/sk_SK/)\n"
@@ -90,7 +90,7 @@ msgstr[1] "Prihlasovacie údaje"
 msgstr[2] "Prihlasovacie údaje"
 msgstr[3] "Prihlasovacie údaje"
 
-#: inc/computergroupdynamic.class.php:43
+#: inc/computergroupdynamic.class.php:45
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
 msgstr[0] "Dynamická skupina"

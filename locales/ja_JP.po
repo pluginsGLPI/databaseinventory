@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 00:50+0000\n"
+"POT-Creation-Date: 2025-12-16 00:53+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: INOUE Daisuke, 2025\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/teclib/teams/28042/ja_JP/)\n"
@@ -78,7 +78,7 @@ msgid "Credential"
 msgid_plural "Credentials"
 msgstr[0] "認証"
 
-#: inc/computergroupdynamic.class.php:43
+#: inc/computergroupdynamic.class.php:45
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
 msgstr[0] "動的グループ"

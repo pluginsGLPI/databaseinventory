@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-19 00:50+0000\n"
+"POT-Creation-Date: 2025-12-19 00:53+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: Diego Nobre <diego@koruma.com.br>, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/teclib/teams/28042/pt_BR/)\n"
@@ -63,7 +63,7 @@ msgstr "Inventário parcial"
 
 #: inc/profile.class.php:56 inc/profile.class.php:65
 msgid "Run database inventory"
-msgstr ""
+msgstr "Executar inventário do banco de dados"
 
 #: inc/computergroupstatic.class.php:82
 msgid "Static group"
@@ -86,7 +86,7 @@ msgstr[0] "Credencial"
 msgstr[1] "Credenciais"
 msgstr[2] "Credenciais"
 
-#: inc/computergroupdynamic.class.php:43
+#: inc/computergroupdynamic.class.php:45
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
 msgstr[0] "Grupo dinâmico"

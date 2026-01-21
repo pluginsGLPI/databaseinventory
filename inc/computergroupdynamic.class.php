@@ -83,7 +83,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
         switch ($field) {
             case 'search':
                 $count = 0;
-                if (isset($values['id']) && !str_contains($values['id'], Search::NULLVALUE)) {
+                if (isset($values['id']) && !str_contains((string) $values['id'], Search::NULLVALUE)) {
                     $computergroup_dynamic = new PluginDatabaseinventoryComputerGroupDynamic();
                     $computergroup_dynamic->getFromDB($values['id']);
                     $count = $computergroup_dynamic->countDynamicItems();

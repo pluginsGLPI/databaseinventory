@@ -4,105 +4,112 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Peter Rundqvist, 2025
+# Edwin Elias Alvarez <elias986@yahoo.com>, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-26 00:59+0000\n"
+"POT-Creation-Date: 2026-01-29 01:03+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
-"Last-Translator: Peter Rundqvist, 2025\n"
-"Language-Team: Swedish (Sweden) (https://app.transifex.com/teclib/teams/28042/sv_SE/)\n"
+"Last-Translator: Edwin Elias Alvarez <elias986@yahoo.com>, 2026\n"
+"Language-Team: Spanish (Mexico) (https://app.transifex.com/teclib/teams/28042/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sv_SE\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es_MX\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: templates/credential.html.twig
 msgid "Port"
-msgstr "Port"
+msgstr "Puerto"
 
 #: templates/credential.html.twig
 msgid "Login"
-msgstr "Användarnamn"
+msgstr "Acceso"
 
 #: templates/credential.html.twig
 msgid "Password"
-msgstr "Lösenord"
+msgstr "Contraseña"
 
 #: templates/credential.html.twig
 msgid "Socket"
-msgstr "Socket"
+msgstr "Conexión"
 
 #: templates/databaseparam.html.twig inc/databaseparam.class.php:115
 msgid "Execution frequency for partial inventory"
-msgstr "Fördröj körning av partiell inventering"
+msgstr "Frecuencia de ejecución del inventario parcial"
 
 #: templates/databaseparam.html.twig
 msgid "Execution delay"
-msgstr "Fördröjning"
+msgstr "Retraso en la ejecución"
 
 #: setup.php:92 inc/profile.class.php:39 inc/menu.class.php:35
 #: front/menu.php:37 front/menu.php:46
 msgid "Database Inventory"
-msgstr "Databasinventering"
+msgstr "Inventario de bases de datos"
 
 #: inc/databaseparam.class.php:69
 msgid "Database params"
 msgid_plural "Databases params"
-msgstr[0] "DB-parameter"
-msgstr[1] "DB-parametrar"
+msgstr[0] "Parámetros de la base de datos"
+msgstr[1] "Parámetros de bases de datos"
+msgstr[2] "Parámetros de bases de datos"
 
 #: inc/databaseparam.class.php:107
 msgid "Partial inventory"
-msgstr "Partiell inventering"
+msgstr "Inventario parcial"
 
 #: inc/profile.class.php:56 inc/profile.class.php:65
 msgid "Run database inventory"
-msgstr "Köra databasinventering"
+msgstr "Ejecutar inventario de base de datos"
 
 #: inc/computergroupstatic.class.php:82
 msgid "Static group"
 msgid_plural "Static groups"
-msgstr[0] "Statisk grupp"
-msgstr[1] "Statiska grupper"
+msgstr[0] "Grupo estático"
+msgstr[1] "Grupos estáticos"
+msgstr[2] "Grupos estáticos"
 
 #: inc/contactlog.class.php:84
 msgid "Contact log"
 msgid_plural "Contact logs"
-msgstr[0] "Anslutningslogg"
-msgstr[1] "Anslutningsloggar"
+msgstr[0] "Registro de contacto"
+msgstr[1] "Registros de contacto"
+msgstr[2] "Registros de contacto"
 
 #: inc/databaseparam_credential.class.php:97 inc/credential.class.php:84
 msgid "Credential"
 msgid_plural "Credentials"
-msgstr[0] "Inloggningsuppgift"
-msgstr[1] "Inloggningsuppgifter"
+msgstr[0] "Credencial"
+msgstr[1] "Credenciales"
+msgstr[2] "Credenciales"
 
 #: inc/computergroupdynamic.class.php:45
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
-msgstr[0] "Dynamisk grupp"
-msgstr[1] "Dynamiska grupper"
+msgstr[0] "Grupo dinámico"
+msgstr[1] "Grupos dinámicos"
+msgstr[2] "Grupos dinámicos"
 
 #: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
 msgid "Computer Group"
 msgid_plural "Computers Group"
-msgstr[0] "Datorgrupp"
-msgstr[1] "Datorgrupper"
+msgstr[0] "Grupo de computo"
+msgstr[1] "Grupo de Computadoras"
+msgstr[2] "Grupo de Computadoras"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
 msgid_plural "Credential types"
-msgstr[0] "Autentiseringstyper"
-msgstr[1] "Autentiseringstyper"
+msgstr[0] "Tipo de credencial"
+msgstr[1] "Tipos de credenciales"
+msgstr[2] "Tipos de credenciales"
 
 #: inc/credentialtype.class.php:87
 msgid "You cannot remove this type"
-msgstr "Det går inte att ta bort denna typ"
+msgstr "No puedes eliminar este tipo"
 
 #: inc/credentialtype.class.php:152
 msgid "MySQL"
@@ -130,50 +137,50 @@ msgstr "MongoDB"
 
 #: inc/inventoryaction.class.php:47
 msgid "Run"
-msgstr "Kör"
+msgstr "Ejecutar"
 
 #: inc/inventoryaction.class.php:74
 msgid "Agent not found for computer"
-msgstr "Hittade ingen agent för dator"
+msgstr "Agente no encontrado para la computadora"
 
 #: inc/inventoryaction.class.php:91
 #, php-format
 msgid "Agent %1$s not found"
-msgstr "Hittade inte %1$s-agenten"
+msgstr "Agente %1$sno encontrado"
 
 #: inc/inventoryaction.class.php:133
 #, php-format
 msgid "Requested at %s"
-msgstr "Begärdes %s"
+msgstr "Solicitado en %s"
 
 #: inc/inventoryaction.class.php:183
 msgid "Request database inventory"
-msgstr "Begär databasinventering"
+msgstr "Solicitar inventario de la base de datos"
 
 #: inc/inventoryaction.class.php:184
 msgid "Ask agent to proceed a database inventory"
-msgstr "Be agenten fortsätta med en inventering"
+msgstr "Solicitar al agente que proceda a un inventario de la base de datos"
 
 #: inc/computergroup.class.php:118
 msgid "Number of dynamic items"
-msgstr "Antal dynamiska objekt"
+msgstr "Número de elementos dinámicos"
 
 #: inc/computergroup.class.php:131
 msgid "Number of static items"
-msgstr "Antal statiska objekt"
+msgstr "Número de elementos estáticos"
 
 #: inc/computergroup.class.php:144
 msgid "List of dynamic items"
-msgstr "Dynamiska objekt"
+msgstr "Lista de elementos dinámicos"
 
 #: inc/computergroup.class.php:159
 msgid "List of static items"
-msgstr "Statiska objekt"
+msgstr "Lista de elementos estáticos"
 
 #: front/computergroup.form.php:66
 msgid "Please select a computer"
-msgstr "Välj dator"
+msgstr "Por favor seleccione una computadora"
 
 #: hook.php:101
 msgid "Run partial databases inventory"
-msgstr "Kör partiell inventering"
+msgstr "Ejecutar inventario de bases de datos parciales"

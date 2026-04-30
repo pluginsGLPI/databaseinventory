@@ -147,8 +147,8 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
         if (!$has_agent && $item->getType() == 'Computer') {
             $citem        = new Asset_PeripheralAsset();
             $has_relation = $citem->getFromDBByCrit([
-                'itemtype' => $item->getType(),
-                'items_id' => $item->fields['id'],
+                'itemtype_peripheral' => $item->getType(),
+                'items_id_peripheral' => $item->fields['id'],
             ]);
             if ($has_relation) {
                 $has_agent = $agent->getFromDBByCrit([

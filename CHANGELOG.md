@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [UNRELEASED]
 
+### Fixed
+
+- Fix bad SQL Query `Unknown column 'itemtype' in 'WHERE' `
+
 ## [1.1.2] - 2025-11-25
 
 ### Fixed

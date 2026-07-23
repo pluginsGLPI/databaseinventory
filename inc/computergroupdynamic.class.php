@@ -29,6 +29,7 @@
  */
 
 use function Safe\json_decode;
+use function Safe\unserialize;
 use function Safe\json_encode;
 use function Safe\ob_start;
 use function Safe\ob_get_clean;
@@ -182,7 +183,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
     public function isDynamicSearchMatchComputer(Computer $computer)
     {
         // add new criteria to force computer ID
-        $search = json_decode((string) $this->fields['search']);
+        $search = json_decode((string) $this->fields['search'], true, 512, JSON_THROW_ON_ERROR);
 
         $search['criteria'][] = [
             'link'       => 'AND',

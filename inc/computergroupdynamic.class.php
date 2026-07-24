@@ -29,6 +29,7 @@
  */
 
 use function Safe\json_decode;
+use function Safe\unserialize;
 use function Safe\json_encode;
 use function Safe\ob_start;
 use function Safe\ob_get_clean;
@@ -109,7 +110,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
                     foreach ($data['data']['rows'] as $colvalue) {
                         $value .= "<a href='" . Computer::getFormURLWithID($colvalue['id']) . "'>";
-                        $value .= Dropdown::getDropdownName('glpi_computers', $colvalue['id']) . '</a>' . Search::LBBR;
+                        $value .= htmlspecialchars(Dropdown::getDropdownName('glpi_computers', $colvalue['id'])) . '</a>' . Search::LBBR;
                     }
                 }
 

@@ -38,6 +38,16 @@ class PluginDatabaseinventoryTask extends CommonGLPI
         $content          = $params['options']['content'];
         $credential_found = [];
 
+        // only serve credentials for a database param actually reachable by the agent's computer
+        $computer = $agent->getLinkedItem();
+        if (
+            $computer::class !== Computer::getType()
+            || $computer->isNewItem()
+            || !in_array($content->params_id, self::getAccessibleDatabaseParams($computer))
+        ) {
+            return $params;
+        }
+
         $databaseparam_credential_table = PluginDatabaseinventoryDatabaseParam_Credential::getTable();
         $credential_table               = PluginDatabaseinventoryCredential::getTable();
         $credential_type_table          = PluginDatabaseinventoryCredentialType::getTable();
@@ -127,9 +137,6 @@ class PluginDatabaseinventoryTask extends CommonGLPI
 
     public static function handleInventoryTask(array $params)
     {
-        /** @var DBmysql $DB */
-        global $DB;
-
         // get asset related to the agent
         $computer = $params['item']->getLinkedItem();
 
@@ -137,112 +144,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
 
         // only Computer type
         if ($computer::class == Computer::getType() && !$computer->isNewItem()) {
-            $database_param_table               = PluginDatabaseinventoryDatabaseParam::getTable() ;
-            $database_param_computergroup_table = PluginDatabaseinventoryDatabaseParam_ComputerGroup::getTable();
-            $computer_group_static_table        = PluginDatabaseinventoryComputerGroupStatic::getTable();
-            $computer_group_dynamic_table       = PluginDatabaseinventoryComputerGroupDynamic::getTable();
-            $computer_group_table               = PluginDatabaseinventoryComputerGroup::getTable();
-
-            /*
-             * First step :
-             * try to load all active 'PluginDatabaseinventoryDatabaseParam'
-             * related to the computer (from 'PluginDatabaseinventoryComputerGroupStatic')
-             */
-            $criteria = [
-                'SELECT' => [
-                    $database_param_table . '.id',
-                ],
-                'FROM' => $database_param_table,
-                'JOIN' => [
-                    $database_param_computergroup_table => [
-                        'ON' => [
-                            $database_param_computergroup_table => 'plugin_databaseinventory_databaseparams_id',
-                            $database_param_table               => 'id',
-                        ],
-                    ],
-                    $computer_group_table => [
-                        'ON' => [
-                            $database_param_computergroup_table => 'plugin_databaseinventory_computergroups_id',
-                            $computer_group_table               => 'id',
-                        ],
-                    ],
-                    $computer_group_static_table => [
-                        'ON' => [
-                            $computer_group_static_table => 'plugin_databaseinventory_computergroups_id',
-                            $computer_group_table        => 'id',
-                        ],
-                    ],
-                ],
-                'WHERE' => [
-                    $computer_group_static_table . '.computers_id' => $computer->fields['id'],
-                    $database_param_table . '.is_active'           => 1,
-                ],
-            ];
-
-            // store databaseparam found
-            $iterator = $DB->request($criteria);
-            foreach ($iterator as $data) {
-                $database_param_found[] = $data['id'];
-            }
-
-            /*
-             * Second step :
-             * Try to load all 'PluginDatabaseinventoryComputerGroupDynamic'
-             * linked to an active 'PluginDatabaseinventoryDatabaseParam'
-             * and check if the computer is part of it
-             */
-            $criteria = [
-                'SELECT' => [
-                    $computer_group_dynamic_table . '.id',
-                    $database_param_table . '.id AS database_param_id',
-                ],
-                'FROM' => $computer_group_dynamic_table,
-                'JOIN' => [
-                    $computer_group_table => [
-                        'ON' => [
-                            $computer_group_dynamic_table => 'plugin_databaseinventory_computergroups_id',
-                            $computer_group_table         => 'id',
-                        ],
-                    ],
-                    $database_param_computergroup_table => [
-                        'ON' => [
-                            $database_param_computergroup_table => 'plugin_databaseinventory_computergroups_id',
-                            $computer_group_table               => 'id',
-                        ],
-                    ],
-                    $database_param_table => [
-                        'ON' => [
-                            $database_param_computergroup_table => 'plugin_databaseinventory_databaseparams_id',
-                            $database_param_table               => 'id',
-                        ],
-                    ],
-                ],
-                'WHERE' => [
-                    $database_param_table . '.is_active' => 1,
-                ],
-            ];
-
-            if ($database_param_found !== []) {
-                $criteria['WHERE'] = [
-                    $database_param_table . '.is_active' => 1,
-                    ['NOT'                               => [$database_param_table . '.id' => $database_param_found]], //no need to look for what is already found
-                ];
-            } else {
-                $criteria['WHERE'] = [
-                    $database_param_table . '.is_active' => 1,
-                ];
-            }
-
-            // check if Dynamic group match computer
-            // if true, store databaseparam
-            $iterator = $DB->request($criteria);
-            foreach ($iterator as $data) {
-                $dynamic_group = new PluginDatabaseinventoryComputerGroupDynamic();
-                $dynamic_group->getFromDB($data['id']);
-                if ($dynamic_group->isDynamicSearchMatchComputer($computer) && !in_array($data['database_param_id'], $database_param_found)) {
-                    $database_param_found[] = $data['database_param_id'];
-                }
-            }
+            $database_param_found = self::getAccessibleDatabaseParams($computer);
         }
 
         /*
@@ -288,5 +190,128 @@ class PluginDatabaseinventoryTask extends CommonGLPI
         }
 
         return $params;
+    }
+
+    /**
+     * List ids of active PluginDatabaseinventoryDatabaseParam reachable by a computer,
+     * either through a static group or a dynamic group whose search criteria match it.
+     *
+     * @return int[]
+     */
+    private static function getAccessibleDatabaseParams(Computer $computer): array
+    {
+        /** @var DBmysql $DB */
+        global $DB;
+
+        $database_param_found = [];
+
+        $database_param_table               = PluginDatabaseinventoryDatabaseParam::getTable();
+        $database_param_computergroup_table = PluginDatabaseinventoryDatabaseParam_ComputerGroup::getTable();
+        $computer_group_static_table        = PluginDatabaseinventoryComputerGroupStatic::getTable();
+        $computer_group_dynamic_table       = PluginDatabaseinventoryComputerGroupDynamic::getTable();
+        $computer_group_table               = PluginDatabaseinventoryComputerGroup::getTable();
+
+        /*
+         * First step :
+         * try to load all active 'PluginDatabaseinventoryDatabaseParam'
+         * related to the computer (from 'PluginDatabaseinventoryComputerGroupStatic')
+         */
+        $criteria = [
+            'SELECT' => [
+                $database_param_table . '.id',
+            ],
+            'FROM' => $database_param_table,
+            'JOIN' => [
+                $database_param_computergroup_table => [
+                    'ON' => [
+                        $database_param_computergroup_table => 'plugin_databaseinventory_databaseparams_id',
+                        $database_param_table               => 'id',
+                    ],
+                ],
+                $computer_group_table => [
+                    'ON' => [
+                        $database_param_computergroup_table => 'plugin_databaseinventory_computergroups_id',
+                        $computer_group_table               => 'id',
+                    ],
+                ],
+                $computer_group_static_table => [
+                    'ON' => [
+                        $computer_group_static_table => 'plugin_databaseinventory_computergroups_id',
+                        $computer_group_table        => 'id',
+                    ],
+                ],
+            ],
+            'WHERE' => [
+                $computer_group_static_table . '.computers_id' => $computer->fields['id'],
+                $database_param_table . '.is_active'           => 1,
+            ],
+        ];
+
+        // store databaseparam found
+        $iterator = $DB->request($criteria);
+        foreach ($iterator as $data) {
+            $database_param_found[] = $data['id'];
+        }
+
+        /*
+         * Second step :
+         * Try to load all 'PluginDatabaseinventoryComputerGroupDynamic'
+         * linked to an active 'PluginDatabaseinventoryDatabaseParam'
+         * and check if the computer is part of it
+         */
+        $criteria = [
+            'SELECT' => [
+                $computer_group_dynamic_table . '.id',
+                $database_param_table . '.id AS database_param_id',
+            ],
+            'FROM' => $computer_group_dynamic_table,
+            'JOIN' => [
+                $computer_group_table => [
+                    'ON' => [
+                        $computer_group_dynamic_table => 'plugin_databaseinventory_computergroups_id',
+                        $computer_group_table         => 'id',
+                    ],
+                ],
+                $database_param_computergroup_table => [
+                    'ON' => [
+                        $database_param_computergroup_table => 'plugin_databaseinventory_computergroups_id',
+                        $computer_group_table               => 'id',
+                    ],
+                ],
+                $database_param_table => [
+                    'ON' => [
+                        $database_param_computergroup_table => 'plugin_databaseinventory_databaseparams_id',
+                        $database_param_table               => 'id',
+                    ],
+                ],
+            ],
+            'WHERE' => [
+                $database_param_table . '.is_active' => 1,
+            ],
+        ];
+
+        if ($database_param_found !== []) {
+            $criteria['WHERE'] = [
+                $database_param_table . '.is_active' => 1,
+                ['NOT'                               => [$database_param_table . '.id' => $database_param_found]], //no need to look for what is already found
+            ];
+        } else {
+            $criteria['WHERE'] = [
+                $database_param_table . '.is_active' => 1,
+            ];
+        }
+
+        // check if Dynamic group match computer
+        // if true, store databaseparam
+        $iterator = $DB->request($criteria);
+        foreach ($iterator as $data) {
+            $dynamic_group = new PluginDatabaseinventoryComputerGroupDynamic();
+            $dynamic_group->getFromDB($data['id']);
+            if ($dynamic_group->isDynamicSearchMatchComputer($computer) && !in_array($data['database_param_id'], $database_param_found)) {
+                $database_param_found[] = $data['database_param_id'];
+            }
+        }
+
+        return $database_param_found;
     }
 }

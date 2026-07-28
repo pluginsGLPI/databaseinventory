@@ -57,11 +57,23 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
             return;
         }
 
+        if (!Session::haveRight('database_inventory', PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
+            foreach ($ids as $id) {
+                $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_NORIGHT);
+            }
+
+            return;
+        }
+
         switch ($item->getType()) {
             case Computer::getType():
                 foreach ($ids as $id) {
                     $computer = new Computer();
-                    $computer->getFromDB($id);
+                    if (!$computer->getFromDB($id) || !$computer->can($id, READ)) {
+                        $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_NORIGHT);
+                        continue;
+                    }
+
                     if ($agent = self::findAgent($computer)) {
                         if (PluginDatabaseinventoryInventoryAction::runPartialInventory($agent, true)) {
                             $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
@@ -79,16 +91,16 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
             case Agent::getType():
                 foreach ($ids as $id) {
                     $agent = new Agent();
-                    if ($agent->getFromDB($id)) {
-                        if (PluginDatabaseinventoryInventoryAction::runPartialInventory($agent, true)) {
-                            $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
-                        } else {
-                            $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
-                            $ma->addMessage($item->getErrorMessage(ERROR_ON_ACTION));
-                        }
+                    if (!$agent->getFromDB($id) || !$agent->can($id, READ)) {
+                        $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_NORIGHT);
+                        continue;
+                    }
+
+                    if (PluginDatabaseinventoryInventoryAction::runPartialInventory($agent, true)) {
+                        $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
                     } else {
                         $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
-                        $ma->addMessage(sprintf(__s('Agent %1$s not found', 'databaseinventory'), $id));
+                        $ma->addMessage($item->getErrorMessage(ERROR_ON_ACTION));
                     }
                 }
 

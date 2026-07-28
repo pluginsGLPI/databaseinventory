@@ -67,6 +67,15 @@ if (isset($_POST['add'])) {
         Html::back();
     }
 
+    $computer = new Computer();
+    if (
+        !$computer->getFromDB($_POST['computers_id'])
+        || !Session::haveAccessToEntity($computer->fields['entities_id'])
+    ) {
+        Session::addMessageAfterRedirect(__s('Please select a computer', 'databaseinventory'), false, ERROR);
+        Html::back();
+    }
+
     $computergroupstatic->check(-1, CREATE, $_POST);
     if ($newID = $computergroupstatic->add($_POST)) {
         Event::log(

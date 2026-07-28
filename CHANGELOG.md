@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Decode dynamic group search filter as an array instead of an object
+- Fix missing validation checks in database inventory tasks and actions
 
 ## [1.1.3] - 2026-05-05
 

@@ -246,6 +246,8 @@ SQL;
         if ($DB->tableExists($table)) {
             $DB->doQuery('DROP TABLE IF EXISTS `' . self::getTable() . '`');
         }
+
+        (new DisplayPreference())->deleteByCriteria(['itemtype' => self::class]);
     }
 
     public static function getIcon()

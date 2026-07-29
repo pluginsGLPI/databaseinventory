@@ -183,7 +183,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
     public function isDynamicSearchMatchComputer(Computer $computer)
     {
         // add new criteria to force computer ID
-        $search = json_decode((string) $this->fields['search']);
+        $search = json_decode((string) $this->fields['search'], true, 512, JSON_THROW_ON_ERROR);
 
         $search['criteria'][] = [
             'link'       => 'AND',

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 01:03+0000\n"
+"POT-Creation-Date: 2026-07-29 02:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: templates/databaseparam.html.twig inc/databaseparam.class.php:115
+msgid "Execution frequency for partial inventory"
+msgstr ""
+
+#: templates/databaseparam.html.twig
+msgid "Execution delay"
+msgstr ""
 
 #: templates/credential.html.twig
 msgid "Port"
@@ -34,18 +42,42 @@ msgstr ""
 msgid "Socket"
 msgstr ""
 
-#: templates/databaseparam.html.twig inc/databaseparam.class.php:115
-msgid "Execution frequency for partial inventory"
+#: front/computergroup.form.php:66 front/computergroup.form.php:75
+msgid "Please select a computer"
 msgstr ""
 
-#: templates/databaseparam.html.twig
-msgid "Execution delay"
-msgstr ""
-
-#: setup.php:92 inc/profile.class.php:39 inc/menu.class.php:35
-#: front/menu.php:37 front/menu.php:46
+#: front/menu.php:37 front/menu.php:46 inc/menu.class.php:35
+#: inc/profile.class.php:39 setup.php:92
 msgid "Database Inventory"
 msgstr ""
+
+#: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/computergroup.class.php:118
+msgid "Number of dynamic items"
+msgstr ""
+
+#: inc/computergroup.class.php:131
+msgid "Number of static items"
+msgstr ""
+
+#: inc/computergroup.class.php:144
+msgid "List of dynamic items"
+msgstr ""
+
+#: inc/computergroup.class.php:159
+msgid "List of static items"
+msgstr ""
+
+#: inc/computergroupstatic.class.php:82
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] ""
+msgstr[1] ""
 
 #: inc/databaseparam.class.php:69
 msgid "Database params"
@@ -57,13 +89,9 @@ msgstr[1] ""
 msgid "Partial inventory"
 msgstr ""
 
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr ""
-
-#: inc/computergroupstatic.class.php:82
-msgid "Static group"
-msgid_plural "Static groups"
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -73,23 +101,15 @@ msgid_plural "Contact logs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/databaseparam_credential.class.php:97 inc/credential.class.php:84
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/computergroupdynamic.class.php:45
+#: inc/computergroupdynamic.class.php:46
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
-msgid "Computer Group"
-msgid_plural "Computers Group"
-msgstr[0] ""
-msgstr[1] ""
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr ""
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -129,46 +149,21 @@ msgstr ""
 msgid "Run"
 msgstr ""
 
-#: inc/inventoryaction.class.php:74
+#: inc/inventoryaction.class.php:86
 msgid "Agent not found for computer"
 msgstr ""
 
-#: inc/inventoryaction.class.php:91
-#, php-format
-msgid "Agent %1$s not found"
-msgstr ""
-
-#: inc/inventoryaction.class.php:133
+#: inc/inventoryaction.class.php:145
 #, php-format
 msgid "Requested at %s"
 msgstr ""
 
-#: inc/inventoryaction.class.php:183
+#: inc/inventoryaction.class.php:195
 msgid "Request database inventory"
 msgstr ""
 
-#: inc/inventoryaction.class.php:184
+#: inc/inventoryaction.class.php:196
 msgid "Ask agent to proceed a database inventory"
-msgstr ""
-
-#: inc/computergroup.class.php:118
-msgid "Number of dynamic items"
-msgstr ""
-
-#: inc/computergroup.class.php:131
-msgid "Number of static items"
-msgstr ""
-
-#: inc/computergroup.class.php:144
-msgid "List of dynamic items"
-msgstr ""
-
-#: inc/computergroup.class.php:159
-msgid "List of static items"
-msgstr ""
-
-#: front/computergroup.form.php:66
-msgid "Please select a computer"
 msgstr ""
 
 #: hook.php:101

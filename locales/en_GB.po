@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-29 01:03+0000\n"
-"PO-Revision-Date: 2026-01-29 01:03+0000\n"
+"POT-Creation-Date: 2026-07-29 02:53+0000\n"
+"PO-Revision-Date: 2026-07-29 02:53+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_GB\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/databaseparam.html.twig inc/databaseparam.class.php:115
+msgid "Execution frequency for partial inventory"
+msgstr "Execution frequency for partial inventory"
+
+#: templates/databaseparam.html.twig
+msgid "Execution delay"
+msgstr "Execution delay"
 
 #: templates/credential.html.twig
 msgid "Port"
@@ -33,18 +41,42 @@ msgstr "Password"
 msgid "Socket"
 msgstr "Socket"
 
-#: templates/databaseparam.html.twig inc/databaseparam.class.php:115
-msgid "Execution frequency for partial inventory"
-msgstr "Execution frequency for partial inventory"
+#: front/computergroup.form.php:66 front/computergroup.form.php:75
+msgid "Please select a computer"
+msgstr "Please select a computer"
 
-#: templates/databaseparam.html.twig
-msgid "Execution delay"
-msgstr "Execution delay"
-
-#: setup.php:92 inc/profile.class.php:39 inc/menu.class.php:35
-#: front/menu.php:37 front/menu.php:46
+#: front/menu.php:37 front/menu.php:46 inc/menu.class.php:35
+#: inc/profile.class.php:39 setup.php:92
 msgid "Database Inventory"
 msgstr "Database Inventory"
+
+#: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] "Computer Group"
+msgstr[1] "Computers Group"
+
+#: inc/computergroup.class.php:118
+msgid "Number of dynamic items"
+msgstr "Number of dynamic items"
+
+#: inc/computergroup.class.php:131
+msgid "Number of static items"
+msgstr "Number of static items"
+
+#: inc/computergroup.class.php:144
+msgid "List of dynamic items"
+msgstr "List of dynamic items"
+
+#: inc/computergroup.class.php:159
+msgid "List of static items"
+msgstr "List of static items"
+
+#: inc/computergroupstatic.class.php:82
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] "Static group"
+msgstr[1] "Static groups"
 
 #: inc/databaseparam.class.php:69
 msgid "Database params"
@@ -56,15 +88,11 @@ msgstr[1] "Databases params"
 msgid "Partial inventory"
 msgstr "Partial inventory"
 
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr "Run database inventory"
-
-#: inc/computergroupstatic.class.php:82
-msgid "Static group"
-msgid_plural "Static groups"
-msgstr[0] "Static group"
-msgstr[1] "Static groups"
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] "Credential"
+msgstr[1] "Credentials"
 
 #: inc/contactlog.class.php:84
 msgid "Contact log"
@@ -72,23 +100,15 @@ msgid_plural "Contact logs"
 msgstr[0] "Contact log"
 msgstr[1] "Contact logs"
 
-#: inc/databaseparam_credential.class.php:97 inc/credential.class.php:84
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] "Credential"
-msgstr[1] "Credentials"
-
-#: inc/computergroupdynamic.class.php:45
+#: inc/computergroupdynamic.class.php:46
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
 msgstr[0] "Dynamic group"
 msgstr[1] "Dynamic groups"
 
-#: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
-msgid "Computer Group"
-msgid_plural "Computers Group"
-msgstr[0] "Computer Group"
-msgstr[1] "Computers Group"
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr "Run database inventory"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -128,47 +148,22 @@ msgstr "MongoDB"
 msgid "Run"
 msgstr "Run"
 
-#: inc/inventoryaction.class.php:74
+#: inc/inventoryaction.class.php:86
 msgid "Agent not found for computer"
 msgstr "Agent not found for computer"
 
-#: inc/inventoryaction.class.php:91
-#, php-format
-msgid "Agent %1$s not found"
-msgstr "Agent %1$s not found"
-
-#: inc/inventoryaction.class.php:133
+#: inc/inventoryaction.class.php:145
 #, php-format
 msgid "Requested at %s"
 msgstr "Requested at %s"
 
-#: inc/inventoryaction.class.php:183
+#: inc/inventoryaction.class.php:195
 msgid "Request database inventory"
 msgstr "Request database inventory"
 
-#: inc/inventoryaction.class.php:184
+#: inc/inventoryaction.class.php:196
 msgid "Ask agent to proceed a database inventory"
 msgstr "Ask agent to proceed a database inventory"
-
-#: inc/computergroup.class.php:118
-msgid "Number of dynamic items"
-msgstr "Number of dynamic items"
-
-#: inc/computergroup.class.php:131
-msgid "Number of static items"
-msgstr "Number of static items"
-
-#: inc/computergroup.class.php:144
-msgid "List of dynamic items"
-msgstr "List of dynamic items"
-
-#: inc/computergroup.class.php:159
-msgid "List of static items"
-msgstr "List of static items"
-
-#: front/computergroup.form.php:66
-msgid "Please select a computer"
-msgstr "Please select a computer"
 
 #: hook.php:101
 msgid "Run partial databases inventory"

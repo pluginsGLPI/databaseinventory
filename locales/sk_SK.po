@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-29 02:53+0000\n"
+"POT-Creation-Date: 2026-08-13 02:13+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: feonsu <feonsu@gmail.com>, 2025\n"
 "Language-Team: Slovak (Slovakia) (https://app.transifex.com/teclib/teams/28042/sk_SK/)\n"
@@ -49,12 +49,16 @@ msgstr "Soket"
 msgid "Please select a computer"
 msgstr "Vyberte počítač"
 
-#: front/menu.php:37 front/menu.php:46 inc/menu.class.php:35
-#: inc/profile.class.php:39 setup.php:92
+#: front/menu.php:37 front/menu.php:46 setup.php:92 inc/profile.class.php:39
+#: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "Inventár databáz"
 
-#: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
+#: hook.php:101
+msgid "Run partial databases inventory"
+msgstr "Spustiť čiastočný inventár databáz"
+
+#: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
 msgid "Computer Group"
 msgid_plural "Computers Group"
 msgstr[0] "Počítačová skupina"
@@ -62,21 +66,13 @@ msgstr[1] "Počítačové skupiny"
 msgstr[2] "Počítačové skupiny"
 msgstr[3] "Počítačové skupiny"
 
-#: inc/computergroup.class.php:118
-msgid "Number of dynamic items"
-msgstr "Počet dynamických položiek"
-
-#: inc/computergroup.class.php:131
-msgid "Number of static items"
-msgstr "Počet statických položiek"
-
-#: inc/computergroup.class.php:144
-msgid "List of dynamic items"
-msgstr "Zoznam dynamických položiek"
-
-#: inc/computergroup.class.php:159
-msgid "List of static items"
-msgstr "Zoznam statických položiek"
+#: inc/contactlog.class.php:84
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] "Kontaktný záznam"
+msgstr[1] "Kontaktné záznamy"
+msgstr[2] "Kontaktné záznamy"
+msgstr[3] "Kontaktné záznamy"
 
 #: inc/computergroupstatic.class.php:82
 msgid "Static group"
@@ -85,6 +81,18 @@ msgstr[0] "Statická skupina"
 msgstr[1] "Statické skupiny"
 msgstr[2] "Statické skupiny"
 msgstr[3] "Statické skupiny"
+
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] "Prihlasovací údaj"
+msgstr[1] "Prihlasovacie údaje"
+msgstr[2] "Prihlasovacie údaje"
+msgstr[3] "Prihlasovacie údaje"
+
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr "Spustiť inventár databáz"
 
 #: inc/databaseparam.class.php:69
 msgid "Database params"
@@ -98,33 +106,26 @@ msgstr[3] "Parametre databáz"
 msgid "Partial inventory"
 msgstr "Čiastočný inventár"
 
-#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] "Prihlasovací údaj"
-msgstr[1] "Prihlasovacie údaje"
-msgstr[2] "Prihlasovacie údaje"
-msgstr[3] "Prihlasovacie údaje"
+#: inc/inventoryaction.class.php:47
+msgid "Run"
+msgstr "Spustiť"
 
-#: inc/contactlog.class.php:84
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] "Kontaktný záznam"
-msgstr[1] "Kontaktné záznamy"
-msgstr[2] "Kontaktné záznamy"
-msgstr[3] "Kontaktné záznamy"
+#: inc/inventoryaction.class.php:86
+msgid "Agent not found for computer"
+msgstr "Agent pre počítač nebol nájdený"
 
-#: inc/computergroupdynamic.class.php:46
-msgid "Dynamic group"
-msgid_plural "Dynamic groups"
-msgstr[0] "Dynamická skupina"
-msgstr[1] "Dynamické skupiny"
-msgstr[2] "Dynamické skupiny"
-msgstr[3] "Dynamické skupiny"
+#: inc/inventoryaction.class.php:145
+#, php-format
+msgid "Requested at %s"
+msgstr "Požiadané %s"
 
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr "Spustiť inventár databáz"
+#: inc/inventoryaction.class.php:195
+msgid "Request database inventory"
+msgstr "Požiadať o inventár databáz"
+
+#: inc/inventoryaction.class.php:196
+msgid "Ask agent to proceed a database inventory"
+msgstr "Požiadať agenta o vykonanie inventára databáz"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -162,27 +163,26 @@ msgstr "PostgreSQL"
 msgid "MongoDB"
 msgstr "MongoDB"
 
-#: inc/inventoryaction.class.php:47
-msgid "Run"
-msgstr "Spustiť"
+#: inc/computergroup.class.php:118
+msgid "Number of dynamic items"
+msgstr "Počet dynamických položiek"
 
-#: inc/inventoryaction.class.php:86
-msgid "Agent not found for computer"
-msgstr "Agent pre počítač nebol nájdený"
+#: inc/computergroup.class.php:131
+msgid "Number of static items"
+msgstr "Počet statických položiek"
 
-#: inc/inventoryaction.class.php:145
-#, php-format
-msgid "Requested at %s"
-msgstr "Požiadané %s"
+#: inc/computergroup.class.php:144
+msgid "List of dynamic items"
+msgstr "Zoznam dynamických položiek"
 
-#: inc/inventoryaction.class.php:195
-msgid "Request database inventory"
-msgstr "Požiadať o inventár databáz"
+#: inc/computergroup.class.php:159
+msgid "List of static items"
+msgstr "Zoznam statických položiek"
 
-#: inc/inventoryaction.class.php:196
-msgid "Ask agent to proceed a database inventory"
-msgstr "Požiadať agenta o vykonanie inventára databáz"
-
-#: hook.php:101
-msgid "Run partial databases inventory"
-msgstr "Spustiť čiastočný inventár databáz"
+#: inc/computergroupdynamic.class.php:46
+msgid "Dynamic group"
+msgid_plural "Dynamic groups"
+msgstr[0] "Dynamická skupina"
+msgstr[1] "Dynamické skupiny"
+msgstr[2] "Dynamické skupiny"
+msgstr[3] "Dynamické skupiny"

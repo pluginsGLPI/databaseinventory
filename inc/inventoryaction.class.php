@@ -36,7 +36,7 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 
     private const ENDPOINT_PARTIAL = 'now?';
 
-    public static $rightname = 'database_inventory_run_inventory';
+    public static string $rightname = 'database_inventory_run_inventory';
 
     public static function showMassiveActionsSubForm(MassiveAction $ma)
     {

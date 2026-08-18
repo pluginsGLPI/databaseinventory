@@ -30,7 +30,7 @@
 
 class PluginDatabaseinventoryProfile extends Profile
 {
-    public static $rightname = 'profile';
+    public static string $rightname = 'profile';
 
     public const RUN_DATABSE_INVENTORY = 256;
 

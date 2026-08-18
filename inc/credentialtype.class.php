@@ -32,7 +32,7 @@
 
 class PluginDatabaseinventoryCredentialType extends CommonDropdown
 {
-    public static $rightname = 'dropdown';
+    public static string $rightname = 'dropdown';
 
     private const MYSQL       = 1;
 

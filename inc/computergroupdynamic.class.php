@@ -39,7 +39,7 @@ use function Safe\preg_split;
 
 class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 {
-    public static $rightname = 'database_inventory';
+    public static string $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
     {

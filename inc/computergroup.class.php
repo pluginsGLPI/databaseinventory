@@ -60,9 +60,9 @@ use Glpi\Application\View\TemplateRenderer;
 
 class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 {
-    public $dohistory        = true;
+    public bool $dohistory   = true;
 
-    public static $rightname = 'database_inventory';
+    public static string $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
     {

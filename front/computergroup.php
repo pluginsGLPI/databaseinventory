@@ -28,7 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-Session::checkRight('config', UPDATE);
+Session::checkRight(Config::$rightname, UPDATE);
 
 Html::header(
     PluginDatabaseinventoryComputerGroup::getTypeName(Session::getPluralNumber()),

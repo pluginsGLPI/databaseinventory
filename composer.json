@@ -9,6 +9,11 @@
         },
         "sort-packages": true
     },
+    "autoload": {
+        "psr-4": {
+            "GlpiPlugin\\DatabaseInventory\\Tests\\": "tests"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
             "Glpi\\Tools\\": "../../tools/src/"

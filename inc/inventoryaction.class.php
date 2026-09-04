@@ -57,49 +57,49 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
             return;
         }
 
-        if (!Session::haveRight('database_inventory', PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
+        if (!Session::haveRight(PluginDatabaseinventoryDatabaseParam::class, PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
             foreach ($ids as $id) {
-                $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_NORIGHT);
+                $ma->itemDone($item::class, $id, MassiveAction::ACTION_NORIGHT);
             }
 
             return;
         }
 
-        switch ($item->getType()) {
-            case Computer::getType():
+        switch ($item::class) {
+            case Computer::class:
                 foreach ($ids as $id) {
                     $computer = new Computer();
                     if (!$computer->getFromDB($id) || !$computer->can($id, READ)) {
-                        $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_NORIGHT);
+                        $ma->itemDone($item::class, $id, MassiveAction::ACTION_NORIGHT);
                         continue;
                     }
 
                     if ($agent = self::findAgent($computer)) {
                         if (PluginDatabaseinventoryInventoryAction::runPartialInventory($agent, true)) {
-                            $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
+                            $ma->itemDone($item::class, $id, MassiveAction::ACTION_OK);
                         } else {
-                            $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
+                            $ma->itemDone($item::class, $id, MassiveAction::ACTION_KO);
                             $ma->addMessage($item->getErrorMessage(ERROR_ON_ACTION));
                         }
                     } else {
-                        $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
+                        $ma->itemDone($item::class, $id, MassiveAction::ACTION_KO);
                         $ma->addMessage(__s('Agent not found for computer', 'databaseinventory') . "<a href='" . Computer::getFormURLWithID($id) . "'>" . $computer->getFriendlyName() . '</a>');
                     }
                 }
 
                 break;
-            case Agent::getType():
+            case Agent::class:
                 foreach ($ids as $id) {
                     $agent = new Agent();
                     if (!$agent->getFromDB($id) || !$agent->can($id, READ)) {
-                        $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_NORIGHT);
+                        $ma->itemDone($item::class, $id, MassiveAction::ACTION_NORIGHT);
                         continue;
                     }
 
                     if (PluginDatabaseinventoryInventoryAction::runPartialInventory($agent, true)) {
-                        $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_OK);
+                        $ma->itemDone($item::class, $id, MassiveAction::ACTION_OK);
                     } else {
-                        $ma->itemDone($item->getType(), $id, MassiveAction::ACTION_KO);
+                        $ma->itemDone($item::class, $id, MassiveAction::ACTION_KO);
                         $ma->addMessage($item->getErrorMessage(ERROR_ON_ACTION));
                     }
                 }
@@ -125,17 +125,17 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
             $response = $agent->requestAgent($endpoint);
             if ($fromMA) {
                 return true;
-            } else {
-                // not authorized
-                return self::handleAgentResponse($response, $endpoint);
             }
+
+            // not authorized
+            return self::handleAgentResponse($response, $endpoint);
         } catch (Exception $exception) {
             if ($fromMA) {
                 return false;
-            } else {
-                // not authorized
-                return ['answer' => $exception->getMessage()];
             }
+
+            // not authorized
+            return ['answer' => $exception->getMessage()];
         }
     }
 
@@ -151,20 +151,20 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
     {
         $agent     = new Agent();
         $has_agent = $agent->getFromDBByCrit([
-            'itemtype' => $item->getType(),
+            'itemtype' => $item::class,
             'items_id' => $item->fields['id'],
         ]);
 
         // if no agent has been found, check if there is a linked item, and find its agent
-        if (!$has_agent && $item->getType() == 'Computer') {
+        if (!$has_agent && $item::class == 'Computer') {
             $citem        = new Asset_PeripheralAsset();
             $has_relation = $citem->getFromDBByCrit([
-                'itemtype_peripheral' => $item->getType(),
+                'itemtype_peripheral' => $item::class,
                 'items_id_peripheral' => $item->fields['id'],
             ]);
             if ($has_relation) {
                 $has_agent = $agent->getFromDBByCrit([
-                    'itemtype' => Computer::getType(),
+                    'itemtype' => Computer::class,
                     'items_id' => $citem->fields['computers_id'],
                 ]);
             }
@@ -172,9 +172,9 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 
         if ($has_agent) {
             return $agent;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     public static function postItemForm($item)
@@ -183,14 +183,14 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
             return;
         }
 
-        if (!Session::haveRight("database_inventory", PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
+        if (!Session::haveRight(PluginDatabaseinventoryDatabaseParam::class, PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY)) {
             return;
         }
 
         /** @var array $CFG_GLPI */
         global $CFG_GLPI;
 
-        if ($item::getType() == Computer::getType() && $agent = self::findAgent($item)) {
+        if ($item::getType() == Computer::class && $agent = self::findAgent($item)) {
             $out = '<div class="mb-3 col-12 col-sm-6">';
             $out .= '<label class="form-label" >' . __s('Request database inventory', 'database inventory');
             $out .= '<i id="request_database_inventory" class="fas fa-sync" style="cursor: pointer;" title="' . __s('Ask agent to proceed a database inventory', 'databaseinventory') . '"></i>';

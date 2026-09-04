@@ -41,7 +41,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
         // only serve credentials for a database param actually reachable by the agent's computer
         $computer = $agent->getLinkedItem();
         if (
-            $computer::class !== Computer::getType()
+            $computer::class !== Computer::class
             || $computer->isNewItem()
             || !in_array($content->params_id, self::getAccessibleDatabaseParams($computer))
         ) {
@@ -143,7 +143,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
         $database_param_found = [];
 
         // only Computer type
-        if ($computer::class == Computer::getType() && !$computer->isNewItem()) {
+        if ($computer::class == Computer::class && !$computer->isNewItem()) {
             $database_param_found = self::getAccessibleDatabaseParams($computer);
         }
 

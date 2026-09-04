@@ -89,14 +89,14 @@ function plugin_databaseinventory_uninstall()
 function plugin_databaseinventory_MassiveActions($type)
 {
     // Must be super-admin
-    if (!Session::haveRight('database_inventory', UPDATE)) {
+    if (!Session::haveRight(PluginDatabaseinventoryDatabaseParam::class, UPDATE)) {
         return [];
     }
 
     switch ($type) {
         case 'Computer':
         case 'Agent':
-            $class = PluginDatabaseinventoryInventoryAction::getType();
+            $class = PluginDatabaseinventoryInventoryAction::class;
             $key   = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
             $label = __s('Run partial databases inventory', 'databaseinventory');
 
@@ -113,7 +113,7 @@ function postItemForm(CommonDBTM $item)
 
 function cleanComputerFromStaticGroup(CommonDBTM $item)
 {
-    if ($item::getType() === Computer::getType()) {
+    if ($item::class === Computer::class) {
         $c_static = new PluginDatabaseinventoryComputerGroupStatic();
         $c_static->deleteByCriteria(['computers_id' => $item->fields['id']]);
     }
@@ -121,7 +121,7 @@ function cleanComputerFromStaticGroup(CommonDBTM $item)
 
 function cleanAgentFromContactLog(CommonDBTM $item)
 {
-    if ($item::getType() === Agent::getType()) {
+    if ($item::class === Agent::class) {
         $contactlog = new PluginDatabaseinventoryContactLog();
         $contactlog->deleteByCriteria(['agents_id' => $item->fields['id']]);
     }

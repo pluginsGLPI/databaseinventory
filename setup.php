@@ -31,6 +31,7 @@
 use function Safe\define;
 
 define('PLUGIN_DATABASEINVENTORY_VERSION', '1.1.4');
+
 // Minimal GLPI version, inclusive
 define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '12.0.0');
 // Maximum GLPI version, exclusive
@@ -64,7 +65,7 @@ function plugin_init_databaseinventory()
         'Agent'    => 'cleanAgentFromContactLog',
     ];
 
-    if (Session::haveRight('config', UPDATE)) {
+    if (Session::haveRight(Config::$rightname, UPDATE)) {
         $PLUGIN_HOOKS['menu_toadd']['databaseinventory'] = [
             'admin' => 'PluginDatabaseinventoryMenu',
         ];

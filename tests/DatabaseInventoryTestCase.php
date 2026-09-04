@@ -28,31 +28,8 @@
  * -------------------------------------------------------------------------
  */
 
-use Glpi\Exception\Http\NotFoundHttpException;
-use Glpi\Inventory\Conf;
+namespace GlpiPlugin\DatabaseInventory\Tests;
 
-use function Safe\json_encode;
+use Glpi\Tests\DbTestCase;
 
-$AJAX_INCLUDE = 1;
-include(__DIR__ . '/../../../inc/includes.php');
-header('Content-Type: application/json; charset=UTF-8');
-Html::header_nocache();
-
-Session::checkLoginUser();
-Session::checkRight(Conf::class, READ);
-Session::checkRight(PluginDatabaseinventoryDatabaseParam::class, PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY);
-
-if (isset($_POST['action']) && isset($_POST['id'])) {
-    $agent = new Agent();
-    if (!$agent->getFromDB($_POST['id'])) {
-        throw new NotFoundHttpException();
-    }
-
-    $answer = [];
-
-    if ($_POST['action'] === PluginDatabaseinventoryInventoryAction::MA_PARTIAL) {
-        $answer = PluginDatabaseinventoryInventoryAction::runPartialInventory($agent);
-    }
-
-    echo json_encode($answer);
-}
+abstract class DatabaseInventoryTestCase extends DbTestCase {}

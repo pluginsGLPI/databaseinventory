@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - GLPI 12 compatibility
+- Enable `sudo` mode for `Credential` and `DatabaseParam`
 
 ### Fixed
 

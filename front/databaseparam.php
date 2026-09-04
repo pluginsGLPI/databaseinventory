@@ -28,7 +28,7 @@
  * -------------------------------------------------------------------------
  */
 
-Session::checkRight(Config::$rightname, UPDATE);
+(new Config())->checkGlobal(UPDATE);
 
 Html::header(
     PluginDatabaseinventoryDatabaseParam::getTypeName(Session::getPluralNumber()),

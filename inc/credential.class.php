@@ -132,6 +132,11 @@ class PluginDatabaseinventoryCredential extends CommonDBTM
         return $tab;
     }
 
+    protected static function itemTypeRequiresReauthentication(): bool
+    {
+        return true;
+    }
+
     public function showForm($ID, array $options = [])
     {
         $this->initForm($ID, $options);

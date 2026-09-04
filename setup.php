@@ -90,7 +90,7 @@ function plugin_init_databaseinventory()
 function plugin_version_databaseinventory()
 {
     return [
-        'name'         => __s('Database Inventory', 'databaseinventory'),
+        'name'         => 'Database Inventory',
         'version'      => PLUGIN_DATABASEINVENTORY_VERSION,
         'author'       => '<a href="https://services.glpi-network.com">Teclib\'</a>',
         'license'      => 'GPL v3',

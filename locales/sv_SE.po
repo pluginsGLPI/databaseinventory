@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 02:13+0000\n"
+"POT-Creation-Date: 2026-09-04 03:39+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: Peter Rundqvist, 2025\n"
 "Language-Team: Swedish (Sweden) (https://app.transifex.com/teclib/teams/28042/sv_SE/)\n"
@@ -45,56 +45,18 @@ msgstr "Lösenord"
 msgid "Socket"
 msgstr "Socket"
 
-#: front/computergroup.form.php:66 front/computergroup.form.php:75
-msgid "Please select a computer"
-msgstr "Välj dator"
-
-#: front/menu.php:37 front/menu.php:46 setup.php:92 inc/profile.class.php:39
+#: setup.php:92 front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
 #: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "Databasinventering"
 
+#: front/computergroup.form.php:66 front/computergroup.form.php:75
+msgid "Please select a computer"
+msgstr "Välj dator"
+
 #: hook.php:101
 msgid "Run partial databases inventory"
 msgstr "Kör partiell inventering"
-
-#: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
-msgid "Computer Group"
-msgid_plural "Computers Group"
-msgstr[0] "Datorgrupp"
-msgstr[1] "Datorgrupper"
-
-#: inc/contactlog.class.php:84
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] "Anslutningslogg"
-msgstr[1] "Anslutningsloggar"
-
-#: inc/computergroupstatic.class.php:82
-msgid "Static group"
-msgid_plural "Static groups"
-msgstr[0] "Statisk grupp"
-msgstr[1] "Statiska grupper"
-
-#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] "Inloggningsuppgift"
-msgstr[1] "Inloggningsuppgifter"
-
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr "Köra databasinventering"
-
-#: inc/databaseparam.class.php:69
-msgid "Database params"
-msgid_plural "Databases params"
-msgstr[0] "DB-parameter"
-msgstr[1] "DB-parametrar"
-
-#: inc/databaseparam.class.php:107
-msgid "Partial inventory"
-msgstr "Partiell inventering"
 
 #: inc/inventoryaction.class.php:47
 msgid "Run"
@@ -116,6 +78,56 @@ msgstr "Begär databasinventering"
 #: inc/inventoryaction.class.php:196
 msgid "Ask agent to proceed a database inventory"
 msgstr "Be agenten fortsätta med en inventering"
+
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] "Inloggningsuppgift"
+msgstr[1] "Inloggningsuppgifter"
+
+#: inc/computergroupstatic.class.php:82
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] "Statisk grupp"
+msgstr[1] "Statiska grupper"
+
+#: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] "Datorgrupp"
+msgstr[1] "Datorgrupper"
+
+#: inc/computergroup.class.php:118
+msgid "Number of dynamic items"
+msgstr "Antal dynamiska objekt"
+
+#: inc/computergroup.class.php:131
+msgid "Number of static items"
+msgstr "Antal statiska objekt"
+
+#: inc/computergroup.class.php:144
+msgid "List of dynamic items"
+msgstr "Dynamiska objekt"
+
+#: inc/computergroup.class.php:159
+msgid "List of static items"
+msgstr "Statiska objekt"
+
+#: inc/databaseparam.class.php:69
+msgid "Database params"
+msgid_plural "Databases params"
+msgstr[0] "DB-parameter"
+msgstr[1] "DB-parametrar"
+
+#: inc/databaseparam.class.php:107
+msgid "Partial inventory"
+msgstr "Partiell inventering"
+
+#: inc/contactlog.class.php:84
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] "Anslutningslogg"
+msgstr[1] "Anslutningsloggar"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -151,21 +163,9 @@ msgstr "PostgreSQL"
 msgid "MongoDB"
 msgstr "MongoDB"
 
-#: inc/computergroup.class.php:118
-msgid "Number of dynamic items"
-msgstr "Antal dynamiska objekt"
-
-#: inc/computergroup.class.php:131
-msgid "Number of static items"
-msgstr "Antal statiska objekt"
-
-#: inc/computergroup.class.php:144
-msgid "List of dynamic items"
-msgstr "Dynamiska objekt"
-
-#: inc/computergroup.class.php:159
-msgid "List of static items"
-msgstr "Statiska objekt"
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr "Köra databasinventering"
 
 #: inc/computergroupdynamic.class.php:46
 msgid "Dynamic group"

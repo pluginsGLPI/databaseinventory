@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 02:13+0000\n"
-"PO-Revision-Date: 2026-08-13 02:13+0000\n"
+"POT-Creation-Date: 2026-09-08 03:45+0000\n"
+"PO-Revision-Date: 2026-09-08 03:45+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_GB\n"
@@ -41,56 +41,18 @@ msgstr "Password"
 msgid "Socket"
 msgstr "Socket"
 
-#: front/computergroup.form.php:66 front/computergroup.form.php:75
-msgid "Please select a computer"
-msgstr "Please select a computer"
-
-#: front/menu.php:37 front/menu.php:46 setup.php:92 inc/profile.class.php:39
+#: setup.php:92 front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
 #: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "Database Inventory"
 
+#: front/computergroup.form.php:66 front/computergroup.form.php:75
+msgid "Please select a computer"
+msgstr "Please select a computer"
+
 #: hook.php:101
 msgid "Run partial databases inventory"
 msgstr "Run partial databases inventory"
-
-#: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
-msgid "Computer Group"
-msgid_plural "Computers Group"
-msgstr[0] "Computer Group"
-msgstr[1] "Computers Group"
-
-#: inc/contactlog.class.php:84
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] "Contact log"
-msgstr[1] "Contact logs"
-
-#: inc/computergroupstatic.class.php:82
-msgid "Static group"
-msgid_plural "Static groups"
-msgstr[0] "Static group"
-msgstr[1] "Static groups"
-
-#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] "Credential"
-msgstr[1] "Credentials"
-
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr "Run database inventory"
-
-#: inc/databaseparam.class.php:69
-msgid "Database params"
-msgid_plural "Databases params"
-msgstr[0] "Database params"
-msgstr[1] "Databases params"
-
-#: inc/databaseparam.class.php:107
-msgid "Partial inventory"
-msgstr "Partial inventory"
 
 #: inc/inventoryaction.class.php:47
 msgid "Run"
@@ -112,6 +74,56 @@ msgstr "Request database inventory"
 #: inc/inventoryaction.class.php:196
 msgid "Ask agent to proceed a database inventory"
 msgstr "Ask agent to proceed a database inventory"
+
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] "Credential"
+msgstr[1] "Credentials"
+
+#: inc/computergroupstatic.class.php:82
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] "Static group"
+msgstr[1] "Static groups"
+
+#: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] "Computer Group"
+msgstr[1] "Computers Group"
+
+#: inc/computergroup.class.php:118
+msgid "Number of dynamic items"
+msgstr "Number of dynamic items"
+
+#: inc/computergroup.class.php:131
+msgid "Number of static items"
+msgstr "Number of static items"
+
+#: inc/computergroup.class.php:144
+msgid "List of dynamic items"
+msgstr "List of dynamic items"
+
+#: inc/computergroup.class.php:159
+msgid "List of static items"
+msgstr "List of static items"
+
+#: inc/databaseparam.class.php:69
+msgid "Database params"
+msgid_plural "Databases params"
+msgstr[0] "Database params"
+msgstr[1] "Databases params"
+
+#: inc/databaseparam.class.php:107
+msgid "Partial inventory"
+msgstr "Partial inventory"
+
+#: inc/contactlog.class.php:84
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] "Contact log"
+msgstr[1] "Contact logs"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -147,21 +159,9 @@ msgstr "PostgreSQL"
 msgid "MongoDB"
 msgstr "MongoDB"
 
-#: inc/computergroup.class.php:118
-msgid "Number of dynamic items"
-msgstr "Number of dynamic items"
-
-#: inc/computergroup.class.php:131
-msgid "Number of static items"
-msgstr "Number of static items"
-
-#: inc/computergroup.class.php:144
-msgid "List of dynamic items"
-msgstr "List of dynamic items"
-
-#: inc/computergroup.class.php:159
-msgid "List of static items"
-msgstr "List of static items"
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr "Run database inventory"
 
 #: inc/computergroupdynamic.class.php:46
 msgid "Dynamic group"

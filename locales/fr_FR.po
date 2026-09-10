@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 02:13+0000\n"
+"POT-Creation-Date: 2026-09-04 03:39+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: Cédric Anne, 2023\n"
 "Language-Team: French (France) (https://app.transifex.com/teclib/teams/28042/fr_FR/)\n"
@@ -45,61 +45,18 @@ msgstr ""
 msgid "Socket"
 msgstr ""
 
-#: front/computergroup.form.php:66 front/computergroup.form.php:75
-msgid "Please select a computer"
-msgstr "Veuillez sélectionner un ordinateur"
-
-#: front/menu.php:37 front/menu.php:46 setup.php:92 inc/profile.class.php:39
+#: setup.php:92 front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
 #: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "Database Inventory"
 
+#: front/computergroup.form.php:66 front/computergroup.form.php:75
+msgid "Please select a computer"
+msgstr "Veuillez sélectionner un ordinateur"
+
 #: hook.php:101
 msgid "Run partial databases inventory"
 msgstr "Exécuter l'inventaire partiel de base de données"
-
-#: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
-msgid "Computer Group"
-msgid_plural "Computers Group"
-msgstr[0] "Groupe d'ordinateurs"
-msgstr[1] "Groupes d'ordinateurs"
-msgstr[2] "Groupes d'ordinateurs"
-
-#: inc/contactlog.class.php:84
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] "Journal de contact"
-msgstr[1] "Journaux de contact"
-msgstr[2] "Journaux de contact"
-
-#: inc/computergroupstatic.class.php:82
-msgid "Static group"
-msgid_plural "Static groups"
-msgstr[0] "Groupe statique"
-msgstr[1] "Groupes statiques"
-msgstr[2] "Groupes statiques"
-
-#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] "Identifiant"
-msgstr[1] "Identifiants"
-msgstr[2] "Identifiants"
-
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr ""
-
-#: inc/databaseparam.class.php:69
-msgid "Database params"
-msgid_plural "Databases params"
-msgstr[0] "Paramètres de base de données"
-msgstr[1] "Paramètres de bases de données"
-msgstr[2] "Paramètres de bases de données"
-
-#: inc/databaseparam.class.php:107
-msgid "Partial inventory"
-msgstr "Inventaire partiel"
 
 #: inc/inventoryaction.class.php:47
 msgid "Run"
@@ -121,6 +78,61 @@ msgstr "Demander l'inventaire de base de données"
 #: inc/inventoryaction.class.php:196
 msgid "Ask agent to proceed a database inventory"
 msgstr "Demander à l'agent de procéder à un inventaire de base de données"
+
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] "Identifiant"
+msgstr[1] "Identifiants"
+msgstr[2] "Identifiants"
+
+#: inc/computergroupstatic.class.php:82
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] "Groupe statique"
+msgstr[1] "Groupes statiques"
+msgstr[2] "Groupes statiques"
+
+#: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] "Groupe d'ordinateurs"
+msgstr[1] "Groupes d'ordinateurs"
+msgstr[2] "Groupes d'ordinateurs"
+
+#: inc/computergroup.class.php:118
+msgid "Number of dynamic items"
+msgstr "Nombre d'éléments dynamiques"
+
+#: inc/computergroup.class.php:131
+msgid "Number of static items"
+msgstr "Nombre d'éléments statiques"
+
+#: inc/computergroup.class.php:144
+msgid "List of dynamic items"
+msgstr "Liste des éléments dynamiques"
+
+#: inc/computergroup.class.php:159
+msgid "List of static items"
+msgstr "Liste des éléments statiques"
+
+#: inc/databaseparam.class.php:69
+msgid "Database params"
+msgid_plural "Databases params"
+msgstr[0] "Paramètres de base de données"
+msgstr[1] "Paramètres de bases de données"
+msgstr[2] "Paramètres de bases de données"
+
+#: inc/databaseparam.class.php:107
+msgid "Partial inventory"
+msgstr "Inventaire partiel"
+
+#: inc/contactlog.class.php:84
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] "Journal de contact"
+msgstr[1] "Journaux de contact"
+msgstr[2] "Journaux de contact"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -157,21 +169,9 @@ msgstr "PostgreSQL"
 msgid "MongoDB"
 msgstr "MongoDB"
 
-#: inc/computergroup.class.php:118
-msgid "Number of dynamic items"
-msgstr "Nombre d'éléments dynamiques"
-
-#: inc/computergroup.class.php:131
-msgid "Number of static items"
-msgstr "Nombre d'éléments statiques"
-
-#: inc/computergroup.class.php:144
-msgid "List of dynamic items"
-msgstr "Liste des éléments dynamiques"
-
-#: inc/computergroup.class.php:159
-msgid "List of static items"
-msgstr "Liste des éléments statiques"
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr ""
 
 #: inc/computergroupdynamic.class.php:46
 msgid "Dynamic group"

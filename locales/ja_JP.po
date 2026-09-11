@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-13 02:13+0000\n"
+"POT-Creation-Date: 2026-09-04 03:39+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: Daisuke INOUE, 2025\n"
 "Language-Team: Japanese (Japan) (https://app.transifex.com/teclib/teams/28042/ja_JP/)\n"
@@ -45,51 +45,18 @@ msgstr "パスワード"
 msgid "Socket"
 msgstr "ソケット"
 
-#: front/computergroup.form.php:66 front/computergroup.form.php:75
-msgid "Please select a computer"
-msgstr "コンピューターを選択してください"
-
-#: front/menu.php:37 front/menu.php:46 setup.php:92 inc/profile.class.php:39
+#: setup.php:92 front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
 #: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "データベースインベントリー"
 
+#: front/computergroup.form.php:66 front/computergroup.form.php:75
+msgid "Please select a computer"
+msgstr "コンピューターを選択してください"
+
 #: hook.php:101
 msgid "Run partial databases inventory"
 msgstr "部分データベースインベントリーを実行"
-
-#: inc/databaseparam_computergroup.class.php:97 inc/computergroup.class.php:69
-msgid "Computer Group"
-msgid_plural "Computers Group"
-msgstr[0] "コンピューターグループ"
-
-#: inc/contactlog.class.php:84
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] "接続ログ"
-
-#: inc/computergroupstatic.class.php:82
-msgid "Static group"
-msgid_plural "Static groups"
-msgstr[0] "静的グループ"
-
-#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] "認証"
-
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr "データベースインベントリーを実行"
-
-#: inc/databaseparam.class.php:69
-msgid "Database params"
-msgid_plural "Databases params"
-msgstr[0] "データベースのパラメーター"
-
-#: inc/databaseparam.class.php:107
-msgid "Partial inventory"
-msgstr "部分インベントリー"
 
 #: inc/inventoryaction.class.php:47
 msgid "Run"
@@ -111,6 +78,51 @@ msgstr "データベースインベントリーを要求"
 #: inc/inventoryaction.class.php:196
 msgid "Ask agent to proceed a database inventory"
 msgstr "エージェントにデータベースインベントリーを要求"
+
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] "認証"
+
+#: inc/computergroupstatic.class.php:82
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] "静的グループ"
+
+#: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
+msgid "Computer Group"
+msgid_plural "Computers Group"
+msgstr[0] "コンピューターグループ"
+
+#: inc/computergroup.class.php:118
+msgid "Number of dynamic items"
+msgstr "動的アイテムの数"
+
+#: inc/computergroup.class.php:131
+msgid "Number of static items"
+msgstr "静的アイテムの数"
+
+#: inc/computergroup.class.php:144
+msgid "List of dynamic items"
+msgstr "動的アイテムの一覧"
+
+#: inc/computergroup.class.php:159
+msgid "List of static items"
+msgstr "静的アイテムの一覧"
+
+#: inc/databaseparam.class.php:69
+msgid "Database params"
+msgid_plural "Databases params"
+msgstr[0] "データベースのパラメーター"
+
+#: inc/databaseparam.class.php:107
+msgid "Partial inventory"
+msgstr "部分インベントリー"
+
+#: inc/contactlog.class.php:84
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] "接続ログ"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -145,21 +157,9 @@ msgstr "PostgreSQL"
 msgid "MongoDB"
 msgstr "MongoDB"
 
-#: inc/computergroup.class.php:118
-msgid "Number of dynamic items"
-msgstr "動的アイテムの数"
-
-#: inc/computergroup.class.php:131
-msgid "Number of static items"
-msgstr "静的アイテムの数"
-
-#: inc/computergroup.class.php:144
-msgid "List of dynamic items"
-msgstr "動的アイテムの一覧"
-
-#: inc/computergroup.class.php:159
-msgid "List of static items"
-msgstr "静的アイテムの一覧"
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr "データベースインベントリーを実行"
 
 #: inc/computergroupdynamic.class.php:46
 msgid "Dynamic group"

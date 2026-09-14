@@ -22,37 +22,17 @@
  * You should have received a copy of the GNU General Public License
  * along with DatabaseInventory. If not, see <http://www.gnu.org/licenses/>.
  * -------------------------------------------------------------------------
- * @copyright Copyright (C) 2021-2023 by Teclib'.
+ * @copyright Copyright (C) 2014-2023 by Teclib'.
  * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ * @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
  * @link      https://services.glpi-network.com
+ * @link      https://github.com/pluginsGLPI/databaseinventory
  * -------------------------------------------------------------------------
  */
 
-use Glpi\Exception\Http\NotFoundHttpException;
-use Glpi\Inventory\Conf;
+require __DIR__ . '/../../../tests/bootstrap.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-use function Safe\json_encode;
-
-$AJAX_INCLUDE = 1;
-include(__DIR__ . '/../../../inc/includes.php');
-header('Content-Type: application/json; charset=UTF-8');
-Html::header_nocache();
-
-Session::checkLoginUser();
-Session::checkRight(Conf::class, READ);
-Session::checkRight(PluginDatabaseinventoryDatabaseParam::class, PluginDatabaseinventoryProfile::RUN_DATABSE_INVENTORY);
-
-if (isset($_POST['action']) && isset($_POST['id'])) {
-    $agent = new Agent();
-    if (!$agent->getFromDB($_POST['id'])) {
-        throw new NotFoundHttpException();
-    }
-
-    $answer = [];
-
-    if ($_POST['action'] === PluginDatabaseinventoryInventoryAction::MA_PARTIAL) {
-        $answer = PluginDatabaseinventoryInventoryAction::runPartialInventory($agent);
-    }
-
-    echo json_encode($answer);
+if (!Plugin::isPluginActive('databaseinventory')) {
+    throw new RuntimeException('Plugin databaseinventory is not active in the test database');
 }

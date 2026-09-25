@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-04 03:39+0000\n"
+"POT-Creation-Date: 2026-09-24 03:53+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: Diego Nobre <diego@koruma.com.br>, 2025\n"
 "Language-Team: Portuguese (Brazil) (https://app.transifex.com/teclib/teams/28042/pt_BR/)\n"
@@ -45,53 +45,14 @@ msgstr "Senha"
 msgid "Socket"
 msgstr "Soquete"
 
-#: setup.php:92 front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
-#: inc/menu.class.php:35
-msgid "Database Inventory"
-msgstr "Inventário de banco de dados"
-
 #: front/computergroup.form.php:66 front/computergroup.form.php:75
 msgid "Please select a computer"
 msgstr "Favor selecionar um computador"
 
-#: hook.php:101
-msgid "Run partial databases inventory"
-msgstr "Executar inventário parcial de bancos de dados"
-
-#: inc/inventoryaction.class.php:47
-msgid "Run"
-msgstr "Executar"
-
-#: inc/inventoryaction.class.php:86
-msgid "Agent not found for computer"
-msgstr "Agente não encontrado para computador"
-
-#: inc/inventoryaction.class.php:145
-#, php-format
-msgid "Requested at %s"
-msgstr "Solicitado em %s"
-
-#: inc/inventoryaction.class.php:195
-msgid "Request database inventory"
-msgstr "Solicitar inventário de banco de dados"
-
-#: inc/inventoryaction.class.php:196
-msgid "Ask agent to proceed a database inventory"
-msgstr "Peça ao agente para prosseguir com um inventário do banco de dados"
-
-#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] "Credencial"
-msgstr[1] "Credenciais"
-msgstr[2] "Credenciais"
-
-#: inc/computergroupstatic.class.php:82
-msgid "Static group"
-msgid_plural "Static groups"
-msgstr[0] "Grupo estático"
-msgstr[1] "Grupos estáticos"
-msgstr[2] "Grupos estáticos"
+#: front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
+#: inc/menu.class.php:35 setup.php:92
+msgid "Database Inventory"
+msgstr "Inventário de banco de dados"
 
 #: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
 msgid "Computer Group"
@@ -116,6 +77,13 @@ msgstr "Lista de itens dinâmicos"
 msgid "List of static items"
 msgstr "Lista de itens estáticos"
 
+#: inc/computergroupstatic.class.php:82
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] "Grupo estático"
+msgstr[1] "Grupos estáticos"
+msgstr[2] "Grupos estáticos"
+
 #: inc/databaseparam.class.php:69
 msgid "Database params"
 msgid_plural "Databases params"
@@ -126,13 +94,6 @@ msgstr[2] "Parâmetros dos bancos de dados"
 #: inc/databaseparam.class.php:107
 msgid "Partial inventory"
 msgstr "Inventário parcial"
-
-#: inc/contactlog.class.php:84
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] "Registro de contato"
-msgstr[1] "Registros de contato"
-msgstr[2] "Registros de contato"
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -169,9 +130,12 @@ msgstr "PostgreSQL"
 msgid "MongoDB"
 msgstr "MongoDB"
 
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr "Executar inventário do banco de dados"
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] "Credencial"
+msgstr[1] "Credenciais"
+msgstr[2] "Credenciais"
 
 #: inc/computergroupdynamic.class.php:46
 msgid "Dynamic group"
@@ -179,3 +143,39 @@ msgid_plural "Dynamic groups"
 msgstr[0] "Grupo dinâmico"
 msgstr[1] "Grupos dinâmicos"
 msgstr[2] "Grupos dinâmicos"
+
+#: inc/inventoryaction.class.php:47
+msgid "Run"
+msgstr "Executar"
+
+#: inc/inventoryaction.class.php:86
+msgid "Agent not found for computer"
+msgstr "Agente não encontrado para computador"
+
+#: inc/inventoryaction.class.php:145
+#, php-format
+msgid "Requested at %s"
+msgstr "Solicitado em %s"
+
+#: inc/inventoryaction.class.php:195
+msgid "Request database inventory"
+msgstr "Solicitar inventário de banco de dados"
+
+#: inc/inventoryaction.class.php:196
+msgid "Ask agent to proceed a database inventory"
+msgstr "Peça ao agente para prosseguir com um inventário do banco de dados"
+
+#: inc/contactlog.class.php:84
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] "Registro de contato"
+msgstr[1] "Registros de contato"
+msgstr[2] "Registros de contato"
+
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr "Executar inventário do banco de dados"
+
+#: hook.php:101
+msgid "Run partial databases inventory"
+msgstr "Executar inventário parcial de bancos de dados"

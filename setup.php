@@ -31,10 +31,11 @@
 use function Safe\define;
 
 define('PLUGIN_DATABASEINVENTORY_VERSION', '1.1.4');
+
 // Minimal GLPI version, inclusive
-define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '11.0.0');
+define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '12.0.0');
 // Maximum GLPI version, exclusive
-define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '11.0.99');
+define('PLUGIN_DATABASEINVENTORY_MAX_GLPI', '12.0.99');
 
 /**
  * Init hooks of the plugin.
@@ -64,7 +65,7 @@ function plugin_init_databaseinventory()
         'Agent'    => 'cleanAgentFromContactLog',
     ];
 
-    if (Session::haveRight('config', UPDATE)) {
+    if (Session::haveRight(Config::$rightname, UPDATE)) {
         $PLUGIN_HOOKS['menu_toadd']['databaseinventory'] = [
             'admin' => 'PluginDatabaseinventoryMenu',
         ];
@@ -89,7 +90,7 @@ function plugin_init_databaseinventory()
 function plugin_version_databaseinventory()
 {
     return [
-        'name'         => __s('Database Inventory', 'databaseinventory'),
+        'name'         => 'Database Inventory',
         'version'      => PLUGIN_DATABASEINVENTORY_VERSION,
         'author'       => '<a href="https://services.glpi-network.com">Teclib\'</a>',
         'license'      => 'GPL v3',

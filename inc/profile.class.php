@@ -30,7 +30,7 @@
 
 class PluginDatabaseinventoryProfile extends Profile
 {
-    public static $rightname = 'profile';
+    public static string $rightname = 'profile';
 
     public const RUN_DATABSE_INVENTORY = 256;
 
@@ -43,7 +43,7 @@ class PluginDatabaseinventoryProfile extends Profile
     {
         return [
             [
-                'itemtype'  => PluginDatabaseinventoryDatabaseParam::getType(),
+                'itemtype'  => PluginDatabaseinventoryDatabaseParam::class,
                 'label'     => PluginDatabaseinventoryProfile::getTypeName(),
                 'field'     => 'database_inventory',
                 'rights'    => [
@@ -68,7 +68,7 @@ class PluginDatabaseinventoryProfile extends Profile
 
     public function getTabNameForItem(CommonGLPI $item, $withtemplate = 0)
     {
-        if ($item->getType() == 'Profile') {
+        if ($item::class == 'Profile') {
             return self::createTabEntry(self::getTypeName());
         }
 

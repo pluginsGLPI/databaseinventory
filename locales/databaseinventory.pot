@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-14 04:05+0000\n"
+"POT-Creation-Date: 2026-09-28 04:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,51 +42,14 @@ msgstr ""
 msgid "Socket"
 msgstr ""
 
-#: setup.php:92 front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
-#: inc/menu.class.php:35
-msgid "Database Inventory"
-msgstr ""
-
 #: front/computergroup.form.php:66 front/computergroup.form.php:75
 msgid "Please select a computer"
 msgstr ""
 
-#: hook.php:101
-msgid "Run partial databases inventory"
+#: front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
+#: inc/menu.class.php:35 setup.php:92
+msgid "Database Inventory"
 msgstr ""
-
-#: inc/inventoryaction.class.php:47
-msgid "Run"
-msgstr ""
-
-#: inc/inventoryaction.class.php:86
-msgid "Agent not found for computer"
-msgstr ""
-
-#: inc/inventoryaction.class.php:145
-#, php-format
-msgid "Requested at %s"
-msgstr ""
-
-#: inc/inventoryaction.class.php:195
-msgid "Request database inventory"
-msgstr ""
-
-#: inc/inventoryaction.class.php:196
-msgid "Ask agent to proceed a database inventory"
-msgstr ""
-
-#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
-msgid "Credential"
-msgid_plural "Credentials"
-msgstr[0] ""
-msgstr[1] ""
-
-#: inc/computergroupstatic.class.php:82
-msgid "Static group"
-msgid_plural "Static groups"
-msgstr[0] ""
-msgstr[1] ""
 
 #: inc/computergroup.class.php:69 inc/databaseparam_computergroup.class.php:97
 msgid "Computer Group"
@@ -110,6 +73,12 @@ msgstr ""
 msgid "List of static items"
 msgstr ""
 
+#: inc/computergroupstatic.class.php:82
+msgid "Static group"
+msgid_plural "Static groups"
+msgstr[0] ""
+msgstr[1] ""
+
 #: inc/databaseparam.class.php:69
 msgid "Database params"
 msgid_plural "Databases params"
@@ -119,12 +88,6 @@ msgstr[1] ""
 #: inc/databaseparam.class.php:107
 msgid "Partial inventory"
 msgstr ""
-
-#: inc/contactlog.class.php:84
-msgid "Contact log"
-msgid_plural "Contact logs"
-msgstr[0] ""
-msgstr[1] ""
 
 #: inc/credentialtype.class.php:81
 msgid "Credential type"
@@ -160,12 +123,49 @@ msgstr ""
 msgid "MongoDB"
 msgstr ""
 
-#: inc/profile.class.php:56 inc/profile.class.php:65
-msgid "Run database inventory"
-msgstr ""
+#: inc/credential.class.php:84 inc/databaseparam_credential.class.php:97
+msgid "Credential"
+msgid_plural "Credentials"
+msgstr[0] ""
+msgstr[1] ""
 
 #: inc/computergroupdynamic.class.php:46
 msgid "Dynamic group"
 msgid_plural "Dynamic groups"
 msgstr[0] ""
 msgstr[1] ""
+
+#: inc/inventoryaction.class.php:47
+msgid "Run"
+msgstr ""
+
+#: inc/inventoryaction.class.php:86
+msgid "Agent not found for computer"
+msgstr ""
+
+#: inc/inventoryaction.class.php:145
+#, php-format
+msgid "Requested at %s"
+msgstr ""
+
+#: inc/inventoryaction.class.php:195
+msgid "Request database inventory"
+msgstr ""
+
+#: inc/inventoryaction.class.php:196
+msgid "Ask agent to proceed a database inventory"
+msgstr ""
+
+#: inc/contactlog.class.php:84
+msgid "Contact log"
+msgid_plural "Contact logs"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/profile.class.php:56 inc/profile.class.php:65
+msgid "Run database inventory"
+msgstr ""
+
+#: hook.php:101
+msgid "Run partial databases inventory"
+msgstr ""

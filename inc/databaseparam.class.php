@@ -159,6 +159,11 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
         return $tab;
     }
 
+    protected static function itemTypeRequiresReauthentication(): bool
+    {
+        return true;
+    }
+
     public function getCredentialTypeLinked()
     {
         /** @var DBmysql $DB */

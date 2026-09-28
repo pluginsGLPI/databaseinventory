@@ -30,7 +30,7 @@
 
 use Glpi\Event;
 
-Session::checkRight(Config::$rightname, READ);
+(new Config())->checkGlobal(READ);
 
 $_GET['id'] ??= '';
 

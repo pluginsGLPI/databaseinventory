@@ -60,9 +60,9 @@ use Glpi\Application\View\TemplateRenderer;
 
 class PluginDatabaseinventoryContactLog extends CommonDBTM
 {
-    public $dohistory        = true;
+    public bool $dohistory   = true;
 
-    public static $rightname = 'database_inventory';
+    public static string $rightname = 'database_inventory';
 
     public static function canCreate(): bool
     {
@@ -155,7 +155,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/contactlog.html.twig',
             [
-                'itemtype'    => PluginDatabaseinventoryDatabaseParam::getType(),
+                'itemtype'    => PluginDatabaseinventoryDatabaseParam::class,
                 'contactlogs' => $listofctlog,
                 'canread'     => $databaseparams->can($ID, READ),
             ],
@@ -205,7 +205,7 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/contactlog.html.twig',
             [
-                'itemtype'    => Agent::getType(),
+                'itemtype'    => Agent::class,
                 'contactlogs' => $listofctlog,
                 'canread'     => $agent->can($ID, READ),
             ],

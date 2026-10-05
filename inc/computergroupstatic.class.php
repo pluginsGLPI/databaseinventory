@@ -61,21 +61,21 @@ use Glpi\Application\View\TemplateRenderer;
 class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
 {
     // From CommonDBRelation
-    public static $itemtype_1 = 'PluginDatabaseinventoryComputerGroup';
+    public static ?string $itemtype_1 = 'PluginDatabaseinventoryComputerGroup';
 
-    public static $items_id_1 = 'plugin_databaseinventory_computergroups_id';
+    public static ?string $items_id_1 = 'plugin_databaseinventory_computergroups_id';
 
-    public static $itemtype_2 = 'Computer';
+    public static ?string $itemtype_2 = 'Computer';
 
-    public static $items_id_2 = 'computers_id';
+    public static ?string $items_id_2 = 'computers_id';
 
-    public static $checkItem_2_Rights = self::DONT_CHECK_ITEM_RIGHTS;
+    public static int $checkItem_2_Rights = self::DONT_CHECK_ITEM_RIGHTS;
 
-    public static $logs_for_item_2    = false;
+    public static bool $logs_for_item_2 = false;
 
-    public $auto_message_on_action    = false;
+    public bool $auto_message_on_action = false;
 
-    public static $rightname = 'database_inventory';
+    public static string $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
     {

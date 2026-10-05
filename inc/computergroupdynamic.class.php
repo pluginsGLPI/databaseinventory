@@ -39,7 +39,7 @@ use function Safe\preg_split;
 
 class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 {
-    public static $rightname = 'database_inventory';
+    public static string $rightname = 'database_inventory';
 
     public static function getTypeName($nb = 0)
     {
@@ -192,9 +192,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
             'value'      => $computer->fields['id'],
         ];
 
-        if (!isset($_SESSION['glpiname'])) {
-            $_SESSION['glpiname'] = 'databaseinventory_plugin';
-        }
+        $_SESSION['glpiname'] ??= 'databaseinventory_plugin';
 
         $search_params = Search::manageParams('Computer', $search);
         $data          = Search::prepareDatasForSearch('Computer', $search_params);
@@ -250,7 +248,7 @@ class PluginDatabaseinventoryComputerGroupDynamic extends CommonDBTM
 
             //hack because submit button is not a submit... See https://github.com/glpi-project/glpi/pull/20731
             ob_start();
-            Search::showGenericSearch(Computer::getType(), $p);
+            Search::showGenericSearch(Computer::class, $p);
             $generic_search = ob_get_clean();
             echo preg_replace('/type="button" name="save"/', 'type="submit" name="save"', $generic_search);
 

@@ -30,7 +30,7 @@
 
 use function Safe\define;
 
-define('PLUGIN_DATABASEINVENTORY_VERSION', '1.1.4');
+define('PLUGIN_DATABASEINVENTORY_VERSION', '1.2.0');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_DATABASEINVENTORY_MIN_GLPI', '12.0.0');

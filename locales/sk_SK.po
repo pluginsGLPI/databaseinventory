@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-24 03:53+0000\n"
+"POT-Creation-Date: 2026-10-08 05:15+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: feonsu <feonsu@gmail.com>, 2025\n"
 "Language-Team: Slovak (Slovakia) (https://app.transifex.com/teclib/teams/28042/sk_SK/)\n"
@@ -45,12 +45,12 @@ msgstr "Heslo"
 msgid "Socket"
 msgstr "Soket"
 
-#: front/computergroup.form.php:66 front/computergroup.form.php:75
+#: front/computergroup.form.php:62 front/computergroup.form.php:71
 msgid "Please select a computer"
 msgstr "Vyberte počítač"
 
 #: front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
-#: inc/menu.class.php:35 setup.php:92
+#: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "Inventár databáz"
 

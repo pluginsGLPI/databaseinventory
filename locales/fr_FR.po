@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 04:08+0000\n"
+"POT-Creation-Date: 2026-10-08 05:15+0000\n"
 "PO-Revision-Date: 2023-09-22 13:12+0000\n"
 "Last-Translator: EpicIT33, 2026\n"
 "Language-Team: French (France) (https://app.transifex.com/teclib/teams/28042/fr_FR/)\n"
@@ -46,12 +46,12 @@ msgstr "Mot de passe"
 msgid "Socket"
 msgstr ""
 
-#: front/computergroup.form.php:66 front/computergroup.form.php:75
+#: front/computergroup.form.php:62 front/computergroup.form.php:71
 msgid "Please select a computer"
 msgstr "Veuillez sélectionner un ordinateur"
 
 #: front/menu.php:37 front/menu.php:46 inc/profile.class.php:39
-#: inc/menu.class.php:35 setup.php:92
+#: inc/menu.class.php:35
 msgid "Database Inventory"
 msgstr "Database Inventory"
 

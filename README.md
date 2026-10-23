@@ -150,3 +150,7 @@ Allows you to set the following items:
 ## Partial inventory
 
 Partial inventory allows the agent to perform only the database inventory (without the asset inventory) according to the frequency defined in the task.
+
+## Additional resources
+
+* [Translations on Transifex](https://explore.transifex.com/teclib/glpi-plugin-databaseinventory/)

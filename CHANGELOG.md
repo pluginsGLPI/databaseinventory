@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - CI: fix Psalm cache directory, drop the stray `glpi-project/tools` composer dependency, declare a unique composer autoloader suffix
+- Improve performance of the Static groups, Contact logs and Computer groups tabs (paginated, loaded in a few queries)
+- Evaluate each dynamic group only once when an agent requests its database inventory parameters
+- Show an error when a database inventory request fails, and send each credential type only once
+- Do not lock the user session while waiting for the agent answer
 
 ## [1.1.4] - 2026-08-03
 

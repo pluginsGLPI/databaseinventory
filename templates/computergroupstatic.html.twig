@@ -66,6 +66,7 @@
     {% endif %}
     {% if canread %}
         {% if computerslist is not empty %}
+            {{ pager|raw }}
             <form name="massaction_{{ rand }}" id="massaction_{{ rand }}" method="post"
             action="{{ path('/front/massiveaction.php') }}" data-submit-once>
             <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />

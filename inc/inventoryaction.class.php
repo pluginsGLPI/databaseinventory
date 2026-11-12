@@ -30,6 +30,8 @@
 
 use Glpi\Asset\Asset_PeripheralAsset;
 
+use function Safe\json_encode;
+
 class PluginDatabaseinventoryInventoryAction extends CommonDBTM
 {
     public const MA_PARTIAL        = 'partial_database_inventory';
@@ -199,8 +201,10 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
             $out .= '</div>';
             echo $out;
             $url = $CFG_GLPI['url_base'] . '/plugins/databaseinventory/ajax/agent.php';
-            $key = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
-            $js  = <<<JAVASCRIPT
+            $key           = PluginDatabaseinventoryInventoryAction::MA_PARTIAL;
+            $timeout_label = json_encode(__('The agent did not answer in time', 'databaseinventory'));
+            $error_label   = json_encode(__('The database inventory request failed', 'databaseinventory'));
+            $js            = <<<JAVASCRIPT
                     $(function() {
                         $('#request_database_inventory').on('click', function() {
                             var icon = $(this);
@@ -213,6 +217,10 @@ class PluginDatabaseinventoryInventoryAction extends CommonDBTM
                                 success: function(json) {
                                     icon.removeClass('fa-spin');
                                     $('#database_inventory_status').html(json.answer);
+                                },
+                                error: function(xhr, status) {
+                                    icon.removeClass('fa-spin');
+                                    $('#database_inventory_status').text(status === 'timeout' ? {$timeout_label} : {$error_label});
                                 }
                             });
                         });

@@ -175,7 +175,9 @@ class PluginDatabaseinventoryDatabaseParam extends CommonDBTM
                 $credential_type_table . '.id',
                 $credential_type_table . '.name',
             ],
-            'FROM' => $credential_type_table,
+            // several credentials of the same type must not repeat the type sent to the agent
+            'DISTINCT' => true,
+            'FROM'     => $credential_type_table,
             'JOIN' => [
                 $credential_table => [
                     'ON' => [

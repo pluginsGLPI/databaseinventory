@@ -124,26 +124,81 @@ class PluginDatabaseinventoryDatabaseParam_ComputerGroup extends CommonDBRelatio
             return false;
         }
 
-        $databaseparamcgroup = new PluginDatabaseinventoryDatabaseParam_ComputerGroup();
-        $dbpcgrouplist       = $databaseparamcgroup->find(
-            [
-                'plugin_databaseinventory_databaseparams_id' => $ID,
-            ],
-        );
+        /** @var DBmysql $DB */
+        global $DB;
 
-        $dbcgroups     = new PluginDatabaseinventoryComputerGroup();
-        $listofcgroups = [];
-        $used          = [];
-        foreach ($dbpcgrouplist as $dbpcgroup) {
-            $used[] = $dbpcgroup['plugin_databaseinventory_computergroups_id'];
-            if ($dbcgroups->getFromDB($dbpcgroup['plugin_databaseinventory_computergroups_id'])) {
-                $listofcgroups[] = $dbcgroups->fields + [
-                    'link'            => $dbcgroups->getLinkURL(),
-                    'nbdynamicitems'  => $dbcgroups->countDynamicItem(),
-                    'nbstaticitems'   => $dbcgroups->countStaticItem(),
-                    'iddbparamcgroup' => $dbpcgroup['id'],
-                ];
+        $relation_table = self::getTable();
+        $group_table    = PluginDatabaseinventoryComputerGroup::getTable();
+        $group_fk       = 'plugin_databaseinventory_computergroups_id';
+
+        // linked groups, the ids of relations whose group no longer exists are still "used"
+        $used   = [];
+        $groups = [];
+        $iterator = $DB->request([
+            'SELECT'    => [
+                $relation_table . '.id AS iddbparamcgroup',
+                $relation_table . '.' . $group_fk,
+                $group_table . '.*',
+            ],
+            'FROM'      => $relation_table,
+            'LEFT JOIN' => [
+                $group_table => [
+                    'ON' => [
+                        $relation_table => $group_fk,
+                        $group_table    => 'id',
+                    ],
+                ],
+            ],
+            'WHERE'     => [$relation_table . '.plugin_databaseinventory_databaseparams_id' => $ID],
+            'ORDER'     => $relation_table . '.id',
+        ]);
+        foreach ($iterator as $row) {
+            $used[] = $row[$group_fk];
+            if ($row['id'] !== null) {
+                $groups[] = $row;
             }
+        }
+
+        // static and dynamic members of all the groups in two queries
+        $group_ids     = array_column($groups, 'id');
+        $static_counts = [];
+        $searches      = [];
+        if ($group_ids !== []) {
+            $count_iterator = $DB->request([
+                'SELECT' => [$group_fk, 'COUNT' => '* AS cpt'],
+                'FROM'   => PluginDatabaseinventoryComputerGroupStatic::getTable(),
+                'WHERE'  => [$group_fk => $group_ids],
+                'GROUPBY' => $group_fk,
+            ]);
+            foreach ($count_iterator as $row) {
+                $static_counts[$row[$group_fk]] = (int) $row['cpt'];
+            }
+
+            $dynamic_iterator = $DB->request([
+                'SELECT' => [$group_fk, 'search'],
+                'FROM'   => PluginDatabaseinventoryComputerGroupDynamic::getTable(),
+                'WHERE'  => [$group_fk => $group_ids],
+            ]);
+            foreach ($dynamic_iterator as $row) {
+                $searches[$row[$group_fk]][] = (string) $row['search'];
+            }
+        }
+
+        $listofcgroups = [];
+        foreach ($groups as $group) {
+            $nbdynamicitems = 0;
+            foreach ($searches[$group['id']] ?? [] as $search) {
+                $nbdynamicitems += PluginDatabaseinventoryComputerGroup::countComputersForSearch($search);
+            }
+
+            $iddbparamcgroup = $group['iddbparamcgroup'];
+            unset($group['iddbparamcgroup'], $group[$group_fk]);
+            $listofcgroups[] = $group + [
+                'link'            => PluginDatabaseinventoryComputerGroup::getFormURLWithID($group['id']),
+                'nbdynamicitems'  => $nbdynamicitems,
+                'nbstaticitems'   => $static_counts[$group['id']] ?? 0,
+                'iddbparamcgroup' => $iddbparamcgroup,
+            ];
         }
 
         TemplateRenderer::getInstance()->display(

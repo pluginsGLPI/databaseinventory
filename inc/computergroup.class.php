@@ -199,30 +199,31 @@ class PluginDatabaseinventoryComputerGroup extends CommonDBTM
 
         $iterator = $DB->request($params);
         foreach ($iterator as $computergroup_dynamic) {
-            $search_params = Search::manageParams('Computer', json_decode((string) $computergroup_dynamic['search'], true, 512, JSON_THROW_ON_ERROR));
-            $data          = Search::prepareDatasForSearch('Computer', $search_params);
-            Search::constructSQL($data);
-            Search::constructData($data);
-            $count += $data['data']['totalcount'];
+            $count += self::countComputersForSearch((string) $computergroup_dynamic['search']);
         }
 
         return $count;
     }
 
+    /**
+     * Number of computers matched by a dynamic group search (JSON criteria).
+     */
+    public static function countComputersForSearch(string $search): int
+    {
+        $search_params = Search::manageParams('Computer', json_decode($search, true, 512, JSON_THROW_ON_ERROR));
+        $data          = Search::prepareDatasForSearch('Computer', $search_params);
+        Search::constructSQL($data);
+        Search::constructData($data);
+
+        return (int) $data['data']['totalcount'];
+    }
+
     public function countStaticItem()
     {
-        /** @var DBmysql $DB */
-        global $DB;
-
-        $params = [
-            'SELECT' => '*',
-            'FROM'   => PluginDatabaseinventoryComputerGroupStatic::getTable(),
-            'WHERE'  => ['plugin_databaseinventory_computergroups_id' => $this->fields['id']],
-        ];
-
-        $iterator = $DB->request($params);
-
-        return count($iterator);
+        return countElementsInTable(
+            PluginDatabaseinventoryComputerGroupStatic::getTable(),
+            ['plugin_databaseinventory_computergroups_id' => $this->fields['id']],
+        );
     }
 
     public static function install(Migration $migration)

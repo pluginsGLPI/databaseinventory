@@ -30,6 +30,13 @@
 
 class PluginDatabaseinventoryTask extends CommonGLPI
 {
+    /**
+     * Accessible database params per computer id, for the current request.
+     *
+     * @var array<int, int[]>
+     */
+    private static array $accessible_database_params = [];
+
     public static function inventoryGetParams(array $params)
     {
         /** @var DBmysql $DB */
@@ -203,6 +210,12 @@ class PluginDatabaseinventoryTask extends CommonGLPI
         /** @var DBmysql $DB */
         global $DB;
 
+        // the inventory calls this once per requested param during the same agent contact
+        $computer_id = (int) $computer->fields['id'];
+        if (isset(self::$accessible_database_params[$computer_id])) {
+            return self::$accessible_database_params[$computer_id];
+        }
+
         $database_param_found = [];
 
         $database_param_table               = PluginDatabaseinventoryDatabaseParam::getTable();
@@ -262,6 +275,7 @@ class PluginDatabaseinventoryTask extends CommonGLPI
         $criteria = [
             'SELECT' => [
                 $computer_group_dynamic_table . '.id',
+                $computer_group_dynamic_table . '.search',
                 $database_param_table . '.id AS database_param_id',
             ],
             'FROM' => $computer_group_dynamic_table,
@@ -301,17 +315,29 @@ class PluginDatabaseinventoryTask extends CommonGLPI
             ];
         }
 
+        // A dynamic group linked to several params comes back once per param:
+        // group the rows so that each search runs only once
+        $dynamic_groups = [];
+        foreach ($DB->request($criteria) as $data) {
+            $dynamic_groups[$data['id']]['search']   = $data['search'];
+            $dynamic_groups[$data['id']]['params'][] = $data['database_param_id'];
+        }
+
         // check if Dynamic group match computer
         // if true, store databaseparam
-        $iterator = $DB->request($criteria);
-        foreach ($iterator as $data) {
+        foreach ($dynamic_groups as $dynamic_group_id => $dynamic_group_data) {
+            $missing_params = array_diff($dynamic_group_data['params'], $database_param_found);
+            if ($missing_params === []) {
+                continue;
+            }
+
             $dynamic_group = new PluginDatabaseinventoryComputerGroupDynamic();
-            $dynamic_group->getFromDB($data['id']);
-            if ($dynamic_group->isDynamicSearchMatchComputer($computer) && !in_array($data['database_param_id'], $database_param_found)) {
-                $database_param_found[] = $data['database_param_id'];
+            $dynamic_group->getFromResultSet(['id' => $dynamic_group_id, 'search' => $dynamic_group_data['search']]);
+            if ($dynamic_group->isDynamicSearchMatchComputer($computer)) {
+                array_push($database_param_found, ...array_values($missing_params));
             }
         }
 
-        return $database_param_found;
+        return self::$accessible_database_params[$computer_id] = $database_param_found;
     }
 }

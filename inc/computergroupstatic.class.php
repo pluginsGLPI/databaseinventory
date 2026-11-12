@@ -127,31 +127,70 @@ class PluginDatabaseinventoryComputerGroupStatic extends CommonDBRelation
             return false;
         }
 
-        $staticsgroups   = new PluginDatabaseinventoryComputerGroupStatic();
-        $staticgrouplist = $staticsgroups->find(
-            [
-                'plugin_databaseinventory_computergroups_id' => $ID,
-            ],
-        );
+        $static_table   = self::getTable();
+        $computer_table = Computer::getTable();
+        $entity_table   = Entity::getTable();
+        $where          = [$static_table . '.plugin_databaseinventory_computergroups_id' => $ID];
 
-        $computers       = new Computer();
+        // every member is excluded from the "add" dropdown, displayed or not
+        $used = [];
+        foreach ($DB->request(['SELECT' => 'computers_id', 'FROM' => $static_table, 'WHERE' => $where]) as $row) {
+            $used[] = $row['computers_id'];
+        }
+
+        // one page of members, with their computer and entity, in one query
+        $criteria = [
+            'FROM'       => $static_table,
+            'INNER JOIN' => [
+                $computer_table => [
+                    'ON' => [
+                        $static_table   => 'computers_id',
+                        $computer_table => 'id',
+                    ],
+                ],
+            ],
+            'LEFT JOIN'  => [
+                $entity_table => [
+                    'ON' => [
+                        $computer_table => 'entities_id',
+                        $entity_table   => 'id',
+                    ],
+                ],
+            ],
+            'WHERE'      => $where,
+        ];
+        $total = $DB->request($criteria + ['COUNT' => 'total'])->current()['total'];
+
+        $start = max(0, (int) ($_GET['start'] ?? 0));
+        if ($start >= $total) {
+            $start = 0;
+        }
+
+        $iterator = $DB->request($criteria + [
+            'SELECT' => [
+                $computer_table . '.id',
+                $computer_table . '.name',
+                $computer_table . '.is_dynamic',
+                $computer_table . '.serial',
+                $computer_table . '.otherserial',
+                $entity_table . '.completename AS entityname',
+                $static_table . '.id AS idcompgroupstatic',
+            ],
+            'ORDER'  => $static_table . '.id',
+            'START'  => $start,
+            'LIMIT'  => (int) $_SESSION['glpilist_limit'],
+        ]);
+
         $listofcomputers = [];
-        $used            = [];
-        foreach ($staticgrouplist as $staticgroup) {
-            $used[] = $staticgroup['computers_id'];
-            if ($computers->getFromDB($staticgroup['computers_id'])) {
-                $listofcomputers[] = $computers->fields + [
-                    'entityname'        => Entity::getById($computers->fields['entities_id'])->fields['completename'],
-                    'link'              => $computers->getLinkURL(),
-                    'idcompgroupstatic' => $staticgroup['id'],
-                ];
-            }
+        foreach ($iterator as $row) {
+            $listofcomputers[] = $row + ['link' => Computer::getFormURLWithID($row['id'])];
         }
 
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/computergroupstatic.html.twig',
             [
                 'item'              => PluginDatabaseinventoryComputerGroup::getById($ID),
+                'pager'             => $total > 0 ? Html::printAjaxPager('', $start, $total, '', false) : '',
                 'computerslist'     => $listofcomputers,
                 'groupstaticclass'  => PluginDatabaseinventoryComputerGroupStatic::class,
                 'canread'           => $computergroup->can($ID, READ),

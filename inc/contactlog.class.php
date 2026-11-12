@@ -121,47 +121,117 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             return false;
         }
 
-        $contactlog     = new PluginDatabaseinventoryContactLog();
-        $contactloglist = $contactlog->find(
-            [
-                'plugin_databaseinventory_databaseparams_id' => $ID,
-            ],
+        // lines whose credential and agent are both gone are not displayed
+        [$listofctlog, $pager] = self::getContactLogPage(
+            ['plugin_databaseinventory_databaseparams_id' => $ID],
+            Agent::class,
+            'agents_id',
+            false,
         );
-
-        $credential  = new PluginDatabaseinventoryCredential();
-        $agent       = new Agent();
-        $listofctlog = [];
-        foreach ($contactloglist as $dbpctlog) {
-            if ($credential->getFromDB($dbpctlog['plugin_databaseinventory_credentials_id'])) {
-                $linkcred = $credential->getLinkURL();
-                $credname = $credential->fields['name'];
-            }
-
-            if ($agent->getFromDB($dbpctlog['agents_id'])) {
-                $linkagent = $agent->getLinkURL();
-                $agentname = $agent->fields['name'];
-            }
-
-            if (isset($linkcred) || isset($linkagent)) {
-                $listofctlog[] = $dbpctlog + [
-                    'linkcred'  => $linkcred  ?? '',
-                    'linkagent' => $linkagent ?? '',
-                    'credname'  => $credname  ?? '',
-                    'agentname' => $agentname ?? '',
-                ];
-            }
+        foreach ($listofctlog as &$ctlog) {
+            $ctlog['linkagent'] = $ctlog['linkother'];
+            $ctlog['agentname'] = $ctlog['othername'];
         }
+
+        unset($ctlog);
 
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/contactlog.html.twig',
             [
                 'itemtype'    => PluginDatabaseinventoryDatabaseParam::getType(),
+                'pager'       => $pager,
                 'contactlogs' => $listofctlog,
                 'canread'     => $databaseparams->can($ID, READ),
             ],
         );
 
         return true;
+    }
+
+    /**
+     * Load one page of contact logs with the names of their credential and of the other linked item
+     * (agent or database param), in one query.
+     *
+     * @param array                    $where              criteria on the contact log table
+     * @param class-string<CommonDBTM> $other_itemtype     Agent or PluginDatabaseinventoryDatabaseParam
+     * @param string                   $other_fk           foreign key of the other item in the contact log table
+     * @param bool                     $require_credential true to skip lines whose credential is gone,
+     *                                                     false to skip lines whose credential and other item are both gone
+     *
+     * @return array{0: array<int, array<string, mixed>>, 1: string} the lines and the pager HTML
+     */
+    private static function getContactLogPage(array $where, string $other_itemtype, string $other_fk, bool $require_credential): array
+    {
+        /** @var DBmysql $DB */
+        global $DB;
+
+        $log_table        = self::getTable();
+        $credential_table = PluginDatabaseinventoryCredential::getTable();
+        $other_table      = $other_itemtype::getTable();
+
+        $full_where = [];
+        foreach ($where as $field => $value) {
+            $full_where[$log_table . '.' . $field] = $value;
+        }
+
+        if ($require_credential) {
+            $full_where[] = ['NOT' => [$credential_table . '.id' => null]];
+        } else {
+            $full_where[] = ['OR' => [
+                ['NOT' => [$credential_table . '.id' => null]],
+                ['NOT' => [$other_table . '.id' => null]],
+            ]];
+        }
+
+        $criteria = [
+            'FROM'      => $log_table,
+            'LEFT JOIN' => [
+                $credential_table => [
+                    'ON' => [
+                        $log_table        => 'plugin_databaseinventory_credentials_id',
+                        $credential_table => 'id',
+                    ],
+                ],
+                $other_table => [
+                    'ON' => [
+                        $log_table   => $other_fk,
+                        $other_table => 'id',
+                    ],
+                ],
+            ],
+            'WHERE'     => $full_where,
+        ];
+        $total = $DB->request($criteria + ['COUNT' => 'total'])->current()['total'];
+
+        $start = max(0, (int) ($_GET['start'] ?? 0));
+        if ($start >= $total) {
+            $start = 0;
+        }
+
+        $iterator = $DB->request($criteria + [
+            'SELECT' => [
+                $log_table . '.*',
+                $credential_table . '.id AS credential_id',
+                $credential_table . '.name AS credname',
+                $other_table . '.id AS other_id',
+                $other_table . '.name AS othername',
+            ],
+            // newest first: the log grows at every agent contact
+            'ORDER'  => [$log_table . '.date_creation DESC', $log_table . '.id DESC'],
+            'START'  => $start,
+            'LIMIT'  => (int) $_SESSION['glpilist_limit'],
+        ]);
+
+        $lines = [];
+        foreach ($iterator as $row) {
+            $row['linkcred']  = $row['credential_id'] !== null ? PluginDatabaseinventoryCredential::getFormURLWithID($row['credential_id']) : '';
+            $row['credname'] ??= '';
+            $row['linkother'] = $row['other_id'] !== null ? $other_itemtype::getFormURLWithID($row['other_id']) : '';
+            $row['othername'] ??= '';
+            $lines[] = $row;
+        }
+
+        return [$lines, $total > 0 ? Html::printAjaxPager('', $start, $total, '', false) : ''];
     }
 
     private static function showForAgent(Agent $agent)
@@ -171,41 +241,25 @@ class PluginDatabaseinventoryContactLog extends CommonDBTM
             return false;
         }
 
-        $contactlog     = new PluginDatabaseinventoryContactLog();
-        $contactloglist = $contactlog->find(
-            [
-                'agents_id' => $ID,
-            ],
+        // lines whose credential is gone are not displayed
+        [$listofctlog, $pager] = self::getContactLogPage(
+            ['agents_id' => $ID],
+            PluginDatabaseinventoryDatabaseParam::class,
+            'plugin_databaseinventory_databaseparams_id',
+            true,
         );
-
-        $credential  = new PluginDatabaseinventoryCredential();
-        $dbparam     = new PluginDatabaseinventoryDatabaseParam();
-        $listofctlog = [];
-        foreach ($contactloglist as $dbpctlog) {
-            if ($credential->getFromDB($dbpctlog['plugin_databaseinventory_credentials_id'])) {
-                $linkcred = $credential->getLinkURL();
-                $credname = $credential->fields['name'];
-            }
-
-            if ($dbparam->getFromDB($dbpctlog['plugin_databaseinventory_databaseparams_id'])) {
-                $linkdbparam = $dbparam->getLinkURL();
-                $dbparamname = $dbparam->fields['name'];
-            }
-
-            if (isset($linkcred)) {
-                $listofctlog[] = $dbpctlog + [
-                    'linkcred'    => $linkcred,
-                    'linkdbparam' => $linkdbparam ?? '',
-                    'credname'    => $credname    ?? '',
-                    'dbparamname' => $dbparamname ?? '',
-                ];
-            }
+        foreach ($listofctlog as &$ctlog) {
+            $ctlog['linkdbparam'] = $ctlog['linkother'];
+            $ctlog['dbparamname'] = $ctlog['othername'];
         }
+
+        unset($ctlog);
 
         TemplateRenderer::getInstance()->display(
             '@databaseinventory/contactlog.html.twig',
             [
                 'itemtype'    => Agent::getType(),
+                'pager'       => $pager,
                 'contactlogs' => $listofctlog,
                 'canread'     => $agent->can($ID, READ),
             ],

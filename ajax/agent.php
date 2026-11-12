@@ -31,6 +31,7 @@
 use Glpi\Exception\Http\NotFoundHttpException;
 
 use function Safe\json_encode;
+use function Safe\session_write_close;
 
 $AJAX_INCLUDE = 1;
 include(__DIR__ . '/../../../inc/includes.php');
@@ -46,6 +47,9 @@ if (isset($_POST['action']) && isset($_POST['id'])) {
     if (!$agent->getFromDB($_POST['id'])) {
         throw new NotFoundHttpException();
     }
+
+    // The agent call can take seconds: release the session lock, the code below only reads the session
+    session_write_close();
 
     $answer = [];
 

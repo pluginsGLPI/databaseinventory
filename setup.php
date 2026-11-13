@@ -94,6 +94,7 @@ function plugin_version_databaseinventory()
         'author'       => '<a href="https://services.glpi-network.com">Teclib\'</a>',
         'license'      => 'GPL v3',
         'homepage'     => 'https://services.glpi-network.com',
+        'csp_compliant' => true,
         'requirements' => [
             'glpi' => [
                 'min' => PLUGIN_DATABASEINVENTORY_MIN_GLPI,

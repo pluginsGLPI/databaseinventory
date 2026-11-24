@@ -28,6 +28,8 @@
  * -------------------------------------------------------------------------
  */
 
+use Glpi\Plugin\Hooks;
+
 use function Safe\define;
 
 define('PLUGIN_DATABASEINVENTORY_VERSION', '1.1.4');
@@ -58,6 +60,7 @@ function plugin_init_databaseinventory()
     $PLUGIN_HOOKS['handle_inventory_task']['databaseinventory'] = ['PluginDatabaseinventoryTask', 'handleInventoryTask'];
     $PLUGIN_HOOKS['inventory_get_params']['databaseinventory']  = ['PluginDatabaseinventoryTask', 'inventoryGetParams'];
     $PLUGIN_HOOKS['handle_agent_response']['databaseinventory'] = ['PluginDatabaseinventoryInventoryAction', 'HandleAgentResponse'];
+    $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['databaseinventory'][] = 'js/checkall.js';
 
     $PLUGIN_HOOKS['item_purge']['databaseinventory'] = [
         'Computer' => 'cleanComputerFromStaticGroup',
@@ -94,6 +97,7 @@ function plugin_version_databaseinventory()
         'author'       => '<a href="https://services.glpi-network.com">Teclib\'</a>',
         'license'      => 'GPL v3',
         'homepage'     => 'https://services.glpi-network.com',
+        'csp_compliant' => true,
         'requirements' => [
             'glpi' => [
                 'min' => PLUGIN_DATABASEINVENTORY_MIN_GLPI,

@@ -80,8 +80,7 @@
                                 <th style="width: 32px;">
                                     <input class="form-check-input" type="checkbox" id="checkall_{{ rand }}"
                                         value="" title="{{ __('Check all as') }}"
-                                        data-bs-toggle="tooltip"
-                                        onclick="checkAsCheckboxes('checkall_{{ rand }}', '{{ table_id }}');" />
+                                        data-bs-toggle="tooltip" data-databaseinventory-checkall="{{ table_id }}" />
                                 </th>
                             {% endif %}
                             <th>{{ __('Name') }}</th>

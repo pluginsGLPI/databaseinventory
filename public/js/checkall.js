@@ -20,6 +20,10 @@
  * You should have received a copy of the GNU General Public License
  * along with DatabaseInventory. If not, see <http://www.gnu.org/licenses/>.
  * -------------------------------------------------------------------------
+ * @copyright Copyright (C) 2021-2023 by Teclib'.
+ * @license   GPLv3 https://www.gnu.org/licenses/gpl-3.0.html
+ * @link      https://services.glpi-network.com
+ * -------------------------------------------------------------------------
  */
 
 $(document).on('click', '[data-databaseinventory-checkall]', function () {
